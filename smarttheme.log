@@ -1,0 +1,100 @@
+2025-11-01T16:56:52.4511313+01:00 - Naplánováno (XML import) ensure/once+startup+logon v 2025-11-02 16:38
+2025-11-01T16:56:52.4769658+01:00 - Hotovo. Další přepnutí bylo naplánováno.
+2025-11-01T16:57:38.9946238+01:00 - Skript běží z: C:\Users\Martin\OneDrive\Dokumenty\PowerShell\Scripts\mode.ps1
+2025-11-01T16:57:39.0209719+01:00 - Zjišťuji aktuální polohu...
+2025-11-01T16:57:39.2905369+01:00 - Místo: Prague (50.0948, 14.4785) [Europe/Prague]
+2025-11-01T16:57:39.3129146+01:00 - Načítám časy východu a západu slunce...
+2025-11-01T16:57:39.3336517+01:00 - Volám API: https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0
+2025-11-01T16:57:39.8624330+01:00 - Stav odpovědi: OK
+2025-11-01T16:57:39.8811656+01:00 - UTC sunrise: 11/01/2025 05:50:44 (Kind=Utc)
+2025-11-01T16:57:39.8994398+01:00 - UTC sunset : 11/01/2025 15:40:34 (Kind=Utc)
+2025-11-01T16:57:39.9180775+01:00 - Používám Windows timezone ID: Europe/Prague (původně: Europe/Prague)
+2025-11-01T16:57:39.9368806+01:00 - Jedna nebo více událostí už dnes proběhlo (sunrise=11/01/2025 06:50:44, sunset=11/01/2025 16:40:34). Dotazuji se na zítřejší časy...
+2025-11-01T16:57:39.9533502+01:00 - Volám API (next day): https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0&date=2025-11-02
+2025-11-01T16:57:40.4872492+01:00 - Nové lokální časy (zítřek) — sunrise: 11/02/2025 06:52:24; sunset: 11/02/2025 16:38:53
+2025-11-01T16:57:40.5089705+01:00 - Lokální čas východu: 11/02/2025 06:52:24
+2025-11-01T16:57:40.5292150+01:00 - Lokální čas západu : 11/02/2025 16:38:53
+2025-11-01T16:57:40.5582507+01:00 - Aktuální režim: Light → Nový režim: Dark
+2025-11-01T16:57:40.6637135+01:00 - Přepnuto na tmavý režim.
+2025-11-01T16:57:41.0739845+01:00 - Exportuji existující úlohu SmartThemeSwitch-Light do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml (pokud existuje)...
+2025-11-01T16:57:41.2571386+01:00 - Export úlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml dokončen.
+2025-11-01T16:57:42.4259562+01:00 - Vytvořeno doporučené XML pro úlohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml
+2025-11-01T16:57:42.4468624+01:00 - Importuji úlohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml jako SmartThemeSwitch-Light...
+2025-11-01T16:57:42.5148843+01:00 - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Light" has successfully been created.
+2025-11-01T16:57:42.5354668+01:00 - Import XML úlohy SmartThemeSwitch-Light dokončen.
+2025-11-01T16:57:42.5548099+01:00 - Naplánováno (XML import) ensure/once+startup+logon v 2025-11-02 06:52
+2025-11-01T16:57:42.5750841+01:00 - Hotovo. Další přepnutí bylo naplánováno.
+2025-11-01T17:06:37.4371372+01:00 - Skript běží z: C:\Users\Martin\AppData\Local\SmartTheme\mode.ps1
+2025-11-01T17:06:37.4652640+01:00 - Zjišťuji aktuální polohu...
+2025-11-01T17:06:37.7711861+01:00 - Místo: Prague (50.0948, 14.4785) [Europe/Prague]
+2025-11-01T17:06:37.7997126+01:00 - Načítám časy východu a západu slunce...
+2025-11-01T17:06:37.8229213+01:00 - Volám API: https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0
+2025-11-01T17:06:38.5613371+01:00 - Stav odpovědi: OK
+2025-11-01T17:06:38.5837102+01:00 - UTC sunrise: 11/01/2025 05:50:44 (Kind=Utc)
+2025-11-01T17:06:38.6039561+01:00 - UTC sunset : 11/01/2025 15:40:34 (Kind=Utc)
+2025-11-01T17:06:38.6226440+01:00 - Používám Windows timezone ID: Europe/Prague (původně: Europe/Prague)
+2025-11-01T17:06:38.6442265+01:00 - Jedna nebo více událostí už dnes proběhlo (sunrise=11/01/2025 06:50:44, sunset=11/01/2025 16:40:34). Dotazuji se na zítřejší časy...
+2025-11-01T17:06:38.6613897+01:00 - Volám API (next day): https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0&date=2025-11-02
+2025-11-01T17:06:39.1912871+01:00 - Nové lokální časy (zítřek) — sunrise: 11/02/2025 06:52:24; sunset: 11/02/2025 16:38:53
+2025-11-01T17:06:39.2206997+01:00 - Lokální čas východu: 11/02/2025 06:52:24
+2025-11-01T17:06:39.2593788+01:00 - Lokální čas západu : 11/02/2025 16:38:53
+2025-11-01T17:06:39.2990757+01:00 - Aktuální režim: Dark → Nový režim: Light
+2025-11-01T17:06:39.3419318+01:00 - Přepnuto na světlý režim.
+2025-11-01T17:06:39.8167653+01:00 - Exportuji existující úlohu SmartThemeSwitch-Dark do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml (pokud existuje)...
+2025-11-01T17:06:40.2308402+01:00 - Export úlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml dokončen.
+2025-11-01T17:06:41.6885532+01:00 - Vytvořeno doporučené XML pro úlohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark.xml
+2025-11-01T17:06:41.7097185+01:00 - Importuji úlohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark.xml jako SmartThemeSwitch-Dark...
+2025-11-01T17:06:41.7768840+01:00 - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Dark" has successfully been created.
+2025-11-01T17:06:41.7978986+01:00 - Import XML úlohy SmartThemeSwitch-Dark dokončen.
+2025-11-01T17:06:41.8191104+01:00 - Naplánováno (XML import) ensure/once+startup+logon v 2025-11-02 16:38
+2025-11-01T17:06:41.8390174+01:00 - Hotovo. Další přepnutí bylo naplánováno.
+2025-11-01T17:11:02.8112626+01:00 - Skript běží z: C:\Users\Martin\AppData\Local\SmartTheme\SmartTheme.ps1
+2025-11-01T17:11:02.8408580+01:00 - Zjišťuji aktuální polohu...
+2025-11-01T17:11:03.1469146+01:00 - Místo: Prague (50.0948, 14.4785) [Europe/Prague]
+2025-11-01T17:11:03.1713054+01:00 - Načítám časy východu a západu slunce...
+2025-11-01T17:11:03.1921898+01:00 - Volám API: https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0
+2025-11-01T17:11:03.7322256+01:00 - Stav odpovědi: OK
+2025-11-01T17:11:03.7518485+01:00 - UTC sunrise: 11/01/2025 05:50:44 (Kind=Utc)
+2025-11-01T17:11:03.7714584+01:00 - UTC sunset : 11/01/2025 15:40:34 (Kind=Utc)
+2025-11-01T17:11:03.7889315+01:00 - Používám Windows timezone ID: Europe/Prague (původně: Europe/Prague)
+2025-11-01T17:11:03.8055070+01:00 - Jedna nebo více událostí už dnes proběhlo (sunrise=11/01/2025 06:50:44, sunset=11/01/2025 16:40:34). Dotazuji se na zítřejší časy...
+2025-11-01T17:11:03.8220956+01:00 - Volám API (next day): https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0&date=2025-11-02
+2025-11-01T17:11:04.3613093+01:00 - Nové lokální časy (zítřek) — sunrise: 11/02/2025 06:52:24; sunset: 11/02/2025 16:38:53
+2025-11-01T17:11:04.3798014+01:00 - Lokální čas východu: 11/02/2025 06:52:24
+2025-11-01T17:11:04.4060507+01:00 - Lokální čas západu : 11/02/2025 16:38:53
+2025-11-01T17:11:04.4309842+01:00 - Aktuální režim: Light → Nový režim: Dark
+2025-11-01T17:11:04.4613433+01:00 - Přepnuto na tmavý režim.
+2025-11-01T17:11:05.0515575+01:00 - Exportuji existující úlohu SmartThemeSwitch-Light do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml (pokud existuje)...
+2025-11-01T17:11:05.6308799+01:00 - Export úlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml dokončen.
+2025-11-01T17:11:06.8478015+01:00 - Vytvořeno doporučené XML pro úlohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml
+2025-11-01T17:11:06.8728943+01:00 - Importuji úlohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml jako SmartThemeSwitch-Light...
+2025-11-01T17:11:06.9513090+01:00 - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Light" has successfully been created.
+2025-11-01T17:11:06.9730980+01:00 - Import XML úlohy SmartThemeSwitch-Light dokončen.
+2025-11-01T17:11:06.9960980+01:00 - Naplánováno (XML import) ensure/once+startup+logon v 2025-11-02 06:52
+2025-11-01T17:11:07.0161079+01:00 - Hotovo. Další přepnutí bylo naplánováno.
+2025-11-01T17:20:00.0523667+01:00 - Skript běží z: C:\Users\Martin\AppData\Local\SmartTheme\SmartTheme.ps1
+2025-11-01T17:20:00.0840011+01:00 - Zjišťuji aktuální polohu...
+2025-11-01T17:20:00.5667336+01:00 - Místo: Prague (50.0948, 14.4785) [Europe/Prague]
+2025-11-01T17:20:00.6049619+01:00 - Načítám časy východu a západu slunce...
+2025-11-01T17:20:00.6282358+01:00 - Volám API: https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0
+2025-11-01T17:20:01.3787822+01:00 - Stav odpovědi: OK
+2025-11-01T17:20:01.4116462+01:00 - UTC sunrise: 11/01/2025 05:50:44 (Kind=Utc)
+2025-11-01T17:20:01.4387642+01:00 - UTC sunset : 11/01/2025 15:40:34 (Kind=Utc)
+2025-11-01T17:20:01.4789380+01:00 - Používám Windows timezone ID: Europe/Prague (původně: Europe/Prague)
+2025-11-01T17:20:01.5064889+01:00 - Jedna nebo více událostí už dnes proběhlo (sunrise=11/01/2025 06:50:44, sunset=11/01/2025 16:40:34). Dotazuji se na zítřejší časy...
+2025-11-01T17:20:01.5390724+01:00 - Volám API (next day): https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0&date=2025-11-02
+2025-11-01T17:20:02.0815818+01:00 - Nové lokální časy (zítřek) — sunrise: 11/02/2025 06:52:24; sunset: 11/02/2025 16:38:53
+2025-11-01T17:20:02.1093753+01:00 - Lokální čas východu: 11/02/2025 06:52:24
+2025-11-01T17:20:02.1292505+01:00 - Lokální čas západu : 11/02/2025 16:38:53
+2025-11-01T17:20:02.1622036+01:00 - -Schedule: pouze aktualizuji plán.
+2025-11-01T17:20:02.1861663+01:00 - Režim se nemění (Schedule mód).
+2025-11-01T17:20:02.2137604+01:00 - Proces běží bez administrátorských práv — pokusím se vytvořit úlohu pro aktuálního uživatele bez elevace.
+2025-11-01T17:20:02.2899451+01:00 - schtasks-user: WARNING: Task may not run because /ST is earlier than current time.
+2025-11-01T17:20:02.3078839+01:00 - schtasks-user: ERROR: Přístup byl odepřen.
+2025-11-01T17:20:02.3351522+01:00 - schtasks-user: System.Management.Automation.RemoteException
+2025-11-01T17:20:02.3571208+01:00 - Vytvoření ONCE úlohy pro aktuálního uživatele selhalo; budu pokračovat s API/fallbackem.
+2025-11-01T17:20:02.4242369+01:00 - schtasks-user-startup: ERROR: Přístup byl odepřen.
+2025-11-01T17:20:02.4482320+01:00 - schtasks-user-startup: System.Management.Automation.RemoteException
+2025-11-01T17:20:02.5205442+01:00 - schtasks-user-logon: ERROR: Přístup byl odepřen.
+2025-11-01T17:20:02.5383392+01:00 - schtasks-user-logon: System.Management.Automation.RemoteException
+2025-11-01T17:20:02.5559675+01:00 - Hotovo. Další přepnutí bylo naplánováno.
