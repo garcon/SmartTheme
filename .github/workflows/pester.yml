@@ -1,0 +1,25 @@
+name: Windows PowerShell CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install PowerShell modules (Pester, PSScriptAnalyzer)
+      run: |
+        pwsh -NoProfile -Command "Install-Module -Name Pester -Force -Scope CurrentUser -AllowClobber -ErrorAction Stop"
+        pwsh -NoProfile -Command "Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser -AllowClobber -ErrorAction Stop"
+
+    - name: Run Pester tests
+      run: pwsh -NoProfile -Command "Import-Module Pester; Invoke-Pester -Script .\\tests;"
+
+    - name: Run PSScriptAnalyzer
+      run: pwsh -NoProfile -Command "Import-Module PSScriptAnalyzer; Invoke-ScriptAnalyzer -Path . -Recurse -Severity Warning"

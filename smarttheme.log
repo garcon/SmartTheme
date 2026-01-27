@@ -1,100 +1,436 @@
-2025-11-01T16:56:52.4511313+01:00 - Naplánováno (XML import) ensure/once+startup+logon v 2025-11-02 16:38
-2025-11-01T16:56:52.4769658+01:00 - Hotovo. Další přepnutí bylo naplánováno.
-2025-11-01T16:57:38.9946238+01:00 - Skript běží z: C:\Users\Martin\OneDrive\Dokumenty\PowerShell\Scripts\mode.ps1
-2025-11-01T16:57:39.0209719+01:00 - Zjišťuji aktuální polohu...
-2025-11-01T16:57:39.2905369+01:00 - Místo: Prague (50.0948, 14.4785) [Europe/Prague]
-2025-11-01T16:57:39.3129146+01:00 - Načítám časy východu a západu slunce...
-2025-11-01T16:57:39.3336517+01:00 - Volám API: https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0
-2025-11-01T16:57:39.8624330+01:00 - Stav odpovědi: OK
-2025-11-01T16:57:39.8811656+01:00 - UTC sunrise: 11/01/2025 05:50:44 (Kind=Utc)
-2025-11-01T16:57:39.8994398+01:00 - UTC sunset : 11/01/2025 15:40:34 (Kind=Utc)
-2025-11-01T16:57:39.9180775+01:00 - Používám Windows timezone ID: Europe/Prague (původně: Europe/Prague)
-2025-11-01T16:57:39.9368806+01:00 - Jedna nebo více událostí už dnes proběhlo (sunrise=11/01/2025 06:50:44, sunset=11/01/2025 16:40:34). Dotazuji se na zítřejší časy...
-2025-11-01T16:57:39.9533502+01:00 - Volám API (next day): https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0&date=2025-11-02
-2025-11-01T16:57:40.4872492+01:00 - Nové lokální časy (zítřek) — sunrise: 11/02/2025 06:52:24; sunset: 11/02/2025 16:38:53
-2025-11-01T16:57:40.5089705+01:00 - Lokální čas východu: 11/02/2025 06:52:24
-2025-11-01T16:57:40.5292150+01:00 - Lokální čas západu : 11/02/2025 16:38:53
-2025-11-01T16:57:40.5582507+01:00 - Aktuální režim: Light → Nový režim: Dark
-2025-11-01T16:57:40.6637135+01:00 - Přepnuto na tmavý režim.
-2025-11-01T16:57:41.0739845+01:00 - Exportuji existující úlohu SmartThemeSwitch-Light do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml (pokud existuje)...
-2025-11-01T16:57:41.2571386+01:00 - Export úlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml dokončen.
-2025-11-01T16:57:42.4259562+01:00 - Vytvořeno doporučené XML pro úlohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml
-2025-11-01T16:57:42.4468624+01:00 - Importuji úlohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml jako SmartThemeSwitch-Light...
-2025-11-01T16:57:42.5148843+01:00 - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Light" has successfully been created.
-2025-11-01T16:57:42.5354668+01:00 - Import XML úlohy SmartThemeSwitch-Light dokončen.
-2025-11-01T16:57:42.5548099+01:00 - Naplánováno (XML import) ensure/once+startup+logon v 2025-11-02 06:52
-2025-11-01T16:57:42.5750841+01:00 - Hotovo. Další přepnutí bylo naplánováno.
-2025-11-01T17:06:37.4371372+01:00 - Skript běží z: C:\Users\Martin\AppData\Local\SmartTheme\mode.ps1
-2025-11-01T17:06:37.4652640+01:00 - Zjišťuji aktuální polohu...
-2025-11-01T17:06:37.7711861+01:00 - Místo: Prague (50.0948, 14.4785) [Europe/Prague]
-2025-11-01T17:06:37.7997126+01:00 - Načítám časy východu a západu slunce...
-2025-11-01T17:06:37.8229213+01:00 - Volám API: https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0
-2025-11-01T17:06:38.5613371+01:00 - Stav odpovědi: OK
-2025-11-01T17:06:38.5837102+01:00 - UTC sunrise: 11/01/2025 05:50:44 (Kind=Utc)
-2025-11-01T17:06:38.6039561+01:00 - UTC sunset : 11/01/2025 15:40:34 (Kind=Utc)
-2025-11-01T17:06:38.6226440+01:00 - Používám Windows timezone ID: Europe/Prague (původně: Europe/Prague)
-2025-11-01T17:06:38.6442265+01:00 - Jedna nebo více událostí už dnes proběhlo (sunrise=11/01/2025 06:50:44, sunset=11/01/2025 16:40:34). Dotazuji se na zítřejší časy...
-2025-11-01T17:06:38.6613897+01:00 - Volám API (next day): https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0&date=2025-11-02
-2025-11-01T17:06:39.1912871+01:00 - Nové lokální časy (zítřek) — sunrise: 11/02/2025 06:52:24; sunset: 11/02/2025 16:38:53
-2025-11-01T17:06:39.2206997+01:00 - Lokální čas východu: 11/02/2025 06:52:24
-2025-11-01T17:06:39.2593788+01:00 - Lokální čas západu : 11/02/2025 16:38:53
-2025-11-01T17:06:39.2990757+01:00 - Aktuální režim: Dark → Nový režim: Light
-2025-11-01T17:06:39.3419318+01:00 - Přepnuto na světlý režim.
-2025-11-01T17:06:39.8167653+01:00 - Exportuji existující úlohu SmartThemeSwitch-Dark do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml (pokud existuje)...
-2025-11-01T17:06:40.2308402+01:00 - Export úlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml dokončen.
-2025-11-01T17:06:41.6885532+01:00 - Vytvořeno doporučené XML pro úlohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark.xml
-2025-11-01T17:06:41.7097185+01:00 - Importuji úlohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark.xml jako SmartThemeSwitch-Dark...
-2025-11-01T17:06:41.7768840+01:00 - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Dark" has successfully been created.
-2025-11-01T17:06:41.7978986+01:00 - Import XML úlohy SmartThemeSwitch-Dark dokončen.
-2025-11-01T17:06:41.8191104+01:00 - Naplánováno (XML import) ensure/once+startup+logon v 2025-11-02 16:38
-2025-11-01T17:06:41.8390174+01:00 - Hotovo. Další přepnutí bylo naplánováno.
-2025-11-01T17:11:02.8112626+01:00 - Skript běží z: C:\Users\Martin\AppData\Local\SmartTheme\SmartTheme.ps1
-2025-11-01T17:11:02.8408580+01:00 - Zjišťuji aktuální polohu...
-2025-11-01T17:11:03.1469146+01:00 - Místo: Prague (50.0948, 14.4785) [Europe/Prague]
-2025-11-01T17:11:03.1713054+01:00 - Načítám časy východu a západu slunce...
-2025-11-01T17:11:03.1921898+01:00 - Volám API: https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0
-2025-11-01T17:11:03.7322256+01:00 - Stav odpovědi: OK
-2025-11-01T17:11:03.7518485+01:00 - UTC sunrise: 11/01/2025 05:50:44 (Kind=Utc)
-2025-11-01T17:11:03.7714584+01:00 - UTC sunset : 11/01/2025 15:40:34 (Kind=Utc)
-2025-11-01T17:11:03.7889315+01:00 - Používám Windows timezone ID: Europe/Prague (původně: Europe/Prague)
-2025-11-01T17:11:03.8055070+01:00 - Jedna nebo více událostí už dnes proběhlo (sunrise=11/01/2025 06:50:44, sunset=11/01/2025 16:40:34). Dotazuji se na zítřejší časy...
-2025-11-01T17:11:03.8220956+01:00 - Volám API (next day): https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0&date=2025-11-02
-2025-11-01T17:11:04.3613093+01:00 - Nové lokální časy (zítřek) — sunrise: 11/02/2025 06:52:24; sunset: 11/02/2025 16:38:53
-2025-11-01T17:11:04.3798014+01:00 - Lokální čas východu: 11/02/2025 06:52:24
-2025-11-01T17:11:04.4060507+01:00 - Lokální čas západu : 11/02/2025 16:38:53
-2025-11-01T17:11:04.4309842+01:00 - Aktuální režim: Light → Nový režim: Dark
-2025-11-01T17:11:04.4613433+01:00 - Přepnuto na tmavý režim.
-2025-11-01T17:11:05.0515575+01:00 - Exportuji existující úlohu SmartThemeSwitch-Light do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml (pokud existuje)...
-2025-11-01T17:11:05.6308799+01:00 - Export úlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml dokončen.
-2025-11-01T17:11:06.8478015+01:00 - Vytvořeno doporučené XML pro úlohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml
-2025-11-01T17:11:06.8728943+01:00 - Importuji úlohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml jako SmartThemeSwitch-Light...
-2025-11-01T17:11:06.9513090+01:00 - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Light" has successfully been created.
-2025-11-01T17:11:06.9730980+01:00 - Import XML úlohy SmartThemeSwitch-Light dokončen.
-2025-11-01T17:11:06.9960980+01:00 - Naplánováno (XML import) ensure/once+startup+logon v 2025-11-02 06:52
-2025-11-01T17:11:07.0161079+01:00 - Hotovo. Další přepnutí bylo naplánováno.
-2025-11-01T17:20:00.0523667+01:00 - Skript běží z: C:\Users\Martin\AppData\Local\SmartTheme\SmartTheme.ps1
-2025-11-01T17:20:00.0840011+01:00 - Zjišťuji aktuální polohu...
-2025-11-01T17:20:00.5667336+01:00 - Místo: Prague (50.0948, 14.4785) [Europe/Prague]
-2025-11-01T17:20:00.6049619+01:00 - Načítám časy východu a západu slunce...
-2025-11-01T17:20:00.6282358+01:00 - Volám API: https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0
-2025-11-01T17:20:01.3787822+01:00 - Stav odpovědi: OK
-2025-11-01T17:20:01.4116462+01:00 - UTC sunrise: 11/01/2025 05:50:44 (Kind=Utc)
-2025-11-01T17:20:01.4387642+01:00 - UTC sunset : 11/01/2025 15:40:34 (Kind=Utc)
-2025-11-01T17:20:01.4789380+01:00 - Používám Windows timezone ID: Europe/Prague (původně: Europe/Prague)
-2025-11-01T17:20:01.5064889+01:00 - Jedna nebo více událostí už dnes proběhlo (sunrise=11/01/2025 06:50:44, sunset=11/01/2025 16:40:34). Dotazuji se na zítřejší časy...
-2025-11-01T17:20:01.5390724+01:00 - Volám API (next day): https://api.sunrise-sunset.org/json?lat=50.0948&lng=14.4785&formatted=0&date=2025-11-02
-2025-11-01T17:20:02.0815818+01:00 - Nové lokální časy (zítřek) — sunrise: 11/02/2025 06:52:24; sunset: 11/02/2025 16:38:53
-2025-11-01T17:20:02.1093753+01:00 - Lokální čas východu: 11/02/2025 06:52:24
-2025-11-01T17:20:02.1292505+01:00 - Lokální čas západu : 11/02/2025 16:38:53
-2025-11-01T17:20:02.1622036+01:00 - -Schedule: pouze aktualizuji plán.
-2025-11-01T17:20:02.1861663+01:00 - Režim se nemění (Schedule mód).
-2025-11-01T17:20:02.2137604+01:00 - Proces běží bez administrátorských práv — pokusím se vytvořit úlohu pro aktuálního uživatele bez elevace.
-2025-11-01T17:20:02.2899451+01:00 - schtasks-user: WARNING: Task may not run because /ST is earlier than current time.
-2025-11-01T17:20:02.3078839+01:00 - schtasks-user: ERROR: Přístup byl odepřen.
-2025-11-01T17:20:02.3351522+01:00 - schtasks-user: System.Management.Automation.RemoteException
-2025-11-01T17:20:02.3571208+01:00 - Vytvoření ONCE úlohy pro aktuálního uživatele selhalo; budu pokračovat s API/fallbackem.
-2025-11-01T17:20:02.4242369+01:00 - schtasks-user-startup: ERROR: Přístup byl odepřen.
-2025-11-01T17:20:02.4482320+01:00 - schtasks-user-startup: System.Management.Automation.RemoteException
-2025-11-01T17:20:02.5205442+01:00 - schtasks-user-logon: ERROR: Přístup byl odepřen.
-2025-11-01T17:20:02.5383392+01:00 - schtasks-user-logon: System.Management.Automation.RemoteException
-2025-11-01T17:20:02.5559675+01:00 - Hotovo. Další přepnutí bylo naplánováno.
+2026-01-27T10:39:40.6392887+01:00 - Hotovo. ALE: NepodaĂ„Ä…Ă˘â€žËilo se vytvoĂ„Ä…Ă˘â€žËit plĂ„â€šĂ‹â€ˇnovanou Ă„â€šÄąĹşlohu (pravdÄ‚â€žĂ˘â‚¬ĹźpodobnÄ‚â€žĂ˘â‚¬Ĺź nedostateÄ‚â€žÄąÂ¤nĂ„â€šĂ‹â€ˇ oprĂ„â€šĂ‹â€ˇvnÄ‚â€žĂ˘â‚¬ĹźnĂ„â€šĂ‚Â­).
+2026-01-27T10:39:40.6694061+01:00 - Instrukce pro spuĂ„Ä…Ă‹â€ˇtÄ‚â€žĂ˘â‚¬ĹźnĂ„â€šĂ‚Â­ elevated (spustĂ„â€šĂ‚Â­ novĂ„â€šĂ‚Â© okno PowerShell s UAC prompt):
+2026-01-27T10:39:40.7113703+01:00 -   Start-Process -FilePath 'powershell.exe' -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File "C:\Users\Martin\AppData\Local\SmartTheme\SmartTheme.ps1" -Schedule' -Verb RunAs
+2026-01-27T10:39:40.7722021+01:00 - PĂ„Ä…Ă˘â€žËĂ„â€šĂ‚Â­klad pĂ„Ä…Ă˘â€žËĂ„â€šĂ‚Â­kazu pro ruÄ‚â€žÄąÂ¤nĂ„â€šĂ‚Â­ vytvoĂ„Ä…Ă˘â€žËenĂ„â€šĂ‚Â­ (spusĂ„Ä…Ă„â€ž jako administrĂ„â€šĂ‹â€ˇtor):
+2026-01-27T10:39:40.8326312+01:00 -   schtasks /Create /SC ONCE /TN "SmartThemeSwitch-Dark" /TR "powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Martin\AppData\Local\SmartTheme\SmartTheme.ps1" -Dark" /ST 16:50 /SD 01/28/2026 /F
+2026-01-27T10:39:40.8741434+01:00 - Pokud chceĂ„Ä…Ă‹â€ˇ, spusĂ„Ä…Ă„â€ž vĂ„â€šĂ‹ĹĄĂ„Ä…Ă‹â€ˇe uvedenĂ„â€šĂ‹ĹĄ Start-Process pĂ„Ä…Ă˘â€žËĂ„â€šĂ‚Â­kaz nebo otevĂ„Ä…Ă˘â€žËi PowerShell jako sprĂ„â€šĂ‹â€ˇvce a spusĂ„Ä…Ă„â€ž skript znovu s -Schedule.
+2026-01-27T10:44:07.4131508+01:00 - ZjiĂ„Ä…Ă‹â€ˇĂ„Ä…Ă„â€žuji aktuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ polohu...
+2026-01-27T10:44:07.4610386+01:00 - PouĂ„Ä…Ă„Äľity manuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ souĂ„Ä…Ă˘â€žËadnice: 50,0755, 14,4378
+2026-01-27T10:44:07.4896296+01:00 - NaÄ‚â€žÄąÂ¤Ă„â€šĂ‚Â­tĂ„â€šĂ‹â€ˇm Ä‚â€žÄąÂ¤asy vĂ„â€šĂ‹ĹĄchodu a zĂ„â€šĂ‹â€ˇpadu slunce...
+2026-01-27T10:44:07.5285728+01:00 - VolĂ„â€šĂ‹â€ˇm API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T10:44:08.1554252+01:00 - Stav odpovÄ‚â€žĂ˘â‚¬Ĺźdi: OK
+2026-01-27T10:44:08.1937520+01:00 - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T10:44:08.2292557+01:00 - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T10:44:08.2816797+01:00 - PouĂ„Ä…Ă„ÄľĂ„â€šĂ‚Â­vĂ„â€šĂ‹â€ˇm Windows timezone ID: Central Europe Standard Time (pĂ„Ä…ÄąÂ»vodnÄ‚â€žĂ˘â‚¬Ĺź: Central Europe Standard Time)
+2026-01-27T10:44:08.3143833+01:00 - Jedna nebo vĂ„â€šĂ‚Â­ce udĂ„â€šĂ‹â€ˇlostĂ„â€šĂ‚Â­ uĂ„Ä…Ă„Äľ dnes probÄ‚â€žĂ˘â‚¬Ĺźhlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zĂ„â€šĂ‚Â­tĂ„Ä…Ă˘â€žËejĂ„Ä…Ă‹â€ˇĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤asy...
+2026-01-27T10:44:08.3486220+01:00 - VolĂ„â€šĂ‹â€ˇm API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T10:44:08.8978818+01:00 - NovĂ„â€šĂ‚Â© lokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤asy (zĂ„â€šĂ‚Â­tĂ„Ä…Ă˘â€žËek) Ä‚ËĂ˘â€šÂ¬Ă˘â‚¬ĹĄ sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T10:44:08.9503845+01:00 - LokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤as vĂ„â€šĂ‹ĹĄchodu: 28.01.2026 7:39:27
+2026-01-27T10:44:08.9829902+01:00 - LokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤as zĂ„â€šĂ‹â€ˇpadu : 28.01.2026 16:50:51
+2026-01-27T10:44:09.0199678+01:00 - AktuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ reĂ„Ä…Ă„Äľim: Dark Ä‚ËĂ˘â‚¬Â Ă˘â‚¬â„˘ NovĂ„â€šĂ‹ĹĄ reĂ„Ä…Ă„Äľim: Light
+2026-01-27T10:44:13.1145927+01:00 - Hotovo. ALE: NepodaĂ„Ä…Ă˘â€žËilo se vytvoĂ„Ä…Ă˘â€žËit plĂ„â€šĂ‹â€ˇnovanou Ă„â€šÄąĹşlohu (pravdÄ‚â€žĂ˘â‚¬ĹźpodobnÄ‚â€žĂ˘â‚¬Ĺź nedostateÄ‚â€žÄąÂ¤nĂ„â€šĂ‹â€ˇ oprĂ„â€šĂ‹â€ˇvnÄ‚â€žĂ˘â‚¬ĹźnĂ„â€šĂ‚Â­).
+2026-01-27T10:44:13.1744638+01:00 - Instrukce pro spuĂ„Ä…Ă‹â€ˇtÄ‚â€žĂ˘â‚¬ĹźnĂ„â€šĂ‚Â­ elevated (spustĂ„â€šĂ‚Â­ novĂ„â€šĂ‚Â© okno PowerShell s UAC prompt):
+2026-01-27T10:44:13.2215288+01:00 -   Start-Process -FilePath 'powershell.exe' -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File "C:\Users\Martin\AppData\Local\SmartTheme\SmartTheme.ps1" -Schedule' -Verb RunAs
+2026-01-27T10:44:13.2581873+01:00 - PĂ„Ä…Ă˘â€žËĂ„â€šĂ‚Â­klad pĂ„Ä…Ă˘â€žËĂ„â€šĂ‚Â­kazu pro ruÄ‚â€žÄąÂ¤nĂ„â€šĂ‚Â­ vytvoĂ„Ä…Ă˘â€žËenĂ„â€šĂ‚Â­ (spusĂ„Ä…Ă„â€ž jako administrĂ„â€šĂ‹â€ˇtor):
+2026-01-27T10:44:13.2948365+01:00 -   schtasks /Create /SC ONCE /TN "SmartThemeSwitch-Light" /TR "powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Martin\AppData\Local\SmartTheme\SmartTheme.ps1" -Light" /ST 07:39 /SD 01/28/2026 /F
+2026-01-27T10:44:13.3325842+01:00 - Pokud chceĂ„Ä…Ă‹â€ˇ, spusĂ„Ä…Ă„â€ž vĂ„â€šĂ‹ĹĄĂ„Ä…Ă‹â€ˇe uvedenĂ„â€šĂ‹ĹĄ Start-Process pĂ„Ä…Ă˘â€žËĂ„â€šĂ‚Â­kaz nebo otevĂ„Ä…Ă˘â€žËi PowerShell jako sprĂ„â€šĂ‹â€ˇvce a spusĂ„Ä…Ă„â€ž skript znovu s -Schedule.
+2026-01-27T10:44:50.8744203+01:00 - ZjiĂ„Ä…Ă‹â€ˇĂ„Ä…Ă„â€žuji aktuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ polohu...
+2026-01-27T10:44:50.9301869+01:00 - PouĂ„Ä…Ă„Äľity manuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ souĂ„Ä…Ă˘â€žËadnice: 50,0755, 14,4378
+2026-01-27T10:44:50.9599121+01:00 - NaÄ‚â€žÄąÂ¤Ă„â€šĂ‚Â­tĂ„â€šĂ‹â€ˇm Ä‚â€žÄąÂ¤asy vĂ„â€šĂ‹ĹĄchodu a zĂ„â€šĂ‹â€ˇpadu slunce...
+2026-01-27T10:44:51.0020568+01:00 - VolĂ„â€šĂ‹â€ˇm API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T10:44:51.6923612+01:00 - Stav odpovÄ‚â€žĂ˘â‚¬Ĺźdi: OK
+2026-01-27T10:44:51.7290771+01:00 - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T10:44:51.7598592+01:00 - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T10:44:51.8130140+01:00 - PouĂ„Ä…Ă„ÄľĂ„â€šĂ‚Â­vĂ„â€šĂ‹â€ˇm Windows timezone ID: Central Europe Standard Time (pĂ„Ä…ÄąÂ»vodnÄ‚â€žĂ˘â‚¬Ĺź: Central Europe Standard Time)
+2026-01-27T10:44:51.8465877+01:00 - Jedna nebo vĂ„â€šĂ‚Â­ce udĂ„â€šĂ‹â€ˇlostĂ„â€šĂ‚Â­ uĂ„Ä…Ă„Äľ dnes probÄ‚â€žĂ˘â‚¬Ĺźhlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zĂ„â€šĂ‚Â­tĂ„Ä…Ă˘â€žËejĂ„Ä…Ă‹â€ˇĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤asy...
+2026-01-27T10:44:51.8779277+01:00 - VolĂ„â€šĂ‹â€ˇm API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T10:44:52.4423351+01:00 - NovĂ„â€šĂ‚Â© lokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤asy (zĂ„â€šĂ‚Â­tĂ„Ä…Ă˘â€žËek) Ä‚ËĂ˘â€šÂ¬Ă˘â‚¬ĹĄ sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T10:44:52.5004872+01:00 - LokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤as vĂ„â€šĂ‹ĹĄchodu: 28.01.2026 7:39:27
+2026-01-27T10:44:52.5454201+01:00 - LokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤as zĂ„â€šĂ‹â€ˇpadu : 28.01.2026 16:50:51
+2026-01-27T10:44:52.5917022+01:00 - AktuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ reĂ„Ä…Ă„Äľim: Light Ä‚ËĂ˘â‚¬Â Ă˘â‚¬â„˘ NovĂ„â€šĂ‹ĹĄ reĂ„Ä…Ă„Äľim: Dark
+2026-01-27T10:44:55.2052997+01:00 - Hotovo. ALE: NepodaĂ„Ä…Ă˘â€žËilo se vytvoĂ„Ä…Ă˘â€žËit plĂ„â€šĂ‹â€ˇnovanou Ă„â€šÄąĹşlohu (pravdÄ‚â€žĂ˘â‚¬ĹźpodobnÄ‚â€žĂ˘â‚¬Ĺź nedostateÄ‚â€žÄąÂ¤nĂ„â€šĂ‹â€ˇ oprĂ„â€šĂ‹â€ˇvnÄ‚â€žĂ˘â‚¬ĹźnĂ„â€šĂ‚Â­).
+2026-01-27T10:44:55.2655041+01:00 - Instrukce pro spuĂ„Ä…Ă‹â€ˇtÄ‚â€žĂ˘â‚¬ĹźnĂ„â€šĂ‚Â­ elevated (spustĂ„â€šĂ‚Â­ novĂ„â€šĂ‚Â© okno PowerShell s UAC prompt):
+2026-01-27T10:44:55.3083946+01:00 -   Start-Process -FilePath 'powershell.exe' -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File "C:\Users\Martin\AppData\Local\SmartTheme\SmartTheme.ps1" -Schedule' -Verb RunAs
+2026-01-27T10:44:55.3536441+01:00 - PĂ„Ä…Ă˘â€žËĂ„â€šĂ‚Â­klad pĂ„Ä…Ă˘â€žËĂ„â€šĂ‚Â­kazu pro ruÄ‚â€žÄąÂ¤nĂ„â€šĂ‚Â­ vytvoĂ„Ä…Ă˘â€žËenĂ„â€šĂ‚Â­ (spusĂ„Ä…Ă„â€ž jako administrĂ„â€šĂ‹â€ˇtor):
+2026-01-27T10:44:55.3954649+01:00 -   schtasks /Create /SC ONCE /TN "SmartThemeSwitch-Dark" /TR "powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Martin\AppData\Local\SmartTheme\SmartTheme.ps1" -Dark" /ST 16:50 /SD 01/28/2026 /F
+2026-01-27T10:44:55.4309111+01:00 - Pokud chceĂ„Ä…Ă‹â€ˇ, spusĂ„Ä…Ă„â€ž vĂ„â€šĂ‹ĹĄĂ„Ä…Ă‹â€ˇe uvedenĂ„â€šĂ‹ĹĄ Start-Process pĂ„Ä…Ă˘â€žËĂ„â€šĂ‚Â­kaz nebo otevĂ„Ä…Ă˘â€žËi PowerShell jako sprĂ„â€šĂ‹â€ˇvce a spusĂ„Ä…Ă„â€ž skript znovu s -Schedule.
+2026-01-27T10:45:16.4864670+01:00 - ZjiĂ„Ä…Ă‹â€ˇĂ„Ä…Ă„â€žuji aktuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ polohu...
+2026-01-27T10:45:16.5305072+01:00 - PouĂ„Ä…Ă„Äľity manuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ souĂ„Ä…Ă˘â€žËadnice: 50,0755, 14,4378
+2026-01-27T10:45:16.5631743+01:00 - NaÄ‚â€žÄąÂ¤Ă„â€šĂ‚Â­tĂ„â€šĂ‹â€ˇm Ä‚â€žÄąÂ¤asy vĂ„â€šĂ‹ĹĄchodu a zĂ„â€šĂ‹â€ˇpadu slunce...
+2026-01-27T10:45:16.6399261+01:00 - VolĂ„â€šĂ‹â€ˇm API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T10:45:17.2850398+01:00 - Stav odpovÄ‚â€žĂ˘â‚¬Ĺźdi: OK
+2026-01-27T10:45:17.3294258+01:00 - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T10:45:17.3630588+01:00 - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T10:45:17.4132161+01:00 - PouĂ„Ä…Ă„ÄľĂ„â€šĂ‚Â­vĂ„â€šĂ‹â€ˇm Windows timezone ID: Central Europe Standard Time (pĂ„Ä…ÄąÂ»vodnÄ‚â€žĂ˘â‚¬Ĺź: Central Europe Standard Time)
+2026-01-27T10:45:17.4444812+01:00 - Jedna nebo vĂ„â€šĂ‚Â­ce udĂ„â€šĂ‹â€ˇlostĂ„â€šĂ‚Â­ uĂ„Ä…Ă„Äľ dnes probÄ‚â€žĂ˘â‚¬Ĺźhlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zĂ„â€šĂ‚Â­tĂ„Ä…Ă˘â€žËejĂ„Ä…Ă‹â€ˇĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤asy...
+2026-01-27T10:45:17.4750898+01:00 - VolĂ„â€šĂ‹â€ˇm API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T10:45:18.0340123+01:00 - NovĂ„â€šĂ‚Â© lokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤asy (zĂ„â€šĂ‚Â­tĂ„Ä…Ă˘â€žËek) Ä‚ËĂ˘â€šÂ¬Ă˘â‚¬ĹĄ sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T10:45:18.0974664+01:00 - LokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤as vĂ„â€šĂ‹ĹĄchodu: 28.01.2026 7:39:27
+2026-01-27T10:45:18.1365252+01:00 - LokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤as zĂ„â€šĂ‹â€ˇpadu : 28.01.2026 16:50:51
+2026-01-27T10:45:18.1886180+01:00 - AktuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ reĂ„Ä…Ă„Äľim: Dark Ä‚ËĂ˘â‚¬Â Ă˘â‚¬â„˘ NovĂ„â€šĂ‹ĹĄ reĂ„Ä…Ă„Äľim: Light
+2026-01-27T10:45:18.2484687+01:00 - PĂ„Ä…Ă˘â€žËepnuto na svÄ‚â€žĂ˘â‚¬ĹźtlĂ„â€šĂ‹ĹĄ reĂ„Ä…Ă„Äľim.
+2026-01-27T10:45:18.8628104+01:00 - Proces bÄ‚â€žĂ˘â‚¬ĹźĂ„Ä…Ă„ÄľĂ„â€šĂ‚Â­ bez administrĂ„â€šĂ‹â€ˇtorskĂ„â€šĂ‹ĹĄch prĂ„â€šĂ‹â€ˇv Ä‚ËĂ˘â€šÂ¬Ă˘â‚¬ĹĄ pokusĂ„â€šĂ‚Â­m se vytvoĂ„Ä…Ă˘â€žËit Ă„â€šÄąĹşlohu pro aktuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ho uĂ„Ä…Ă„Äľivatele bez elevace.
+2026-01-27T10:45:19.2686409+01:00 - schtasks-user: ERROR: Incorrect Start Date.
+2026-01-27T10:45:19.3319964+01:00 - NaplĂ„â€šĂ‹â€ˇnovĂ„â€šĂ‹â€ˇno (schtasks-user) ensure v 2026-01-28 16:50 (pro uĂ„Ä…Ă„Äľivatele Martin)
+2026-01-27T10:45:19.6860350+01:00 - Chyba pĂ„Ä…Ă˘â€žËi non-elevated schtasks: The term 'Write-SmartThemeLog' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+2026-01-27T10:45:19.7565904+01:00 - Exportuji existujĂ„â€šĂ‚Â­cĂ„â€šĂ‚Â­ Ă„â€šÄąĹşlohu SmartThemeSwitch-Dark do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml (pokud existuje)...
+2026-01-27T10:45:19.9633421+01:00 - Export Ă„â€šÄąĹşlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml dokonÄ‚â€žÄąÂ¤en.
+2026-01-27T10:45:23.1504029+01:00 - ScheduledTasks API selhalo: PĂ„Ä…Ă˘â€žËĂ„â€šĂ‚Â­stup byl odepĂ„Ä…Ă˘â€žËen.
+. Pokus o fallback na schtasks.exe
+2026-01-27T10:45:23.2831598+01:00 - schtasks: ERROR: Incorrect Start Date.
+2026-01-27T10:45:23.3174599+01:00 - schtasks vracelo kĂ„â€šÄąâ€šd -2147467259 pĂ„Ä…Ă˘â€žËi vytvĂ„â€šĂ‹â€ˇĂ„Ä…Ă˘â€žËenĂ„â€šĂ‚Â­ ONCE Ă„â€šÄąĹşlohy.
+2026-01-27T10:45:23.4374820+01:00 - schtasks-startup: ERROR: PĂ„Ä…Ă˘â€žËĂ„â€šĂ‚Â­stup byl odepĂ„Ä…Ă˘â€žËen.
+2026-01-27T10:45:23.4740404+01:00 - schtasks-startup: System.Management.Automation.RemoteException
+2026-01-27T10:45:23.5832402+01:00 - schtasks-logon: ERROR: PĂ„Ä…Ă˘â€žËĂ„â€šĂ‚Â­stup byl odepĂ„Ä…Ă˘â€žËen.
+2026-01-27T10:45:23.6091639+01:00 - schtasks-logon: System.Management.Automation.RemoteException
+2026-01-27T10:45:23.6421214+01:00 - Hotovo. DalĂ„Ä…Ă‹â€ˇĂ„â€šĂ‚Â­ pĂ„Ä…Ă˘â€žËepnutĂ„â€šĂ‚Â­ bylo naplĂ„â€šĂ‹â€ˇnovĂ„â€šĂ‹â€ˇno.
+2026-01-27T10:45:36.7282225+01:00 - ZjiÄ‚â€žĂ„â€¦Ä‚â€ąĂ˘â‚¬Ë‡Ä‚â€žĂ„â€¦Ä‚â€žĂ˘â‚¬Ĺľuji aktuÄ‚â€žĂ˘â‚¬ĹˇÄ‚â€ąĂ˘â‚¬Ë‡lnÄ‚â€žĂ˘â‚¬ĹˇÄ‚â€šĂ‚Â­ polohu...
+2026-01-27T10:45:36.8282839+01:00 - PouĂ„Ä…Ă„Äľity manuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ souĂ„Ä…Ă˘â€žËadnice: 50,0755, 14,4378
+2026-01-27T10:45:36.8420340+01:00 - NaÄ‚â€žÄąÂ¤Ă„â€šĂ‚Â­tĂ„â€šĂ‹â€ˇm Ä‚â€žÄąÂ¤asy vĂ„â€šĂ‹ĹĄchodu a zĂ„â€šĂ‹â€ˇpadu slunce...
+2026-01-27T10:45:36.8522361+01:00 - VolĂ„â€šĂ‹â€ˇm API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T10:45:37.5128150+01:00 - Stav odpovÄ‚â€žĂ˘â‚¬Ĺźdi: OK
+2026-01-27T10:45:37.5425757+01:00 - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T10:45:37.5498438+01:00 - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T10:45:37.5710345+01:00 - PouĂ„Ä…Ă„ÄľĂ„â€šĂ‚Â­vĂ„â€šĂ‹â€ˇm Windows timezone ID: Central Europe Standard Time (pĂ„Ä…ÄąÂ»vodnÄ‚â€žĂ˘â‚¬Ĺź: Central Europe Standard Time)
+2026-01-27T10:45:37.5966412+01:00 - Jedna nebo vĂ„â€šĂ‚Â­ce udĂ„â€šĂ‹â€ˇlostĂ„â€šĂ‚Â­ uĂ„Ä…Ă„Äľ dnes probÄ‚â€žĂ˘â‚¬Ĺźhlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zĂ„â€šĂ‚Â­tĂ„Ä…Ă˘â€žËejĂ„Ä…Ă‹â€ˇĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤asy...
+2026-01-27T10:45:37.6090281+01:00 - VolĂ„â€šĂ‹â€ˇm API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T10:45:37.8001366+01:00 - NovĂ„â€šĂ‚Â© lokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤asy (zĂ„â€šĂ‚Â­tĂ„Ä…Ă˘â€žËek) Ä‚ËĂ˘â€šÂ¬Ă˘â‚¬ĹĄ sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T10:45:37.8779955+01:00 - LokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤as vĂ„â€šĂ‹ĹĄchodu: 28.01.2026 7:39:27
+2026-01-27T10:45:37.8875429+01:00 - LokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤as zĂ„â€šĂ‹â€ˇpadu : 28.01.2026 16:50:51
+2026-01-27T10:45:37.9167209+01:00 - -Schedule: pouze aktualizuji plĂ„â€šĂ‹â€ˇn.
+2026-01-27T10:45:37.9207555+01:00 - ReĂ„Ä…Ă„Äľim se nemÄ‚â€žĂ˘â‚¬ĹźnĂ„â€šĂ‚Â­ (Schedule mĂ„â€šÄąâ€šd).
+2026-01-27T10:45:37.9706984+01:00 - Exportuji existujĂ„â€šĂ‚Â­cĂ„â€šĂ‚Â­ Ă„â€šÄąĹşlohu SmartThemeSwitch-Dark do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml (pokud existuje)...
+2026-01-27T10:45:38.0421764+01:00 - Export Ă„â€šÄąĹşlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml dokonÄ‚â€žÄąÂ¤en.
+2026-01-27T10:45:39.9908878+01:00 - VytvoĂ„Ä…Ă˘â€žËeno doporuÄ‚â€žÄąÂ¤enĂ„â€šĂ‚Â© XML pro Ă„â€šÄąĹşlohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark.xml
+2026-01-27T10:45:40.0014039+01:00 - Importuji Ă„â€šÄąĹşlohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark.xml jako SmartThemeSwitch-Dark...
+2026-01-27T10:45:40.0900980+01:00 - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Dark" has successfully been created.
+2026-01-27T10:45:40.0969863+01:00 - Import XML Ă„â€šÄąĹşlohy SmartThemeSwitch-Dark dokonÄ‚â€žÄąÂ¤en.
+2026-01-27T10:45:40.1054751+01:00 - NaplĂ„â€šĂ‹â€ˇnovĂ„â€šĂ‹â€ˇno (XML import) ensure/once+startup+logon v 2026-01-28 16:50
+2026-01-27T10:45:40.1120111+01:00 - Hotovo. DalĂ„Ä…Ă‹â€ˇĂ„â€šĂ‚Â­ pĂ„Ä…Ă˘â€žËepnutĂ„â€šĂ‚Â­ bylo naplĂ„â€šĂ‹â€ˇnovĂ„â€šĂ‹â€ˇno.
+2026-01-27T10:49:07.6255944+01:00 [INFO] - ZjiÄąË‡ÄąÄ„uji aktuÄ‚Ë‡lnÄ‚Â­ polohu...
+2026-01-27T10:49:07.6506261+01:00 [INFO] - PouÄąÄľity manuÄ‚Ë‡lnÄ‚Â­ souÄąâ„˘adnice: 50,0755, 14,4378
+2026-01-27T10:49:07.6542486+01:00 [INFO] - NaĂ„Ĺ¤Ä‚Â­tÄ‚Ë‡m Ă„Ĺ¤asy vÄ‚Ëťchodu a zÄ‚Ë‡padu slunce...
+2026-01-27T10:49:07.6589280+01:00 [DEBUG] - VolÄ‚Ë‡m API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T10:49:08.3613729+01:00 [DEBUG] - Stav odpovĂ„â€şdi: OK
+2026-01-27T10:49:08.3739476+01:00 [DEBUG] - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T10:49:08.3777334+01:00 [DEBUG] - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T10:49:08.3913351+01:00 [DEBUG] - PouÄąÄľÄ‚Â­vÄ‚Ë‡m Windows timezone ID: Central Europe Standard Time (pÄąĹ»vodnĂ„â€ş: Central Europe Standard Time)
+2026-01-27T10:49:08.4023577+01:00 [DEBUG] - Jedna nebo vÄ‚Â­ce udÄ‚Ë‡lostÄ‚Â­ uÄąÄľ dnes probĂ„â€şhlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zÄ‚Â­tÄąâ„˘ejÄąË‡Ä‚Â­ Ă„Ĺ¤asy...
+2026-01-27T10:49:08.4107442+01:00 [DEBUG] - VolÄ‚Ë‡m API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T10:49:08.9352299+01:00 [DEBUG] - NovÄ‚Â© lokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤asy (zÄ‚Â­tÄąâ„˘ek) Ă˘â‚¬â€ť sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T10:49:08.9775271+01:00 [INFO] - LokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤as vÄ‚Ëťchodu: 28.01.2026 7:39:27
+2026-01-27T10:49:08.9862985+01:00 [INFO] - LokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤as zÄ‚Ë‡padu : 28.01.2026 16:50:51
+2026-01-27T10:49:09.0038787+01:00 [INFO] - AktuÄ‚Ë‡lnÄ‚Â­ reÄąÄľim: Light Ă˘â€ â€™ NovÄ‚Ëť reÄąÄľim: Dark
+2026-01-27T10:49:09.0441519+01:00 [SUCCESS] - PÄąâ„˘epnuto na tmavÄ‚Ëť reÄąÄľim.
+2026-01-27T10:49:09.2785118+01:00 [INFO] - Proces bĂ„â€şÄąÄľÄ‚Â­ bez administrÄ‚Ë‡torskÄ‚Ëťch prÄ‚Ë‡v Ă˘â‚¬â€ť pokusÄ‚Â­m se vytvoÄąâ„˘it Ä‚Ĺźlohu pro aktuÄ‚Ë‡lnÄ‚Â­ho uÄąÄľivatele bez elevace.
+2026-01-27T10:49:09.8748882+01:00 [INFO] - schtasks-user: ERROR: Incorrect Start Date.
+2026-01-27T10:49:09.8828326+01:00 [INFO] - NaplÄ‚Ë‡novÄ‚Ë‡no (schtasks-user) ensure v 2026-01-28 07:39 (pro uÄąÄľivatele Martin)
+2026-01-27T10:49:10.1168980+01:00 [INFO] - Chyba pÄąâ„˘i non-elevated schtasks: The term 'Write-SmartThemeLog' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+2026-01-27T10:49:10.1387516+01:00 [DEBUG] - Exportuji existujÄ‚Â­cÄ‚Â­ Ä‚Ĺźlohu SmartThemeSwitch-Light do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml (pokud existuje)...
+2026-01-27T10:49:10.3106572+01:00 [DEBUG] - Export Ä‚Ĺźlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml dokonĂ„Ĺ¤en.
+2026-01-27T10:49:11.7742708+01:00 [INFO] - ScheduledTasks API selhalo: PÄąâ„˘Ä‚Â­stup byl odepÄąâ„˘en.
+. Pokus o fallback na schtasks.exe
+2026-01-27T10:49:11.8563984+01:00 [INFO] - schtasks: ERROR: Incorrect Start Date.
+2026-01-27T10:49:11.8609611+01:00 [INFO] - schtasks vracelo kÄ‚Ĺ‚d -2147467259 pÄąâ„˘i vytvÄ‚Ë‡Äąâ„˘enÄ‚Â­ ONCE Ä‚Ĺźlohy.
+2026-01-27T10:49:11.8995640+01:00 [INFO] - schtasks-startup: ERROR: PÄąâ„˘Ä‚Â­stup byl odepÄąâ„˘en.
+2026-01-27T10:49:11.9015176+01:00 [INFO] - schtasks-startup: System.Management.Automation.RemoteException
+2026-01-27T10:49:11.9468079+01:00 [INFO] - schtasks-logon: ERROR: PÄąâ„˘Ä‚Â­stup byl odepÄąâ„˘en.
+2026-01-27T10:49:11.9488084+01:00 [INFO] - schtasks-logon: System.Management.Automation.RemoteException
+2026-01-27T10:49:11.9527541+01:00 [INFO] - Hotovo. DalÄąË‡Ä‚Â­ pÄąâ„˘epnutÄ‚Â­ bylo naplÄ‚Ë‡novÄ‚Ë‡no.
+2026-01-27T10:49:22.0975968+01:00 [INFO] - ZjiĂ„Ä…Ă‹â€ˇĂ„Ä…Ă„â€žuji aktuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ polohu...
+2026-01-27T10:49:22.1261023+01:00 [INFO] - PouĂ„Ä…Ă„Äľity manuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ souĂ„Ä…Ă˘â€žËadnice: 50,0755, 14,4378
+2026-01-27T10:49:22.1306178+01:00 [INFO] - NaÄ‚â€žÄąÂ¤Ă„â€šĂ‚Â­tĂ„â€šĂ‹â€ˇm Ä‚â€žÄąÂ¤asy vĂ„â€šĂ‹ĹĄchodu a zĂ„â€šĂ‹â€ˇpadu slunce...
+2026-01-27T10:49:22.1375667+01:00 [DEBUG] - VolĂ„â€šĂ‹â€ˇm API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T10:49:22.7195258+01:00 [DEBUG] - Stav odpovÄ‚â€žĂ˘â‚¬Ĺźdi: OK
+2026-01-27T10:49:22.7313549+01:00 [DEBUG] - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T10:49:22.7363557+01:00 [DEBUG] - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T10:49:22.7498592+01:00 [DEBUG] - PouĂ„Ä…Ă„ÄľĂ„â€šĂ‚Â­vĂ„â€šĂ‹â€ˇm Windows timezone ID: Central Europe Standard Time (pĂ„Ä…ÄąÂ»vodnÄ‚â€žĂ˘â‚¬Ĺź: Central Europe Standard Time)
+2026-01-27T10:49:22.7577181+01:00 [DEBUG] - Jedna nebo vĂ„â€šĂ‚Â­ce udĂ„â€šĂ‹â€ˇlostĂ„â€šĂ‚Â­ uĂ„Ä…Ă„Äľ dnes probÄ‚â€žĂ˘â‚¬Ĺźhlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zĂ„â€šĂ‚Â­tĂ„Ä…Ă˘â€žËejĂ„Ä…Ă‹â€ˇĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤asy...
+2026-01-27T10:49:22.7577181+01:00 [DEBUG] - VolĂ„â€šĂ‹â€ˇm API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T10:49:22.9502240+01:00 [DEBUG] - NovĂ„â€šĂ‚Â© lokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤asy (zĂ„â€šĂ‚Â­tĂ„Ä…Ă˘â€žËek) Ä‚ËĂ˘â€šÂ¬Ă˘â‚¬ĹĄ sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T10:49:23.0000995+01:00 [INFO] - LokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤as vĂ„â€šĂ‹ĹĄchodu: 28.01.2026 7:39:27
+2026-01-27T10:49:23.0038143+01:00 [INFO] - LokĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ Ä‚â€žÄąÂ¤as zĂ„â€šĂ‹â€ˇpadu : 28.01.2026 16:50:51
+2026-01-27T10:49:23.0179641+01:00 [INFO] - -Schedule: pouze aktualizuji plĂ„â€šĂ‹â€ˇn.
+2026-01-27T10:49:23.0227703+01:00 [INFO] - ReĂ„Ä…Ă„Äľim se nemÄ‚â€žĂ˘â‚¬ĹźnĂ„â€šĂ‚Â­ (Schedule mĂ„â€šÄąâ€šd).
+2026-01-27T10:49:23.0526505+01:00 [DEBUG] - Exportuji existujĂ„â€šĂ‚Â­cĂ„â€šĂ‚Â­ Ă„â€šÄąĹşlohu SmartThemeSwitch-Light do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml (pokud existuje)...
+2026-01-27T10:49:23.1137459+01:00 [DEBUG] - Export Ă„â€šÄąĹşlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml dokonÄ‚â€žÄąÂ¤en.
+2026-01-27T10:49:24.1690849+01:00 [DEBUG] - VytvoĂ„Ä…Ă˘â€žËeno doporuÄ‚â€žÄąÂ¤enĂ„â€šĂ‚Â© XML pro Ă„â€šÄąĹşlohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml
+2026-01-27T10:49:24.1759269+01:00 [DEBUG] - Importuji Ă„â€šÄąĹşlohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml jako SmartThemeSwitch-Light...
+2026-01-27T10:49:24.2346047+01:00 [INFO] - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Light" has successfully been created.
+2026-01-27T10:49:24.2382779+01:00 [INFO] - Import XML Ă„â€šÄąĹşlohy SmartThemeSwitch-Light dokonÄ‚â€žÄąÂ¤en.
+2026-01-27T10:49:24.2412889+01:00 [INFO] - NaplĂ„â€šĂ‹â€ˇnovĂ„â€šĂ‹â€ˇno (XML import) ensure/once+startup+logon v 2026-01-28 07:39
+2026-01-27T10:49:24.2441818+01:00 [INFO] - Hotovo. DalĂ„Ä…Ă‹â€ˇĂ„â€šĂ‚Â­ pĂ„Ä…Ă˘â€žËepnutĂ„â€šĂ‚Â­ bylo naplĂ„â€šĂ‹â€ˇnovĂ„â€šĂ‹â€ˇno.
+2026-01-27T10:52:07.0550363+01:00 [INFO] - ZjiÄąË‡ÄąÄ„uji aktuÄ‚Ë‡lnÄ‚Â­ polohu...
+2026-01-27T10:52:07.1213523+01:00 [INFO] - PouÄąÄľity manuÄ‚Ë‡lnÄ‚Â­ souÄąâ„˘adnice: 50,0755, 14,4378
+2026-01-27T10:52:07.1666965+01:00 [INFO] - NaĂ„Ĺ¤Ä‚Â­tÄ‚Ë‡m Ă„Ĺ¤asy vÄ‚Ëťchodu a zÄ‚Ë‡padu slunce...
+2026-01-27T10:52:07.1940972+01:00 [DEBUG] - VolÄ‚Ë‡m API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T10:52:07.8968810+01:00 [DEBUG] - Stav odpovĂ„â€şdi: OK
+2026-01-27T10:52:07.9554581+01:00 [DEBUG] - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T10:52:07.9844406+01:00 [DEBUG] - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T10:52:08.0378073+01:00 [DEBUG] - PouÄąÄľÄ‚Â­vÄ‚Ë‡m Windows timezone ID: Central Europe Standard Time (pÄąĹ»vodnĂ„â€ş: Central Europe Standard Time)
+2026-01-27T10:52:08.0731408+01:00 [DEBUG] - Jedna nebo vÄ‚Â­ce udÄ‚Ë‡lostÄ‚Â­ uÄąÄľ dnes probĂ„â€şhlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zÄ‚Â­tÄąâ„˘ejÄąË‡Ä‚Â­ Ă„Ĺ¤asy...
+2026-01-27T10:52:08.1069496+01:00 [DEBUG] - VolÄ‚Ë‡m API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T10:52:08.6593111+01:00 [DEBUG] - NovÄ‚Â© lokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤asy (zÄ‚Â­tÄąâ„˘ek) Ă˘â‚¬â€ť sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T10:52:08.7210286+01:00 [INFO] - LokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤as vÄ‚Ëťchodu: 28.01.2026 7:39:27
+2026-01-27T10:52:08.7484395+01:00 [INFO] - LokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤as zÄ‚Ë‡padu : 28.01.2026 16:50:51
+2026-01-27T10:52:08.7941647+01:00 [INFO] - AktuÄ‚Ë‡lnÄ‚Â­ reÄąÄľim: Dark Ă˘â€ â€™ NovÄ‚Ëť reÄąÄľim: Light
+2026-01-27T10:52:08.8703326+01:00 [SUCCESS] - PÄąâ„˘epnuto na svĂ„â€ştlÄ‚Ëť reÄąÄľim.
+2026-01-27T10:52:09.3475071+01:00 [INFO] - Proces bĂ„â€şÄąÄľÄ‚Â­ bez administrÄ‚Ë‡torskÄ‚Ëťch prÄ‚Ë‡v Ă˘â‚¬â€ť pokusÄ‚Â­m se vytvoÄąâ„˘it Ä‚Ĺźlohu pro aktuÄ‚Ë‡lnÄ‚Â­ho uÄąÄľivatele bez elevace.
+2026-01-27T10:52:09.8591006+01:00 [INFO] - schtasks-user: ERROR: Incorrect Start Date.
+2026-01-27T10:52:09.9160271+01:00 [INFO] - NaplÄ‚Ë‡novÄ‚Ë‡no (schtasks-user) ensure v 2026-01-28 16:50 (pro uÄąÄľivatele Martin)
+2026-01-27T10:52:10.3057458+01:00 [INFO] - Chyba pÄąâ„˘i non-elevated schtasks: The term 'Write-SmartThemeLog' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+2026-01-27T10:52:10.3939307+01:00 [DEBUG] - Exportuji existujÄ‚Â­cÄ‚Â­ Ä‚Ĺźlohu SmartThemeSwitch-Dark do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml (pokud existuje)...
+2026-01-27T10:52:10.5603352+01:00 [DEBUG] - Export Ä‚Ĺźlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml dokonĂ„Ĺ¤en.
+2026-01-27T10:52:12.0577828+01:00 [INFO] - ScheduledTasks API selhalo: PÄąâ„˘Ä‚Â­stup byl odepÄąâ„˘en.
+. Pokus o fallback na schtasks.exe
+2026-01-27T10:52:12.1802423+01:00 [INFO] - schtasks: ERROR: Incorrect Start Date.
+2026-01-27T10:52:12.2113945+01:00 [INFO] - schtasks vracelo kÄ‚Ĺ‚d -2147467259 pÄąâ„˘i vytvÄ‚Ë‡Äąâ„˘enÄ‚Â­ ONCE Ä‚Ĺźlohy.
+2026-01-27T10:52:12.2855063+01:00 [INFO] - schtasks-startup: ERROR: PÄąâ„˘Ä‚Â­stup byl odepÄąâ„˘en.
+2026-01-27T10:52:12.3165072+01:00 [INFO] - schtasks-startup: System.Management.Automation.RemoteException
+2026-01-27T10:52:12.3944599+01:00 [INFO] - schtasks-logon: ERROR: PÄąâ„˘Ä‚Â­stup byl odepÄąâ„˘en.
+2026-01-27T10:52:12.4340569+01:00 [INFO] - schtasks-logon: System.Management.Automation.RemoteException
+2026-01-27T10:52:12.4673574+01:00 [INFO] - Hotovo. DalÄąË‡Ä‚Â­ pÄąâ„˘epnutÄ‚Â­ bylo naplÄ‚Ë‡novÄ‚Ë‡no.
+2026-01-27T10:54:58.0059954+01:00 [INFO] - ZjiÄąË‡ÄąÄ„uji aktuÄ‚Ë‡lnÄ‚Â­ polohu...
+2026-01-27T10:54:58.0544308+01:00 [INFO] - PouÄąÄľity manuÄ‚Ë‡lnÄ‚Â­ souÄąâ„˘adnice: 50,0755, 14,4378
+2026-01-27T10:54:58.0888173+01:00 [INFO] - NaĂ„Ĺ¤Ä‚Â­tÄ‚Ë‡m Ă„Ĺ¤asy vÄ‚Ëťchodu a zÄ‚Ë‡padu slunce...
+2026-01-27T10:54:58.1177275+01:00 [DEBUG] - VolÄ‚Ë‡m API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T10:54:58.7464027+01:00 [DEBUG] - Stav odpovĂ„â€şdi: OK
+2026-01-27T10:54:58.8055302+01:00 [DEBUG] - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T10:54:58.8388808+01:00 [DEBUG] - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T10:54:58.8744600+01:00 [DEBUG] - PouÄąÄľÄ‚Â­vÄ‚Ë‡m Windows timezone ID: Central Europe Standard Time (pÄąĹ»vodnĂ„â€ş: Central Europe Standard Time)
+2026-01-27T10:54:58.9144417+01:00 [DEBUG] - Jedna nebo vÄ‚Â­ce udÄ‚Ë‡lostÄ‚Â­ uÄąÄľ dnes probĂ„â€şhlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zÄ‚Â­tÄąâ„˘ejÄąË‡Ä‚Â­ Ă„Ĺ¤asy...
+2026-01-27T10:54:58.9483971+01:00 [DEBUG] - VolÄ‚Ë‡m API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T10:54:59.4905191+01:00 [DEBUG] - NovÄ‚Â© lokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤asy (zÄ‚Â­tÄąâ„˘ek) Ă˘â‚¬â€ť sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T10:54:59.5471771+01:00 [INFO] - LokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤as vÄ‚Ëťchodu: 28.01.2026 7:39:27
+2026-01-27T10:54:59.5849191+01:00 [INFO] - LokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤as zÄ‚Ë‡padu : 28.01.2026 16:50:51
+2026-01-27T10:54:59.6242935+01:00 [INFO] - AktuÄ‚Ë‡lnÄ‚Â­ reÄąÄľim: Light Ă˘â€ â€™ NovÄ‚Ëť reÄąÄľim: Dark
+2026-01-27T10:54:59.6820319+01:00 [SUCCESS] - PÄąâ„˘epnuto na tmavÄ‚Ëť reÄąÄľim.
+2026-01-27T10:54:59.9325442+01:00 [INFO] - Proces bĂ„â€şÄąÄľÄ‚Â­ bez administrÄ‚Ë‡torskÄ‚Ëťch prÄ‚Ë‡v Ă˘â‚¬â€ť pokusÄ‚Â­m se vytvoÄąâ„˘it Ä‚Ĺźlohu pro aktuÄ‚Ë‡lnÄ‚Â­ho uÄąÄľivatele bez elevace.
+2026-01-27T10:55:00.4632542+01:00 [INFO] - schtasks-user: ERROR: Incorrect Start Date.
+2026-01-27T10:55:00.5473915+01:00 [INFO] - NaplÄ‚Ë‡novÄ‚Ë‡no (schtasks-user) ensure v 2026-01-28 07:39 (pro uÄąÄľivatele Martin)
+2026-01-27T10:55:00.8712261+01:00 [INFO] - Chyba pÄąâ„˘i non-elevated schtasks: The term 'Write-SmartThemeLog' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+2026-01-27T10:55:00.9601526+01:00 [DEBUG] - Exportuji existujÄ‚Â­cÄ‚Â­ Ä‚Ĺźlohu SmartThemeSwitch-Light do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml (pokud existuje)...
+2026-01-27T10:55:01.3737073+01:00 [DEBUG] - Export Ä‚Ĺźlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml dokonĂ„Ĺ¤en.
+2026-01-27T10:55:02.8269270+01:00 [INFO] - ScheduledTasks API selhalo: PÄąâ„˘Ä‚Â­stup byl odepÄąâ„˘en.
+. Pokus o fallback na schtasks.exe
+2026-01-27T10:55:02.9348263+01:00 [INFO] - schtasks: ERROR: Incorrect Start Date.
+2026-01-27T10:55:02.9688851+01:00 [INFO] - schtasks vracelo kÄ‚Ĺ‚d -2147467259 pÄąâ„˘i vytvÄ‚Ë‡Äąâ„˘enÄ‚Â­ ONCE Ä‚Ĺźlohy.
+2026-01-27T10:55:03.0330548+01:00 [INFO] - schtasks-startup: ERROR: PÄąâ„˘Ä‚Â­stup byl odepÄąâ„˘en.
+2026-01-27T10:55:03.0605863+01:00 [INFO] - schtasks-startup: System.Management.Automation.RemoteException
+2026-01-27T10:55:03.1322063+01:00 [INFO] - schtasks-logon: ERROR: PÄąâ„˘Ä‚Â­stup byl odepÄąâ„˘en.
+2026-01-27T10:55:03.1774970+01:00 [INFO] - schtasks-logon: System.Management.Automation.RemoteException
+2026-01-27T10:55:03.2061143+01:00 [INFO] - Hotovo. DalÄąË‡Ä‚Â­ pÄąâ„˘epnutÄ‚Â­ bylo naplÄ‚Ë‡novÄ‚Ë‡no.
+2026-01-27T10:56:04.4587116+01:00 [INFO] - ZjiĂ„Ä…Ă‹â€ˇĂ„Ä…Ă„â€žuji aktuĂ„â€šĂ‹â€ˇlnĂ„â€šĂ‚Â­ polohu...
+2026-01-27T10:56:04.5289508+01:00 [INFO] - PouÄąÄľity manuÄ‚Ë‡lnÄ‚Â­ souÄąâ„˘adnice: 50,0755, 14,4378
+2026-01-27T10:56:04.5395857+01:00 [INFO] - NaĂ„Ĺ¤Ä‚Â­tÄ‚Ë‡m Ă„Ĺ¤asy vÄ‚Ëťchodu a zÄ‚Ë‡padu slunce...
+2026-01-27T10:56:04.5498026+01:00 [DEBUG] - VolÄ‚Ë‡m API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T10:56:05.2221663+01:00 [DEBUG] - Stav odpovĂ„â€şdi: OK
+2026-01-27T10:56:05.2871516+01:00 [DEBUG] - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T10:56:05.3001566+01:00 [DEBUG] - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T10:56:05.3334457+01:00 [DEBUG] - PouÄąÄľÄ‚Â­vÄ‚Ë‡m Windows timezone ID: Central Europe Standard Time (pÄąĹ»vodnĂ„â€ş: Central Europe Standard Time)
+2026-01-27T10:56:05.3509973+01:00 [DEBUG] - Jedna nebo vÄ‚Â­ce udÄ‚Ë‡lostÄ‚Â­ uÄąÄľ dnes probĂ„â€şhlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zÄ‚Â­tÄąâ„˘ejÄąË‡Ä‚Â­ Ă„Ĺ¤asy...
+2026-01-27T10:56:05.3726292+01:00 [DEBUG] - VolÄ‚Ë‡m API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T10:56:05.5498244+01:00 [DEBUG] - NovÄ‚Â© lokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤asy (zÄ‚Â­tÄąâ„˘ek) Ă˘â‚¬â€ť sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T10:56:05.6001485+01:00 [INFO] - LokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤as vÄ‚Ëťchodu: 28.01.2026 7:39:27
+2026-01-27T10:56:05.6100835+01:00 [INFO] - LokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤as zÄ‚Ë‡padu : 28.01.2026 16:50:51
+2026-01-27T10:56:05.6338744+01:00 [INFO] - AktuÄ‚Ë‡lnÄ‚Â­ reÄąÄľim: Dark Ă˘â€ â€™ NovÄ‚Ëť reÄąÄľim: Light
+2026-01-27T10:56:05.7364730+01:00 [SUCCESS] - PÄąâ„˘epnuto na svĂ„â€ştlÄ‚Ëť reÄąÄľim.
+2026-01-27T10:56:06.2701018+01:00 [INFO] - Proces bĂ„â€şÄąÄľÄ‚Â­ bez administrÄ‚Ë‡torskÄ‚Ëťch prÄ‚Ë‡v Ă˘â‚¬â€ť pokusÄ‚Â­m se vytvoÄąâ„˘it Ä‚Ĺźlohu pro aktuÄ‚Ë‡lnÄ‚Â­ho uÄąÄľivatele bez elevace.
+2026-01-27T10:56:06.7179224+01:00 [INFO] - schtasks-user: ERROR: Incorrect Start Date.
+2026-01-27T10:56:06.7669881+01:00 [INFO] - NaplÄ‚Ë‡novÄ‚Ë‡no (schtasks-user) ensure v 2026-01-28 16:50 (pro uÄąÄľivatele Martin)
+2026-01-27T10:56:07.0796992+01:00 [INFO] - schtasks-user-startup: ERROR: PĹ™Ă­stup byl odepĹ™en.
+2026-01-27T10:56:07.2797162+01:00 [INFO] - schtasks-user-logon: ERROR: PĹ™Ă­stup byl odepĹ™en.
+2026-01-27T10:56:07.3182651+01:00 [INFO] - Hotovo. DalÄąË‡Ä‚Â­ pÄąâ„˘epnutÄ‚Â­ bylo naplÄ‚Ë‡novÄ‚Ë‡no.
+2026-01-27T10:57:08.9138734+01:00 [INFO] - ZjiÄąË‡ÄąÄ„uji aktuÄ‚Ë‡lnÄ‚Â­ polohu...
+2026-01-27T10:57:08.9726817+01:00 [INFO] - PouÄąÄľity manuÄ‚Ë‡lnÄ‚Â­ souÄąâ„˘adnice: 50,0755, 14,4378
+2026-01-27T10:57:08.9867634+01:00 [INFO] - NaĂ„Ĺ¤Ä‚Â­tÄ‚Ë‡m Ă„Ĺ¤asy vÄ‚Ëťchodu a zÄ‚Ë‡padu slunce...
+2026-01-27T10:57:09.0018329+01:00 [DEBUG] - VolÄ‚Ë‡m API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T10:57:09.6439519+01:00 [DEBUG] - Stav odpovĂ„â€şdi: OK
+2026-01-27T10:57:09.6687072+01:00 [DEBUG] - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T10:57:09.6805772+01:00 [DEBUG] - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T10:57:09.6910749+01:00 [DEBUG] - PouÄąÄľÄ‚Â­vÄ‚Ë‡m Windows timezone ID: Central Europe Standard Time (pÄąĹ»vodnĂ„â€ş: Central Europe Standard Time)
+2026-01-27T10:57:09.7186314+01:00 [DEBUG] - Jedna nebo vÄ‚Â­ce udÄ‚Ë‡lostÄ‚Â­ uÄąÄľ dnes probĂ„â€şhlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zÄ‚Â­tÄąâ„˘ejÄąË‡Ä‚Â­ Ă„Ĺ¤asy...
+2026-01-27T10:57:09.7341966+01:00 [DEBUG] - VolÄ‚Ë‡m API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T10:57:09.9244347+01:00 [DEBUG] - NovÄ‚Â© lokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤asy (zÄ‚Â­tÄąâ„˘ek) Ă˘â‚¬â€ť sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T10:57:09.9800859+01:00 [INFO] - LokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤as vÄ‚Ëťchodu: 28.01.2026 7:39:27
+2026-01-27T10:57:09.9905992+01:00 [INFO] - LokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤as zÄ‚Ë‡padu : 28.01.2026 16:50:51
+2026-01-27T10:57:10.0120269+01:00 [INFO] - AktuÄ‚Ë‡lnÄ‚Â­ reÄąÄľim: Light Ă˘â€ â€™ NovÄ‚Ëť reÄąÄľim: Dark
+2026-01-27T10:57:10.0535907+01:00 [SUCCESS] - PÄąâ„˘epnuto na tmavÄ‚Ëť reÄąÄľim.
+2026-01-27T10:57:10.4074972+01:00 [DEBUG] - Exportuji existujÄ‚Â­cÄ‚Â­ Ä‚Ĺźlohu SmartThemeSwitch-Light do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml (pokud existuje)...
+2026-01-27T10:57:10.7000224+01:00 [DEBUG] - Export Ä‚Ĺźlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml dokonĂ„Ĺ¤en.
+2026-01-27T10:57:12.5499406+01:00 [DEBUG] - VytvoÄąâ„˘eno doporuĂ„Ĺ¤enÄ‚Â© XML pro Ä‚Ĺźlohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml
+2026-01-27T10:57:12.5654232+01:00 [DEBUG] - Importuji Ä‚Ĺźlohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml jako SmartThemeSwitch-Light...
+2026-01-27T10:57:12.6150666+01:00 [INFO] - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Light" has successfully been created.
+2026-01-27T10:57:12.6252183+01:00 [INFO] - Import XML Ä‚Ĺźlohy SmartThemeSwitch-Light dokonĂ„Ĺ¤en.
+2026-01-27T10:57:12.6358493+01:00 [INFO] - NaplÄ‚Ë‡novÄ‚Ë‡no (XML import) ensure/once+startup+logon v 2026-01-28 07:39
+2026-01-27T10:57:12.6395203+01:00 [INFO] - Hotovo. DalÄąË‡Ä‚Â­ pÄąâ„˘epnutÄ‚Â­ bylo naplÄ‚Ë‡novÄ‚Ë‡no.
+2026-01-27T10:58:52.4626992+01:00 [INFO] - ZjiÄąË‡ÄąÄ„uji aktuÄ‚Ë‡lnÄ‚Â­ polohu...
+2026-01-27T10:58:52.5415049+01:00 [INFO] - PouÄąÄľity manuÄ‚Ë‡lnÄ‚Â­ souÄąâ„˘adnice: 50,0755, 14,4378
+2026-01-27T10:58:52.5530970+01:00 [INFO] - NaĂ„Ĺ¤Ä‚Â­tÄ‚Ë‡m Ă„Ĺ¤asy vÄ‚Ëťchodu a zÄ‚Ë‡padu slunce...
+2026-01-27T10:58:52.5677114+01:00 [DEBUG] - VolÄ‚Ë‡m API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T10:58:53.1769703+01:00 [DEBUG] - Stav odpovĂ„â€şdi: OK
+2026-01-27T10:58:53.2031954+01:00 [DEBUG] - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T10:58:53.2126905+01:00 [DEBUG] - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T10:58:53.2326886+01:00 [DEBUG] - PouÄąÄľÄ‚Â­vÄ‚Ë‡m Windows timezone ID: Central Europe Standard Time (pÄąĹ»vodnĂ„â€ş: Central Europe Standard Time)
+2026-01-27T10:58:53.2507149+01:00 [DEBUG] - Jedna nebo vÄ‚Â­ce udÄ‚Ë‡lostÄ‚Â­ uÄąÄľ dnes probĂ„â€şhlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zÄ‚Â­tÄąâ„˘ejÄąË‡Ä‚Â­ Ă„Ĺ¤asy...
+2026-01-27T10:58:53.2626725+01:00 [DEBUG] - VolÄ‚Ë‡m API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T10:58:53.4515422+01:00 [DEBUG] - NovÄ‚Â© lokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤asy (zÄ‚Â­tÄąâ„˘ek) Ă˘â‚¬â€ť sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T10:58:53.4891356+01:00 [INFO] - LokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤as vÄ‚Ëťchodu: 28.01.2026 7:39:27
+2026-01-27T10:58:53.5035736+01:00 [INFO] - LokÄ‚Ë‡lnÄ‚Â­ Ă„Ĺ¤as zÄ‚Ë‡padu : 28.01.2026 16:50:51
+2026-01-27T10:58:53.5270238+01:00 [INFO] - AktuÄ‚Ë‡lnÄ‚Â­ reÄąÄľim: Dark Ă˘â€ â€™ NovÄ‚Ëť reÄąÄľim: Light
+2026-01-27T10:58:53.5635361+01:00 [SUCCESS] - PÄąâ„˘epnuto na svĂ„â€ştlÄ‚Ëť reÄąÄľim.
+2026-01-27T10:58:53.8576366+01:00 [DEBUG] - Exportuji existujÄ‚Â­cÄ‚Â­ Ä‚Ĺźlohu SmartThemeSwitch-Dark do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml (pokud existuje)...
+2026-01-27T10:58:54.0550265+01:00 [DEBUG] - Export Ä‚Ĺźlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml dokonĂ„Ĺ¤en.
+2026-01-27T10:58:55.8057811+01:00 [DEBUG] - VytvoÄąâ„˘eno doporuĂ„Ĺ¤enÄ‚Â© XML pro Ä‚Ĺźlohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark.xml
+2026-01-27T10:58:55.8574167+01:00 [DEBUG] - Importuji Ä‚Ĺźlohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark.xml jako SmartThemeSwitch-Dark...
+2026-01-27T10:58:55.9047431+01:00 [INFO] - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Dark" has successfully been created.
+2026-01-27T10:58:55.9142565+01:00 [INFO] - Import XML Ä‚Ĺźlohy SmartThemeSwitch-Dark dokonĂ„Ĺ¤en.
+2026-01-27T10:58:55.9253034+01:00 [INFO] - NaplÄ‚Ë‡novÄ‚Ë‡no (XML import) ensure/once+startup+logon v 2026-01-28 16:50
+2026-01-27T10:58:55.9354884+01:00 [INFO] - Hotovo. DalÄąË‡Ä‚Â­ pÄąâ„˘epnutÄ‚Â­ bylo naplÄ‚Ë‡novÄ‚Ë‡no.
+2026-01-27T10:59:35.8132599+01:00 [INFO] - ZjiĹˇĹĄuji aktuĂˇlnĂ­ polohu...
+2026-01-27T10:59:35.8973877+01:00 [INFO] - PouĹľity manuĂˇlnĂ­ souĹ™adnice: 50,0755, 14,4378
+2026-01-27T10:59:35.9239873+01:00 [INFO] - NaÄŤĂ­tĂˇm ÄŤasy vĂ˝chodu a zĂˇpadu slunce...
+2026-01-27T10:59:35.9530014+01:00 [DEBUG] - VolĂˇm API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T10:59:36.6773543+01:00 [DEBUG] - Stav odpovÄ›di: OK
+2026-01-27T10:59:36.7211482+01:00 [DEBUG] - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T10:59:36.7552816+01:00 [DEBUG] - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T10:59:36.8074079+01:00 [DEBUG] - PouĹľĂ­vĂˇm Windows timezone ID: Central Europe Standard Time (pĹŻvodnÄ›: Central Europe Standard Time)
+2026-01-27T10:59:36.8538953+01:00 [DEBUG] - Jedna nebo vĂ­ce udĂˇlostĂ­ uĹľ dnes probÄ›hlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zĂ­tĹ™ejĹˇĂ­ ÄŤasy...
+2026-01-27T10:59:36.8967809+01:00 [DEBUG] - VolĂˇm API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T10:59:37.4609567+01:00 [DEBUG] - NovĂ© lokĂˇlnĂ­ ÄŤasy (zĂ­tĹ™ek) â€” sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T10:59:37.5287017+01:00 [INFO] - LokĂˇlnĂ­ ÄŤas vĂ˝chodu: 28.01.2026 7:39:27
+2026-01-27T10:59:37.5583060+01:00 [INFO] - LokĂˇlnĂ­ ÄŤas zĂˇpadu : 28.01.2026 16:50:51
+2026-01-27T10:59:37.6062344+01:00 [INFO] - AktuĂˇlnĂ­ reĹľim: Light â†’ NovĂ˝ reĹľim: Dark
+2026-01-27T10:59:37.6758711+01:00 [SUCCESS] - PĹ™epnuto na tmavĂ˝ reĹľim.
+2026-01-27T10:59:37.9628841+01:00 [INFO] - Proces bÄ›ĹľĂ­ bez administrĂˇtorskĂ˝ch prĂˇv â€” pokusĂ­m se vytvoĹ™it Ăşlohu pro aktuĂˇlnĂ­ho uĹľivatele bez elevace.
+2026-01-27T10:59:38.4594824+01:00 [INFO] - schtasks-user: ERROR: Incorrect Start Date.
+2026-01-27T10:59:38.6083080+01:00 [INFO] - NaplĂˇnovĂˇno (schtasks-user) ensure v 2026-01-28 07:39 (pro uĹľivatele Martin)
+2026-01-27T10:59:39.0086069+01:00 [INFO] - Chyba pĹ™i non-elevated schtasks: The term 'Write-SmartThemeLog' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+2026-01-27T10:59:39.0957122+01:00 [DEBUG] - Exportuji existujĂ­cĂ­ Ăşlohu SmartThemeSwitch-Light do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml (pokud existuje)...
+2026-01-27T10:59:39.2733653+01:00 [DEBUG] - Export Ăşlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml dokonÄŤen.
+2026-01-27T10:59:40.5053861+01:00 [INFO] - ScheduledTasks API selhalo: PĹ™Ă­stup byl odepĹ™en.
+. Pokus o fallback na schtasks.exe
+2026-01-27T10:59:40.6147940+01:00 [INFO] - schtasks: ERROR: Incorrect Start Date.
+2026-01-27T10:59:40.6407757+01:00 [INFO] - schtasks vracelo kĂłd -2147467259 pĹ™i vytvĂˇĹ™enĂ­ ONCE Ăşlohy.
+2026-01-27T10:59:40.6989492+01:00 [INFO] - schtasks-startup: ERROR: PĹ™Ă­stup byl odepĹ™en.
+2026-01-27T10:59:40.7252663+01:00 [INFO] - schtasks-startup: System.Management.Automation.RemoteException
+2026-01-27T10:59:40.7883579+01:00 [INFO] - schtasks-logon: ERROR: PĹ™Ă­stup byl odepĹ™en.
+2026-01-27T10:59:40.8145519+01:00 [INFO] - schtasks-logon: System.Management.Automation.RemoteException
+2026-01-27T10:59:40.8420732+01:00 [INFO] - Hotovo. DalĹˇĂ­ pĹ™epnutĂ­ bylo naplĂˇnovĂˇno.
+2026-01-27T11:03:51.3335781+01:00 [INFO] - ZjiÄąË‡ÄąÄ„uji aktuÄ‚Ë‡lnÄ‚Â­ polohu...
+2026-01-27T11:03:51.4195264+01:00 [INFO] - PouĹľity manuĂˇlnĂ­ souĹ™adnice: 50,0755, 14,4378
+2026-01-27T11:03:51.4388498+01:00 [INFO] - NaÄŤĂ­tĂˇm ÄŤasy vĂ˝chodu a zĂˇpadu slunce...
+2026-01-27T11:03:51.4585882+01:00 [DEBUG] - VolĂˇm API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T11:03:52.1593891+01:00 [DEBUG] - Stav odpovÄ›di: OK
+2026-01-27T11:03:52.1873611+01:00 [DEBUG] - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T11:03:52.2045338+01:00 [DEBUG] - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T11:03:52.2700442+01:00 [DEBUG] - PouĹľĂ­vĂˇm Windows timezone ID: Central Europe Standard Time (pĹŻvodnÄ›: Central Europe Standard Time)
+2026-01-27T11:03:52.3357840+01:00 [DEBUG] - Jedna nebo vĂ­ce udĂˇlostĂ­ uĹľ dnes probÄ›hlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zĂ­tĹ™ejĹˇĂ­ ÄŤasy...
+2026-01-27T11:03:52.3584604+01:00 [DEBUG] - VolĂˇm API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T11:03:52.5675851+01:00 [DEBUG] - NovĂ© lokĂˇlnĂ­ ÄŤasy (zĂ­tĹ™ek) â€” sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T11:03:52.6174786+01:00 [INFO] - LokĂˇlnĂ­ ÄŤas vĂ˝chodu: 28.01.2026 7:39:27
+2026-01-27T11:03:52.6386350+01:00 [INFO] - LokĂˇlnĂ­ ÄŤas zĂˇpadu : 28.01.2026 16:50:51
+2026-01-27T11:03:52.6663173+01:00 [INFO] - AktuĂˇlnĂ­ reĹľim: Dark â†’ NovĂ˝ reĹľim: Light
+2026-01-27T11:03:52.7425961+01:00 [SUCCESS] - PĹ™epnuto na svÄ›tlĂ˝ reĹľim.
+2026-01-27T11:03:53.0476453+01:00 [INFO] - Proces bÄ›ĹľĂ­ bez administrĂˇtorskĂ˝ch prĂˇv â€” pokusĂ­m se vytvoĹ™it Ăşlohu pro aktuĂˇlnĂ­ho uĹľivatele bez elevace.
+2026-01-27T11:03:53.3015347+01:00 [INFO] - schtasks-user: ERROR: Incorrect Start Date.
+2026-01-27T11:03:53.3345004+01:00 [INFO] - NaplĂˇnovĂˇno (schtasks-user) ensure v 2026-01-28 16:50 (pro uĹľivatele Martin)
+2026-01-27T11:03:53.4695820+01:00 [INFO] - schtasks-user-startup: ERROR: Přístup byl odepřen.
+2026-01-27T11:03:53.5819986+01:00 [INFO] - schtasks-user-logon: ERROR: Přístup byl odepřen.
+2026-01-27T11:03:53.6073919+01:00 [INFO] - Hotovo. DalĹˇĂ­ pĹ™epnutĂ­ bylo naplĂˇnovĂˇno.
+2026-01-27T11:04:03.9972744+01:00 [INFO] - ZjiĹˇĹĄuji aktuĂˇlnĂ­ polohu...
+2026-01-27T11:04:04.0625186+01:00 [INFO] - PouĹľity manuĂˇlnĂ­ souĹ™adnice: 50,0755, 14,4378
+2026-01-27T11:04:04.0781424+01:00 [INFO] - NaÄŤĂ­tĂˇm ÄŤasy vĂ˝chodu a zĂˇpadu slunce...
+2026-01-27T11:04:04.0972958+01:00 [DEBUG] - VolĂˇm API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T11:04:04.7774385+01:00 [DEBUG] - Stav odpovÄ›di: OK
+2026-01-27T11:04:04.7973926+01:00 [DEBUG] - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T11:04:04.8175610+01:00 [DEBUG] - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T11:04:04.8357893+01:00 [DEBUG] - PouĹľĂ­vĂˇm Windows timezone ID: Central Europe Standard Time (pĹŻvodnÄ›: Central Europe Standard Time)
+2026-01-27T11:04:04.8567710+01:00 [DEBUG] - Jedna nebo vĂ­ce udĂˇlostĂ­ uĹľ dnes probÄ›hlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zĂ­tĹ™ejĹˇĂ­ ÄŤasy...
+2026-01-27T11:04:04.8726386+01:00 [DEBUG] - VolĂˇm API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T11:04:05.0577744+01:00 [DEBUG] - NovĂ© lokĂˇlnĂ­ ÄŤasy (zĂ­tĹ™ek) â€” sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T11:04:05.1171846+01:00 [INFO] - LokĂˇlnĂ­ ÄŤas vĂ˝chodu: 28.01.2026 7:39:27
+2026-01-27T11:04:05.1429311+01:00 [INFO] - LokĂˇlnĂ­ ÄŤas zĂˇpadu : 28.01.2026 16:50:51
+2026-01-27T11:04:05.1873252+01:00 [INFO] - AktuĂˇlnĂ­ reĹľim: Light â†’ NovĂ˝ reĹľim: Dark
+2026-01-27T11:04:05.3172125+01:00 [SUCCESS] - PĹ™epnuto na tmavĂ˝ reĹľim.
+2026-01-27T11:04:05.6277252+01:00 [DEBUG] - Exportuji existujĂ­cĂ­ Ăşlohu SmartThemeSwitch-Light do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml (pokud existuje)...
+2026-01-27T11:04:05.8952324+01:00 [DEBUG] - Export Ăşlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml dokonÄŤen.
+2026-01-27T11:04:07.7207096+01:00 [DEBUG] - VytvoĹ™eno doporuÄŤenĂ© XML pro Ăşlohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml
+2026-01-27T11:04:07.7351323+01:00 [DEBUG] - Importuji Ăşlohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml jako SmartThemeSwitch-Light...
+2026-01-27T11:04:07.7842463+01:00 [INFO] - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Light" has successfully been created.
+2026-01-27T11:04:07.7881939+01:00 [INFO] - Import XML Ăşlohy SmartThemeSwitch-Light dokonÄŤen.
+2026-01-27T11:04:07.8093551+01:00 [INFO] - NaplĂˇnovĂˇno (XML import) ensure/once+startup+logon v 2026-01-28 07:39
+2026-01-27T11:04:07.8208632+01:00 [INFO] - Hotovo. DalĹˇĂ­ pĹ™epnutĂ­ bylo naplĂˇnovĂˇno.
+2026-01-27T11:13:10.0011383+01:00 [INFO] - Zjistuji aktualni polohu...
+2026-01-27T11:13:10.3490901+01:00 [DEBUG] - Pockame 2 s pred dalsim pokusem... (pokusu 1/3)
+2026-01-27T11:13:12.4246515+01:00 [DEBUG] - Pockame 4 s pred dalsim pokusem... (pokusu 2/3)
+2026-01-27T11:13:16.4857083+01:00 [INFO] - Varovani: Nepodarilo se zjistit polohu pres ipapi.
+2026-01-27T11:13:16.5218849+01:00 [INFO] - Pouzita cache: (manually provided) (50,0755, 14,4378) [Central Europe Standard Time]
+2026-01-27T11:13:16.5465421+01:00 [INFO] - Nacitam casy vychodu a zapadu slunce...
+2026-01-27T11:13:16.5729674+01:00 [DEBUG] - Volam API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T11:13:17.1639262+01:00 [DEBUG] - Stav odpovedi: OK
+2026-01-27T11:13:17.1828476+01:00 [DEBUG] - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T11:13:17.1939850+01:00 [DEBUG] - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T11:13:17.2097553+01:00 [DEBUG] - Pouzivam Windows timezone ID: Central Europe Standard Time (puvodne: Central Europe Standard Time)
+2026-01-27T11:13:17.2254135+01:00 [DEBUG] - Jedna nebo vice udalosti uz dnes probehlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zitrejsi casy...
+2026-01-27T11:13:17.2388839+01:00 [DEBUG] - Volám API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T11:13:17.7639203+01:00 [DEBUG] - Nove lokalni casy (zitre) - sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T11:13:17.7933963+01:00 [INFO] - Lokalni cas vychodu: 28.01.2026 7:39:27
+2026-01-27T11:13:17.8206875+01:00 [INFO] - Lokalni cas zapadu : 28.01.2026 16:50:51
+2026-01-27T11:13:17.8462223+01:00 [INFO] - Aktualni rezim: Dark -> Novy rezim: Light
+2026-01-27T11:13:17.8876835+01:00 [SUCCESS] - Prepnuto na svetly rezim.
+2026-01-27T11:13:18.2463546+01:00 [DEBUG] - Exportuji existující úlohu SmartThemeSwitch-Dark do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml (pokud existuje)...
+2026-01-27T11:13:18.6347760+01:00 [DEBUG] - Export úlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml dokončen.
+2026-01-27T11:13:20.2569510+01:00 [DEBUG] - Vytvoreno doporucene XML pro ulohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark.xml
+2026-01-27T11:13:20.2705293+01:00 [DEBUG] - Importuji ulohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark.xml jako SmartThemeSwitch-Dark...
+2026-01-27T11:13:20.3158875+01:00 [INFO] - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Dark" has successfully been created.
+2026-01-27T11:13:20.3369668+01:00 [INFO] - Import XML úlohy SmartThemeSwitch-Dark dokončen.
+2026-01-27T11:13:20.3539772+01:00 [INFO] - Naplanovano (XML import) ensure/once+startup+logon v 2026-01-28 16:50
+2026-01-27T11:13:20.3736418+01:00 [INFO] - Hotovo. Dalsi prepnuti bylo naplanovano.
+2026-01-27T11:13:28.9268351+01:00 [INFO] - Zjistuji aktualni polohu...
+2026-01-27T11:13:28.9920807+01:00 [DEBUG] - Pockame 2 s pred dalsim pokusem... (pokusu 1/3)
+2026-01-27T11:13:31.0507381+01:00 [DEBUG] - Pockame 4 s pred dalsim pokusem... (pokusu 2/3)
+2026-01-27T11:13:35.1004364+01:00 [INFO] - Varovani: Nepodarilo se zjistit polohu pres ipapi.
+2026-01-27T11:13:35.1196124+01:00 [INFO] - Pouzita cache: (manually provided) (50,0755, 14,4378) [Central Europe Standard Time]
+2026-01-27T11:13:35.1406028+01:00 [INFO] - Nacitam casy vychodu a zapadu slunce...
+2026-01-27T11:13:35.1572483+01:00 [DEBUG] - Volam API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T11:13:35.6890547+01:00 [DEBUG] - Stav odpovedi: OK
+2026-01-27T11:13:35.7001453+01:00 [DEBUG] - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T11:13:35.7093870+01:00 [DEBUG] - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T11:13:35.7192819+01:00 [DEBUG] - Pouzivam Windows timezone ID: Central Europe Standard Time (puvodne: Central Europe Standard Time)
+2026-01-27T11:13:35.7288869+01:00 [DEBUG] - Jedna nebo vice udalosti uz dnes probehlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zitrejsi casy...
+2026-01-27T11:13:35.7400676+01:00 [DEBUG] - Volám API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T11:13:36.2676583+01:00 [DEBUG] - Nove lokalni casy (zitre) - sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T11:13:36.2805306+01:00 [INFO] - Lokalni cas vychodu: 28.01.2026 7:39:27
+2026-01-27T11:13:36.2964912+01:00 [INFO] - Lokalni cas zapadu : 28.01.2026 16:50:51
+2026-01-27T11:13:36.3142468+01:00 [INFO] - Aktualni rezim: Light -> Novy rezim: Dark
+2026-01-27T11:13:36.3462715+01:00 [SUCCESS] - Prepnuto na tmavy rezim.
+2026-01-27T11:13:36.6176725+01:00 [DEBUG] - Exportuji existující úlohu SmartThemeSwitch-Light do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml (pokud existuje)...
+2026-01-27T11:13:37.0168645+01:00 [DEBUG] - Export úlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light-backup.xml dokončen.
+2026-01-27T11:13:38.1986067+01:00 [DEBUG] - Vytvoreno doporucene XML pro ulohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml
+2026-01-27T11:13:38.2097623+01:00 [DEBUG] - Importuji ulohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Light.xml jako SmartThemeSwitch-Light...
+2026-01-27T11:13:38.2530484+01:00 [INFO] - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Light" has successfully been created.
+2026-01-27T11:13:38.2715766+01:00 [INFO] - Import XML úlohy SmartThemeSwitch-Light dokončen.
+2026-01-27T11:13:38.2879586+01:00 [INFO] - Naplanovano (XML import) ensure/once+startup+logon v 2026-01-28 07:39
+2026-01-27T11:13:38.3065812+01:00 [INFO] - Hotovo. Dalsi prepnuti bylo naplanovano.
+2026-01-27T11:13:55.1306687+01:00 [INFO] - Zjistuji aktualni polohu...
+2026-01-27T11:13:55.2016678+01:00 [DEBUG] - Pockame 2 s pred dalsim pokusem... (pokusu 1/3)
+2026-01-27T11:13:57.2538013+01:00 [DEBUG] - Pockame 4 s pred dalsim pokusem... (pokusu 2/3)
+2026-01-27T11:14:01.3209587+01:00 [INFO] - Varovani: Nepodarilo se zjistit polohu pres ipapi.
+2026-01-27T11:14:01.3446482+01:00 [INFO] - Pouzita cache: (manually provided) (50,0755, 14,4378) [Central Europe Standard Time]
+2026-01-27T11:14:01.3646376+01:00 [INFO] - Nacitam casy vychodu a zapadu slunce...
+2026-01-27T11:14:01.3823268+01:00 [DEBUG] - Volam API: https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0
+2026-01-27T11:14:01.9182887+01:00 [DEBUG] - Stav odpovedi: OK
+2026-01-27T11:14:01.9290906+01:00 [DEBUG] - UTC sunrise: 27.01.2026 6:40:44 (Kind=Utc)
+2026-01-27T11:14:01.9388119+01:00 [DEBUG] - UTC sunset : 27.01.2026 15:49:11 (Kind=Utc)
+2026-01-27T11:14:01.9509811+01:00 [DEBUG] - Pouzivam Windows timezone ID: Central Europe Standard Time (puvodne: Central Europe Standard Time)
+2026-01-27T11:14:01.9620870+01:00 [DEBUG] - Jedna nebo vice udalosti uz dnes probehlo (sunrise=27.01.2026 7:40:44, sunset=27.01.2026 16:49:11). Dotazuji se na zitrejsi casy...
+2026-01-27T11:14:01.9746707+01:00 [DEBUG] - Volám API (next day): https://api.sunrise-sunset.org/json?lat=50.0755&lng=14.4378&formatted=0&date=2026-01-28
+2026-01-27T11:14:02.5036320+01:00 [DEBUG] - Nove lokalni casy (zitre) - sunrise: 28.01.2026 7:39:27; sunset: 28.01.2026 16:50:51
+2026-01-27T11:14:02.5202516+01:00 [INFO] - Lokalni cas vychodu: 28.01.2026 7:39:27
+2026-01-27T11:14:02.5397317+01:00 [INFO] - Lokalni cas zapadu : 28.01.2026 16:50:51
+2026-01-27T11:14:02.5583042+01:00 [INFO] - Aktualni rezim: Dark -> Novy rezim: Light
+2026-01-27T11:14:02.6167734+01:00 [SUCCESS] - Prepnuto na svetly rezim.
+2026-01-27T11:14:02.8246273+01:00 [DEBUG] - Exportuji existující úlohu SmartThemeSwitch-Dark do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml (pokud existuje)...
+2026-01-27T11:14:02.9794078+01:00 [DEBUG] - Export úlohy do C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark-backup.xml dokončen.
+2026-01-27T11:14:04.3782288+01:00 [DEBUG] - Vytvoreno doporucene XML pro ulohu: C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark.xml
+2026-01-27T11:14:04.3888951+01:00 [DEBUG] - Importuji ulohu z XML C:\Users\Martin\AppData\Local\Temp\SmartThemeSwitch-Dark.xml jako SmartThemeSwitch-Dark...
+2026-01-27T11:14:04.4284474+01:00 [INFO] - schtasks-import: SUCCESS: The scheduled task "SmartThemeSwitch-Dark" has successfully been created.
+2026-01-27T11:14:04.4484990+01:00 [INFO] - Import XML úlohy SmartThemeSwitch-Dark dokončen.
+2026-01-27T11:14:04.4638928+01:00 [INFO] - Naplanovano (XML import) ensure/once+startup+logon v 2026-01-28 16:50
+2026-01-27T11:14:04.4828146+01:00 [INFO] - Hotovo. Dalsi prepnuti bylo naplanovano.

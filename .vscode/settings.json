@@ -1,0 +1,11 @@
+{
+    "chat.agent.maxRequests": 50,
+    "chat.editing.autoAcceptDelay": 100,
+    "chat.mcp.discovery.enabled": {
+        "claude-desktop": true,
+        "cursor-global": true,
+        "cursor-workspace": true,
+        "windsurf": true
+    },
+    "chat.mcp.gallery.enabled": true
+}
