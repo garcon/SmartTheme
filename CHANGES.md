@@ -1,3 +1,15 @@
+2026-01-27 — Release notes
+
+- Brought repository into analyzer-clean state and fixed test suite.
+  - Fixed Pester tests and updated mocks to use approved verbs (`Register-ThemeSwitch`,
+    `Register-SmartThemeUserTask`, `New-SmartThemeTaskXml`) and to reference unused
+    parameters so `PSScriptAnalyzer` reports no findings.
+  - Added test helper scripts under `tools/` and `tests/` to run pinned Pester (3.4)
+    and `PSScriptAnalyzer` locally: `tools/run-local-checks.ps1`.
+  - Improved logging and localization helpers: UTF-8 handling and log trimming.
+  - Small refactors in `lib/` to make code more testable (DI via `-Config`, ShouldProcess
+    on state-changing functions, and exported function name updates).
+
 CHANGES — SmartTheme localization sweep
 
 2025-11-02
