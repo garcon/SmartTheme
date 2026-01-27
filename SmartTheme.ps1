@@ -61,7 +61,8 @@ $libDir = Join-Path $scriptDir 'lib'
 . (Join-Path $libDir 'Localization.ps1')
 # Initialize localization (sets $script:PreferredLocale and $script:LocaleData)
 Initialize-Localization
-. (Join-Path $libDir 'Logging.ps1')
+. $loggingModule = Join-Path $libDir 'LoggingModule.psm1'
+. if (Test-Path $loggingModule) { Import-Module $loggingModule -Force -ErrorAction Stop }
 . (Join-Path $libDir 'TimeZoneHelpers.ps1')
 try {
     $modulePath = (Join-Path $libDir 'SmartThemeModule.psm1')
