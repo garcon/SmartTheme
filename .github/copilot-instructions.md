@@ -86,6 +86,11 @@ If anything here is unclear or you want me to include short code snippets (examp
 - Logging now prefers UTF-8 with BOM for the log file and attempts to set the PowerShell console to UTF-8 at startup. The log writer trims files to keep the last 500 lines.
 - `Translate` is exposed so modules can call localization at runtime and a `Write-Log` wrapper exists for compatibility with older code.
 - Tests include non-interactive runner scripts under `tests/` and the suite is safe to run locally; avoid running test helpers that try to elevate UAC automatically.
+- 2026-01-27 maintenance summary:
+  - Fixed Pester tests and updated test mocks to follow approved verbs and reference unused parameters so `PSScriptAnalyzer` reports no findings.
+  - Added `tools/run-local-checks.ps1` to run pinned Pester (v3.4) and PSScriptAnalyzer locally.
+  - Performed small refactors across `lib/` to add `ShouldProcess`, improve DI (use `-Config`), and make functions easier to test.
+  - Truncated `smarttheme.log` to reduce repo noise; live logs are preserved in runtime and Git history.
 
 11) Guidance when changing localization
 - If you revert the ASCII change and restore diacritics in `lib/locales/cs.json`, update any tests that assert exact strings (e.g., `tests/Smoke.Tests.ps1`). Alternatively, update tests to compare using a normalization helper that strips diacritics before asserting.
