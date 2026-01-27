@@ -1,5 +1,10 @@
-function Normalize-StringForComparison {
+function ConvertTo-ComparableString {
     [CmdletBinding()]
+    [OutputType([string])]
+    <#
+    .SYNOPSIS
+        Normalize a string: remove diacritics, collapse whitespace, trim and lowercase it.
+    #>
     param(
         [Parameter()][string]$InputString = ''
     )
@@ -17,4 +22,4 @@ function Normalize-StringForComparison {
     return $str
 }
 
-Export-ModuleMember -Function Normalize-StringForComparison
+Export-ModuleMember -Function ConvertTo-ComparableString

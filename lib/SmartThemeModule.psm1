@@ -47,7 +47,7 @@ function Register-SmartThemeUserTask {
     $fullCmd = "$RunnerExe $cmd"
     if ($PSCmdlet.ShouldProcess($taskName, 'Create limited schtasks for current user')) {
         $out = Invoke-Schtask -sArgs @('/Create','/SC','ONCE','/TN',$taskName,'/TR',$fullCmd,'/ST',$st,'/SD',$sd,'/RL','LIMITED','/RU',$User,'/F') -SchtasksExe $SchtasksExe
-        $out | ForEach-Object { Write-Log (Translate 'SCHTASKS_USER' $_) }
+        $out | ForEach-Object { Write-SmartThemeLog (Translate 'SCHTASKS_USER' $_) }
     }
     if ($LASTEXITCODE -eq 0) { return $true } else { return $false }
 }
@@ -76,14 +76,14 @@ function Set-Theme {
         if ($PSCmdlet.ShouldProcess("Registry: $RegPath", 'Set AppsUseLightTheme/SystemUsesLightTheme to Dark')) {
             Set-ItemProperty -Path $RegPath -Name AppsUseLightTheme -Value 0 -Type DWord
             Set-ItemProperty -Path $RegPath -Name SystemUsesLightTheme -Value 0 -Type DWord
-            Write-Log (Translate 'THEME_SWITCHED_DARK') 'SUCCESS'
+            Write-SmartThemeLog (Translate 'THEME_SWITCHED_DARK') 'SUCCESS'
         }
     }
     elseif ($Mode -eq 'Light') {
         if ($PSCmdlet.ShouldProcess("Registry: $RegPath", 'Set AppsUseLightTheme/SystemUsesLightTheme to Light')) {
             Set-ItemProperty -Path $RegPath -Name AppsUseLightTheme -Value 1 -Type DWord
             Set-ItemProperty -Path $RegPath -Name SystemUsesLightTheme -Value 1 -Type DWord
-            Write-Log (Translate 'THEME_SWITCHED_LIGHT') 'SUCCESS'
+            Write-SmartThemeLog (Translate 'THEME_SWITCHED_LIGHT') 'SUCCESS'
         }
     }
 }
@@ -111,34 +111,34 @@ function Register-ThemeSwitch {
 
     $now = Get-Date
     if ($Time -lt $now) {
-        Write-Log (Translate 'SCHEDULE_ADJUSTED_ADD_DAY' $Time $now)
+        Write-SmartThemeLog (Translate 'SCHEDULE_ADJUSTED_ADD_DAY' $Time $now)
         $Time = $Time.AddDays(1)
     }
 
     $scheduled = $false
     if (-not (Test-IsElevated)) {
-        Write-Log (Translate 'NON_ELEVATED_ATTEMPT')
+        Write-SmartThemeLog (Translate 'NON_ELEVATED_ATTEMPT')
         try {
             if (Register-SmartThemeUserTask -taskName $taskName -cmd $cmdEnsure -Time $Time -User $User -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe) {
-                Write-Log (Translate 'SCHEDULED_USER_ENSURE' $($Time.ToString('yyyy-MM-dd HH:mm')) $User)
+                Write-SmartThemeLog (Translate 'SCHEDULED_USER_ENSURE' $($Time.ToString('yyyy-MM-dd HH:mm')) $User)
             } else {
-                Write-Log (Translate 'SCHEDULE_USER_ONCE_FAILED')
+                Write-SmartThemeLog (Translate 'SCHEDULE_USER_ONCE_FAILED')
             }
 
             $st = $Time.ToString('HH:mm')
             $sd = $Time.ToString('MM\/dd\/yyyy')
             $fullCmd = "$RunnerExe $cmdEnsure"
                 if ($PSCmdlet.ShouldProcess($taskName + '-Startup', 'Create startup schtask for current user')) {
-                    if (Get-Command -Name Register-Schtasks -ErrorAction SilentlyContinue) {
-                        Register-Schtasks -TaskName "$taskName-Startup" -Cmd $cmdEnsure -ScheduleType 'ONSTART' -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe -Config $Config | Out-Null
+                    if (Get-Command -Name Register-Schtask -ErrorAction SilentlyContinue) {
+                            Register-Schtask -TaskName "$taskName-Startup" -Cmd $cmdEnsure -ScheduleType 'ONSTART' -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe -Config $Config | Out-Null
                     } else {
                         $out1 = Invoke-Schtask -sArgs @('/Create','/SC','ONSTART','/TN',"$taskName-Startup",'/TR',$fullCmd,'/F') -SchtasksExe $SchtasksExe
                         $out1 | ForEach-Object { Write-SmartThemeLog (Translate 'SCHTASKS_USER_STARTUP' $_) }
                     }
                 }
                 if ($PSCmdlet.ShouldProcess($taskName + '-Logon', 'Create logon schtask for current user')) {
-                    if (Get-Command -Name Register-Schtasks -ErrorAction SilentlyContinue) {
-                        Register-Schtasks -TaskName "$taskName-Logon" -Cmd $cmdEnsure -ScheduleType 'ONLOGON' -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe -Config $Config | Out-Null
+                    if (Get-Command -Name Register-Schtask -ErrorAction SilentlyContinue) {
+                        Register-Schtask -TaskName "$taskName-Logon" -Cmd $cmdEnsure -ScheduleType 'ONLOGON' -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe -Config $Config | Out-Null
                     } else {
                         $out2 = Invoke-Schtask -sArgs @('/Create','/SC','ONLOGON','/TN',"$taskName-Logon",'/TR',$fullCmd,'/F') -SchtasksExe $SchtasksExe
                         $out2 | ForEach-Object { Write-SmartThemeLog (Translate 'SCHTASKS_USER_LOGON' $_) }
@@ -345,12 +345,13 @@ function Invoke-RestWithRetry {
     )
     for ($i = 1; $i -le $maxAttempts; $i++) {
         try {
-            return & $ScriptBlock
+            $result = & $ScriptBlock
+            return $result
         }
         catch {
             if ($i -eq $maxAttempts) { throw }
             $delay = [int]($baseDelay * [math]::Pow(2, $i - 1))
-            Write-Log (Translate 'RETRY_WAIT' $delay $i $maxAttempts) 'DEBUG'
+            Write-SmartThemeLog (Translate 'RETRY_WAIT' $delay $i $maxAttempts) 'DEBUG'
             Start-Sleep -Seconds $delay
         }
     }

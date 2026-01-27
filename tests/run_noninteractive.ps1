@@ -21,7 +21,7 @@ try {
     $scriptPath = Join-Path $repoRoot 'SmartTheme.ps1'
     if (-not (Test-Path -Path $scriptPath)) { throw "SmartTheme.ps1 not found at $scriptPath" }
 
-    $args = @('-Lat','50.0755','-Lon','14.4378','-Debug')
+    $scriptArgs = @('-Lat','50.0755','-Lon','14.4378','-Debug')
 
     if ($Elevated) {
         # Non-interactive policy: do NOT trigger UAC from this runner.
@@ -32,10 +32,10 @@ try {
             Write-Error 'Elevated run requested but current process is not elevated. Please re-run this runner from an elevated PowerShell.'
             exit 3
         }
-        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $scriptPath @args
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $scriptPath @scriptArgs
     }
     else {
-        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $scriptPath @args
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $scriptPath @scriptArgs
     }
 
     Start-Sleep -Seconds 1

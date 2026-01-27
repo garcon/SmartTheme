@@ -1,5 +1,10 @@
 function Import-TaskXml {
     [CmdletBinding()]
+    [OutputType([bool])]
+    <#
+    .SYNOPSIS
+        Import a scheduled task from XML using ScheduledTasks or schtasks.exe.
+    #>
     param(
         [Parameter(Mandatory=$true)][string]$XmlPath,
         [Parameter(Mandatory=$true)][string]$TaskName,
@@ -11,19 +16,18 @@ function Import-TaskXml {
         if (Get-Command -Name 'Register-ScheduledTask' -ErrorAction SilentlyContinue) {
             try {
                 $xml = Get-Content -Path $XmlPath -Raw
-                $task = [xml]$xml
                 $definition = New-ScheduledTask -Xml $xml
                 Register-ScheduledTask -TaskName $TaskName -InputObject $definition -Force
                 return $true
             } catch {
-                # fallback to schtasks
+                Write-Verbose "Import-TaskXml: ScheduledTasks import failed, will fallback to schtasks.exe. $_"
             }
         }
 
         # Fallback to schtasks.exe import via /Create /XML
         $exe = if ($Config -and $Config.SchtasksExe) { $Config.SchtasksExe } else { $SchtasksExe }
-        $args = @('/Create','/TN',$TaskName,'/XML',$XmlPath,'/F')
-        $p = Start-Process -FilePath $exe -ArgumentList $args -NoNewWindow -Wait -PassThru -ErrorAction Stop
+        $argList = @('/Create','/TN',$TaskName,'/XML',$XmlPath,'/F')
+        $p = Start-Process -FilePath $exe -ArgumentList $argList -NoNewWindow -Wait -PassThru -ErrorAction Stop
         return ($p.ExitCode -eq 0)
     } catch {
         return $false
@@ -32,6 +36,11 @@ function Import-TaskXml {
 
 function Export-TaskXml {
     [CmdletBinding()]
+    [OutputType([bool])]
+    <#
+    .SYNOPSIS
+        Export a scheduled task to XML using ScheduledTasks cmdlets if available.
+    #>
     param(
         [Parameter(Mandatory=$true)][string]$TaskName,
         [Parameter(Mandatory=$true)][string]$OutPath,
@@ -43,10 +52,11 @@ function Export-TaskXml {
         # Try using ScheduledTasks module
         if (Get-Command -Name 'Export-ScheduledTask' -ErrorAction SilentlyContinue) {
             try {
+                $null = $CmdExe; $null = $SchtasksExe; $null = $Config
                 Export-ScheduledTask -TaskName $TaskName -Xml $OutPath -Force
                 return $true
             } catch {
-                # fallback
+                Write-Verbose "Export-TaskXml: Export-ScheduledTask failed, falling back. $_"
             }
         }
         # No reliable cross-platform schtasks export; return $false as fallback
@@ -56,8 +66,13 @@ function Export-TaskXml {
     }
 }
 
-function Register-Schtasks {
+function Register-Schtask {
     [CmdletBinding()]
+    [OutputType([bool])]
+    <#
+    .SYNOPSIS
+        Create a scheduled task using schtasks.exe.
+    #>
     param(
         [Parameter(Mandatory=$true)][string]$TaskName,
         [Parameter(Mandatory=$true)][string]$Cmd,
@@ -87,4 +102,4 @@ function Register-Schtasks {
     }
 }
 
-Export-ModuleMember -Function Import-TaskXml,Export-TaskXml,Register-Schtasks
+Export-ModuleMember -Function Import-TaskXml,Export-TaskXml,Register-Schtask

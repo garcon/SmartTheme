@@ -7,19 +7,19 @@ Describe 'Localization module' {
     }
 
     It 'loads English locale and has DEFAULT_CITY London' {
-        $en = Load-Locale 'en'
+        $en = Import-Locale 'en'
     $en | Should Not Be $null
     $en.DEFAULT_CITY | Should Be 'London'
     }
 
     It 'loads Czech locale and has DEFAULT_CITY Prague' {
-        $cs = Load-Locale 'cs'
+        $cs = Import-Locale 'cs'
     $cs | Should Not Be $null
     $cs.DEFAULT_CITY | Should Be 'Prague'
     }
 
     It 'translates a basic key for cs locale' {
-        Initialize-Localization -PreferredLocale 'cs'
+        Set-Localization -PreferredLocale 'cs'
         $out = Translate 'SCRIPT_RUNNING' 'C:\\temp\\script.ps1'
     $out | Should Not Be $null
     $out.GetType().Name | Should Be 'String'
@@ -27,7 +27,7 @@ Describe 'Localization module' {
     }
 
     It 'translates with formatting arguments' {
-        Initialize-Localization -PreferredLocale 'en'
+        Set-Localization -PreferredLocale 'en'
         $out = Translate 'CURRENT_TO_TARGET' 'light' 'dark'
     $out | Should Not Be $null
         $out | Should Match 'light'
