@@ -55,8 +55,8 @@ $libDir = Join-Path $scriptDir 'lib'
 . (Join-Path $libDir 'Localization.ps1')
 # Initialize localization (sets $script:PreferredLocale and $script:LocaleData)
 Set-Localization
-. $loggingModule = Join-Path $libDir 'LoggingModule.psm1'
-. if (Test-Path $loggingModule) { Import-Module $loggingModule -Force -ErrorAction Stop }
+ $loggingModule = Join-Path $libDir 'LoggingModule.psm1'
+ if (Test-Path $loggingModule) { Import-Module $loggingModule -Force -ErrorAction Stop }
 . (Join-Path $libDir 'TimeZoneHelpers.ps1')
 # Central config object for dependency injection / testing
 $configModule = Join-Path $libDir 'Config.psm1'

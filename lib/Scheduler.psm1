@@ -93,7 +93,8 @@ function Register-Schtask {
         }
         $arguments += @('/TN',$TaskName)
         if ($ScheduleType.ToUpper() -eq 'ONCE' -and $Time) { $arguments += @('/ST',$Time) }
-        $arguments += @('/TR',"$RunnerExe -NoProfile -WindowStyle Hidden -Command `"& { $Cmd }`"",'/F')
+            $trCmd = '"' + ($RunnerExe + ' -NoProfile -WindowStyle Hidden -Command "& { ' + $Cmd + ' }"') + '"'
+            $arguments += @('/TR',$trCmd,'/F')
         if ($User) { $arguments += @('/RU',$User) }
         $p = Start-Process -FilePath $exe -ArgumentList $arguments -NoNewWindow -Wait -PassThru -ErrorAction Stop
         return ($p.ExitCode -eq 0)

@@ -9,6 +9,8 @@ function Test-IsElevated {
 # Wrapper to execute schtasks.exe with splatted args. Allows mocking in tests.
 function Invoke-Schtask([string[]]$sArgs, [string]$SchtasksExe = 'schtasks.exe') {
     try {
+        try { Write-SmartThemeLog ("Invoke-Schtask: $SchtasksExe " + ($sArgs -join ' ')) 'DEBUG' } catch {}
+        Write-Output ("INVOKE-SCHTASK: $SchtasksExe " + ($sArgs -join ' '))
         return & $SchtasksExe @sArgs 2>&1
     } catch {
         return @($_)
@@ -46,7 +48,8 @@ function Register-SmartThemeUserTask {
     # Try creating task for given user with limited privileges
     $fullCmd = "$RunnerExe $cmd"
     if ($PSCmdlet.ShouldProcess($taskName, 'Create limited schtasks for current user')) {
-        $out = Invoke-Schtask -sArgs @('/Create','/SC','ONCE','/TN',$taskName,'/TR',$fullCmd,'/ST',$st,'/SD',$sd,'/RL','LIMITED','/RU',$User,'/F') -SchtasksExe $SchtasksExe
+        $tr = '"' + $fullCmd + '"'
+        $out = Invoke-Schtask -sArgs @('/Create','/SC','ONCE','/TN',$taskName,'/TR',$tr,'/ST',$st,'/SD',$sd,'/RL','LIMITED','/RU',$User,'/F') -SchtasksExe $SchtasksExe
         $out | ForEach-Object { Write-SmartThemeLog (Translate 'SCHTASKS_USER' $_) }
     }
     if ($LASTEXITCODE -eq 0) { return $true } else { return $false }
@@ -107,7 +110,14 @@ function Register-ThemeSwitch {
         if ($Config.User) { $User = $Config.User }
     }
     $taskName = "SmartThemeSwitch-$Mode"
-    $cmdEnsure = "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptPath`" -Ensure"
+    $shimPath = Join-Path $env:LOCALAPPDATA 'SmartTheme\theme.cmd'
+    if (Test-Path $shimPath) {
+        $cmdEnsure = "`"$shimPath`" -Ensure"
+        $useShim = $true
+    } else {
+        $cmdEnsure = "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptPath`" -Ensure"
+        $useShim = $false
+    }
 
     $now = Get-Date
     if ($Time -lt $now) {
@@ -119,29 +129,45 @@ function Register-ThemeSwitch {
     if (-not (Test-IsElevated)) {
         Write-SmartThemeLog (Translate 'NON_ELEVATED_ATTEMPT')
         try {
-            if (Register-SmartThemeUserTask -taskName $taskName -cmd $cmdEnsure -Time $Time -User $User -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe) {
-                Write-SmartThemeLog (Translate 'SCHEDULED_USER_ENSURE' $($Time.ToString('yyyy-MM-dd HH:mm')) $User)
-            } else {
-                Write-SmartThemeLog (Translate 'SCHEDULE_USER_ONCE_FAILED')
-            }
-
-            $st = $Time.ToString('HH:mm')
-            $sd = $Time.ToString('MM\/dd\/yyyy')
-            $fullCmd = "$RunnerExe $cmdEnsure"
-                if ($PSCmdlet.ShouldProcess($taskName + '-Startup', 'Create startup schtask for current user')) {
-                    if (Get-Command -Name Register-Schtask -ErrorAction SilentlyContinue) {
-                            Register-Schtask -TaskName "$taskName-Startup" -Cmd $cmdEnsure -ScheduleType 'ONSTART' -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe -Config $Config | Out-Null
-                    } else {
-                        $out1 = Invoke-Schtask -sArgs @('/Create','/SC','ONSTART','/TN',"$taskName-Startup",'/TR',$fullCmd,'/F') -SchtasksExe $SchtasksExe
-                        $out1 | ForEach-Object { Write-SmartThemeLog (Translate 'SCHTASKS_USER_STARTUP' $_) }
-                    }
+            # Prefer ScheduledTasks API for current-user registration when available
+            if (Get-Command -Name 'Register-ScheduledTask' -ErrorAction SilentlyContinue) {
+                try {
+                    $actionExe = if ($useShim) { $shimPath } else { $RunnerExe }
+                    $actionArgs = if ($useShim) { '-Ensure' } else { $cmdEnsure }
+                    $action = New-ScheduledTaskAction -Execute $actionExe -Argument $actionArgs
+                    $triggerOnce = New-ScheduledTaskTrigger -Once -At $Time
+                    Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $triggerOnce -User $User -Force -ErrorAction Stop
+                    Write-SmartThemeLog (Translate 'SCHEDULED_USER_API' $($Time.ToString('yyyy-MM-dd HH:mm')) $User)
+                } catch {
+                    Write-SmartThemeLog (Translate 'SCHEDULE_USER_API_FAIL' $_) 'WARN'
                 }
-                if ($PSCmdlet.ShouldProcess($taskName + '-Logon', 'Create logon schtask for current user')) {
-                    if (Get-Command -Name Register-Schtask -ErrorAction SilentlyContinue) {
-                        Register-Schtask -TaskName "$taskName-Logon" -Cmd $cmdEnsure -ScheduleType 'ONLOGON' -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe -Config $Config | Out-Null
-                    } else {
-                        $out2 = Invoke-Schtask -sArgs @('/Create','/SC','ONLOGON','/TN',"$taskName-Logon",'/TR',$fullCmd,'/F') -SchtasksExe $SchtasksExe
-                        $out2 | ForEach-Object { Write-SmartThemeLog (Translate 'SCHTASKS_USER_LOGON' $_) }
+            } else {
+                if (Register-SmartThemeUserTask -taskName $taskName -cmd $cmdEnsure -Time $Time -User $User -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe) {
+                    Write-SmartThemeLog (Translate 'SCHEDULED_USER_ENSURE' $($Time.ToString('yyyy-MM-dd HH:mm')) $User)
+                } else {
+                    Write-SmartThemeLog (Translate 'SCHEDULE_USER_ONCE_FAILED')
+                }
+
+                $st = $Time.ToString('HH:mm')
+                $sd = $Time.ToString('MM\/dd\/yyyy')
+                if ($useShim) { $fullCmd = $cmdEnsure } else { $fullCmd = "$RunnerExe $cmdEnsure" }
+                    if ($PSCmdlet.ShouldProcess($taskName + '-Startup', 'Create startup schtask for current user')) {
+                        if (Get-Command -Name Register-Schtask -ErrorAction SilentlyContinue) {
+                                Register-Schtask -TaskName "$taskName-Startup" -Cmd $cmdEnsure -ScheduleType 'ONSTART' -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe -Config $Config | Out-Null
+                        } else {
+                            $tr1 = '"' + $fullCmd + '"'
+                            $out1 = Invoke-Schtask -sArgs @('/Create','/SC','ONSTART','/TN',"$taskName-Startup",'/TR',$tr1,'/F') -SchtasksExe $SchtasksExe
+                            $out1 | ForEach-Object { Write-SmartThemeLog (Translate 'SCHTASKS_USER_STARTUP' $_) }
+                        }
+                    }
+                    if ($PSCmdlet.ShouldProcess($taskName + '-Logon', 'Create logon schtask for current user')) {
+                        if (Get-Command -Name Register-Schtask -ErrorAction SilentlyContinue) {
+                            Register-Schtask -TaskName "$taskName-Logon" -Cmd $cmdEnsure -ScheduleType 'ONLOGON' -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe -Config $Config | Out-Null
+                        } else {
+                            $tr2 = '"' + $fullCmd + '"'
+                            $out2 = Invoke-Schtask -sArgs @('/Create','/SC','ONLOGON','/TN',"$taskName-Logon",'/TR',$tr2,'/F') -SchtasksExe $SchtasksExe
+                            $out2 | ForEach-Object { Write-SmartThemeLog (Translate 'SCHTASKS_USER_LOGON' $_) }
+                        }
                     }
                 }
             return $true
@@ -194,7 +220,8 @@ function Register-ThemeSwitch {
     $st = $Time.ToString('HH:mm')
     $sd = $Time.ToString('MM\/dd\/yyyy')
     Invoke-Schtask -sArgs @('/Delete','/TN',$taskName,'/F') -SchtasksExe $SchtasksExe | Out-Null
-    $out = Invoke-Schtask -sArgs @('/Create','/SC','ONCE','/TN',$taskName,'/TR',"$RunnerExe $cmdEnsure",'/ST',$st,'/SD',$sd,'/F') -SchtasksExe $SchtasksExe
+    $trMain = '"' + "$RunnerExe $cmdEnsure" + '"'
+    $out = Invoke-Schtask -sArgs @('/Create','/SC','ONCE','/TN',$taskName,'/TR',$trMain,'/ST',$st,'/SD',$sd,'/F') -SchtasksExe $SchtasksExe
     $out | ForEach-Object { Write-Log (Translate 'SCHTASKS_OUT' $_) }
         if ($LASTEXITCODE -eq 0) {
             Write-Log (Translate 'SCHTASKS_SCHEDULED' $($Time.ToString('yyyy-MM-dd HH:mm')) $sd $st)
@@ -204,9 +231,9 @@ function Register-ThemeSwitch {
             Write-Log (Translate 'SCHTASKS_EXITCODE' $LASTEXITCODE)
         }
 
-    $outS = Invoke-Schtask -sArgs @('/Create','/SC','ONSTART','/TN',"$taskName-Startup",'/TR',"$RunnerExe $cmdEnsure",'/F') -SchtasksExe $SchtasksExe
+    $outS = Invoke-Schtask -sArgs @('/Create','/SC','ONSTART','/TN',"$taskName-Startup",'/TR',$trMain,'/F') -SchtasksExe $SchtasksExe
     $outS | ForEach-Object { Write-Log (Translate 'SCHTASKS_STARTUP_OUT' $_) }
-    $outL = Invoke-Schtask -sArgs @('/Create','/SC','ONLOGON','/TN',"$taskName-Logon",'/TR',"$RunnerExe $cmdEnsure",'/F') -SchtasksExe $SchtasksExe
+    $outL = Invoke-Schtask -sArgs @('/Create','/SC','ONLOGON','/TN',"$taskName-Logon",'/TR',$trMain,'/F') -SchtasksExe $SchtasksExe
     $outL | ForEach-Object { Write-Log (Translate 'SCHTASKS_LOGON_OUT' $_) }
 
         return $scheduled
