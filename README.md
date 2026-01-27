@@ -20,7 +20,14 @@ pwsh -NoProfile -File .\SmartTheme.ps1 -Dark
 ```
 
 Alternativně lze po instalaci doplňku spouštět skript z příkazové řádky pomocí příkazu `theme` (pokud máte přidaný shim do PATH nebo jste spustili `tools/add-path.ps1`).
+Krátký příkaz `theme`
+- Po instalaci můžete spouštět skript také z příkazové řádky pomocí příkazu `theme`.
+- Shim `theme.cmd` lze umístit do `%LOCALAPPDATA%\SmartTheme` a tuto složku přidat do proměnné `PATH` (např. pomocí `tools/add-path.ps1`).
+- Příklad použití:
 
+```powershell
+theme -Schedule
+```
 - Okamžité přepnutí na světlé téma:
 
 ```powershell
