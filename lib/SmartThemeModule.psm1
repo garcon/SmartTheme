@@ -127,7 +127,16 @@ function Register-ThemeSwitch {
 
     $taskName = "SmartThemeSwitch-$Mode"
     $shimPath = Join-Path $env:LOCALAPPDATA 'SmartTheme\\theme.cmd'
-    if (Test-Path $shimPath) { $cmdEnsure = "`"$shimPath`" -Ensure"; $useShim = $true } else { $cmdEnsure = "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptPath`" -Ensure"; $useShim = $false }
+    $useShim = $false
+    if (Test-Path $shimPath) { $useShim = $true }
+    # Command to run at the scheduled time: explicit mode (-Light / -Dark)
+    if ($useShim) {
+        $cmdAtTime = "`"$shimPath`" -$Mode"
+        $cmdEnsure = "`"$shimPath`" -Ensure"
+    } else {
+        $cmdAtTime = "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptPath`" -$Mode"
+        $cmdEnsure = "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptPath`" -Ensure"
+    }
 
     $now = Get-Date
     if ($Time -lt $now) { Write-SmartThemeLogFallback ("SCHEDULE_ADJUSTED_ADD_DAY $Time $now") 'DEBUG'; $Time = $Time.AddDays(1) }
@@ -146,8 +155,8 @@ function Register-ThemeSwitch {
                 Write-SmartThemeLogFallback ("SCHEDULED_USER_API $taskName $User") 'INFO'
                 $scheduled = $true
             } else {
-                if (Register-SmartThemeUserTask -taskName $taskName -cmd $cmdEnsure -Time $Time -User $User -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe) {
-                    Write-SmartThemeLogFallback ("SCHEDULED_USER_ENSURE $taskName $User") 'INFO'
+                if (Register-SmartThemeUserTask -taskName $taskName -cmd $cmdAtTime -Time $Time -User $User -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe) {
+                    Write-SmartThemeLogFallback ("SCHEDULED_USER_ATTIME $taskName $User") 'INFO'
                     $scheduled = $true
                 } else { Write-SmartThemeLogFallback ("SCHEDULE_USER_ONCE_FAILED $taskName") 'WARN' }
 
@@ -175,9 +184,10 @@ function Register-ThemeSwitch {
 
         $xmlPath = Join-Path $TempDir "$taskName.xml"
         $exe = if ($useShim) { $shimPath } else { $RunnerExe }
-        $arguments = if ($useShim) { '-Ensure' } else { $cmdEnsure }
+        # For the ONCE schedule we want to run the explicit mode; keep Ensure for startup/logon
+        $argumentsForXml = if ($useShim) { "-$Mode" } else { $cmdAtTime }
 
-        if (New-SmartThemeTaskXml -taskName $taskName -exe $exe -arguments $arguments -startTime $Time -outPath $xmlPath) {
+        if (New-SmartThemeTaskXml -taskName $taskName -exe $exe -arguments $argumentsForXml -startTime $Time -outPath $xmlPath) {
             if ($PSCmdlet.ShouldProcess($taskName, 'Import task XML into scheduled tasks')) {
                 if (Import-SmartThemeTaskXml -xmlPath $xmlPath -taskName $taskName -SchtasksExe $SchtasksExe) {
                     Write-SmartThemeLogFallback ("SCHEDULE_XML_SCHEDULED $taskName") 'INFO'
@@ -202,14 +212,17 @@ function Register-ThemeSwitch {
     try {
         $st = $Time.ToString('HH:mm'); $sd = $Time.ToString('MM\/dd\/yyyy')
         Invoke-Schtask -sArgs @('/Delete','/TN',$taskName,'/F') -SchtasksExe $SchtasksExe | Out-Null
-        $trMain = '"' + "$RunnerExe $cmdEnsure" + '"'
+        # Schedule the ONCE task to run the explicit mode command
+        if ($useShim) { $trMain = '"' + $cmdAtTime + '"' } else { $trMain = '"' + "$RunnerExe $cmdAtTime" + '"' }
         $out = Invoke-Schtask -sArgs @('/Create','/SC','ONCE','/TN',$taskName,'/TR',$trMain,'/ST',$st,'/SD',$sd,'/F') -SchtasksExe $SchtasksExe
         $out | ForEach-Object { Write-SmartThemeLogFallback ("SCHTASKS_OUT: $_") }
         if ($LASTEXITCODE -eq 0) { Write-SmartThemeLogFallback ("SCHTASKS_SCHEDULED $taskName $sd $st") 'INFO'; Write-SmartThemeLogFallback ("SCHTASKS_FALLBACK_NOTE") 'INFO'; $scheduled = $true } else { Write-SmartThemeLogFallback ("SCHTASKS_EXITCODE $LASTEXITCODE") }
 
-        $outS = Invoke-Schtask -sArgs @('/Create','/SC','ONSTART','/TN',"$taskName-Startup",'/TR',$trMain,'/F') -SchtasksExe $SchtasksExe
+        # Create startup/logon tasks that run Ensure (keeps the system in correct mode)
+        $trEnsure = if ($useShim) { '"' + $cmdEnsure + '"' } else { '"' + "$RunnerExe $cmdEnsure" + '"' }
+        $outS = Invoke-Schtask -sArgs @('/Create','/SC','ONSTART','/TN',"$taskName-Startup",'/TR',$trEnsure,'/F') -SchtasksExe $SchtasksExe
         $outS | ForEach-Object { Write-SmartThemeLogFallback ("SCHTASKS_STARTUP_OUT: $_") }
-        $outL = Invoke-Schtask -sArgs @('/Create','/SC','ONLOGON','/TN',"$taskName-Logon",'/TR',$trMain,'/F') -SchtasksExe $SchtasksExe
+        $outL = Invoke-Schtask -sArgs @('/Create','/SC','ONLOGON','/TN',"$taskName-Logon",'/TR',$trEnsure,'/F') -SchtasksExe $SchtasksExe
         $outL | ForEach-Object { Write-SmartThemeLogFallback ("SCHTASKS_LOGON_OUT: $_") }
 
         return $scheduled
