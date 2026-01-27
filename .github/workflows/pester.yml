@@ -21,5 +21,6 @@ jobs:
     - name: Run Pester tests
       run: pwsh -NoProfile -Command "Import-Module Pester; Invoke-Pester -Script .\\tests;"
 
-    - name: Run PSScriptAnalyzer
-      run: pwsh -NoProfile -Command "Import-Module PSScriptAnalyzer; Invoke-ScriptAnalyzer -Path . -Recurse -Severity Warning"
+    - name: Run PSScriptAnalyzer and fail on findings
+      run: |
+        pwsh -NoProfile -Command "Import-Module PSScriptAnalyzer; $results = Invoke-ScriptAnalyzer -Path . -Recurse -Severity Warning; if ($results -and $results.Count -gt 0) { $results | Select-Object Severity, RuleName, ScriptPath, Line, Message | Format-Table -AutoSize; throw 'PSScriptAnalyzer detected issues (see above)'; } else { Write-Output 'PSScriptAnalyzer: no findings'; }"

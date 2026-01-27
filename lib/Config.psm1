@@ -1,4 +1,8 @@
 function Get-DefaultConfig {
+    <#
+    .SYNOPSIS
+        Return a default configuration object for SmartTheme.
+    #>
     param(
         [hashtable]$Overrides
     )
@@ -21,7 +25,11 @@ function Get-DefaultConfig {
     return $default
 }
 
-function Validate-Config {
+function Test-Config {
+    <#
+    .SYNOPSIS
+        Validate that a configuration object contains required keys.
+    #>
     param(
         [Parameter(Mandatory=$true)][psobject]$Config
     )
@@ -34,4 +42,4 @@ function Validate-Config {
     return $true
 }
 
-Export-ModuleMember -Function Get-DefaultConfig,Validate-Config
+Export-ModuleMember -Function Get-DefaultConfig,Test-Config

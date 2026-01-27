@@ -23,11 +23,12 @@ $ErrorActionPreference = 'Stop'
 # Ensure console and PowerShell output use UTF-8 so elevated windows display diacritics correctly
 try {
     $utf8Enc = [System.Text.Encoding]::UTF8
-    try { [Console]::OutputEncoding = $utf8Enc } catch {}
-    try { [Console]::InputEncoding  = $utf8Enc } catch {}
-    try { $OutputEncoding = $utf8Enc } catch {}
+    try { [Console]::OutputEncoding = $utf8Enc } catch { Write-Verbose 'Could not set Console OutputEncoding (non-fatal).' }
+    try { [Console]::InputEncoding  = $utf8Enc } catch { Write-Verbose 'Could not set Console InputEncoding (non-fatal).' }
+    try { $OutputEncoding = $utf8Enc } catch { Write-Verbose 'Could not set PowerShell $OutputEncoding (non-fatal).' }
 } catch {
     # Best-effort only; non-fatal if platform doesn't allow
+    Write-Verbose 'Could not configure UTF-8 encodings (non-fatal).'
 }
 
 # Script-level debug flag (use script: scope so functions can read it)
@@ -41,12 +42,11 @@ $cacheFile = Join-Path $cacheDir 'location.json'
 $logDir = $cacheDir
 if (-not (Test-Path $logDir)) { New-Item -Path $logDir -ItemType Directory | Out-Null }
 $logFile = Join-Path $logDir 'smarttheme.log'
+# Mark logFile as intentionally present for other modules
+$null = $logFile
 
 # Central config object for dependency injection / testing
-$configModule = Join-Path $libDir 'Config.psm1'
-if (Test-Path $configModule) { Import-Module $configModule -Force -ErrorAction Stop }
-$Config = Get-DefaultConfig @{ CacheDir = $cacheDir; CacheFile = $cacheFile; User = $env:USERNAME; TempDir = $env:TEMP }
-try { Validate-Config -Config $Config } catch { Write-Error "Invalid configuration: $_"; exit 1 }
+# (initialized after determining the `lib` directory)
 
 # Dot-source library helpers (logging, timezone) from ./lib
 $scriptDir = Split-Path $ScriptPath -Parent
@@ -54,16 +54,25 @@ $scriptDir = Split-Path $ScriptPath -Parent
 $libDir = Join-Path $scriptDir 'lib'
 . (Join-Path $libDir 'Localization.ps1')
 # Initialize localization (sets $script:PreferredLocale and $script:LocaleData)
-Initialize-Localization
+Set-Localization
 . $loggingModule = Join-Path $libDir 'LoggingModule.psm1'
 . if (Test-Path $loggingModule) { Import-Module $loggingModule -Force -ErrorAction Stop }
 . (Join-Path $libDir 'TimeZoneHelpers.ps1')
+# Central config object for dependency injection / testing
+$configModule = Join-Path $libDir 'Config.psm1'
+if (Test-Path $configModule) { Import-Module $configModule -Force -ErrorAction Stop }
+$Config = Get-DefaultConfig @{ CacheDir = $cacheDir; CacheFile = $cacheFile; User = $env:USERNAME; TempDir = $env:TEMP }
+try { Test-Config -Config $Config } catch { Write-Error "Invalid configuration: $_"; exit 1 }
 try {
     $modulePath = (Join-Path $libDir 'SmartThemeModule.psm1')
     if (Test-Path $modulePath) { Import-Module $modulePath -Force -ErrorAction Stop }
 } catch {
     Write-SmartThemeLog (Translate 'IMPORT_MODULE_FAILED' $_) 'WARN'
 }
+
+# Import scheduler adapter when present
+$schedulerModule = Join-Path $libDir 'Scheduler.psm1'
+if (Test-Path $schedulerModule) { Import-Module $schedulerModule -Force -ErrorAction SilentlyContinue }
 
 
 
@@ -88,7 +97,7 @@ else {
         $tz  = $loc.timezone
         $city = $loc.city
     Write-SmartThemeLog (Translate 'LOCATION_INFO' $city $lat $lon $tz)
-    try { Set-LocationCache $lat $lon $tz $city -Config $Config } catch { Write-Log (Translate 'SAVE_CACHE_FAIL' $_) }
+    try { Set-LocationCache $lat $lon $tz $city -Config $Config } catch { Write-SmartThemeLog (Translate 'SAVE_CACHE_FAIL' $_) }
     }
     catch {
     Write-SmartThemeLog (Translate 'IPAPI_FAIL')
@@ -98,7 +107,7 @@ else {
             $lon = $cached.longitude
             $tz  = $cached.timezone
             $city = $cached.city
-            Write-Log (Translate 'USED_CACHE' $city $lat $lon $tz)
+            Write-SmartThemeLog (Translate 'USED_CACHE' $city $lat $lon $tz)
         }
         else {
             # Poslední záloha: použij default z lokalizace (pokud dostupná), jinak London
@@ -188,12 +197,12 @@ try {
                 $dateUsed = $dateStr
                 Write-SmartThemeLog (Translate 'NEW_LOCAL_TIMES' $sunrise $sunset) 'DEBUG'
             }
-            else {
-                Write-Log (Translate 'CANNOT_GET_NEXTDAY' $($sun2.status)) 'WARN'
+                else {
+                Write-SmartThemeLog (Translate 'CANNOT_GET_NEXTDAY' $($sun2.status)) 'WARN'
             }
         }
         catch {
-            Write-Log (Translate 'ERROR_QUERY_NEXTDAY' $_) 'WARN'
+            Write-SmartThemeLog (Translate 'ERROR_QUERY_NEXTDAY' $_) 'WARN'
         }
     }
 
@@ -301,7 +310,7 @@ if ($target -eq 'Light') {
 else {
     if ($sunrise -lt $now) {
         # Pokud je východ i po zítřejším dotazu v minulosti (nepravděpodobné), použijeme AddDays(1) jako poslední záchranu
-    Write-Log (Translate 'SUNRISE_STILL_PAST' $sunrise) 'WARN'
+    Write-SmartThemeLog (Translate 'SUNRISE_STILL_PAST' $sunrise) 'WARN'
         $sunrise = $sunrise.AddDays(1)
     }
     $scheduleOk = Register-ThemeSwitch -Mode 'Light' -Time $sunrise -ScriptPath $ScriptPath -Config $Config

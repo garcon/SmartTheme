@@ -7,12 +7,13 @@ Describe 'Smoke: Set-Theme localized logging' {
         if (Test-Path $logModule) { Import-Module $logModule -Force -ErrorAction Stop }
 
         # Initialize to Czech for deterministic test
-        Initialize-Localization -PreferredLocale 'cs'
+        Set-Localization -PreferredLocale 'cs'
 
         # Capture writes instead of writing to console/file
         Set-Variable -Name CapturedLogs -Scope Global -Value @()
         function Test-WriteLog {
             param($_msg, $_Level = 'INFO')
+            $null = $_Level
             $script:CapturedLogs += ,$_msg
         }
 

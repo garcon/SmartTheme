@@ -1,4 +1,4 @@
-Describe 'Utils: Normalize string' {
+﻿Describe 'Utils: Normalize string' {
     BeforeAll {
         $root = (Resolve-Path "$PSScriptRoot\..\").ProviderPath
         $modulePath = Join-Path $root 'lib\Utils.psm1'
@@ -7,12 +7,12 @@ Describe 'Utils: Normalize string' {
 
     It 'removes diacritics and normalizes whitespace/case' {
         $in = 'Přepnuto   na světlý  režim '
-        $out = Normalize-StringForComparison $in
+        $out = ConvertTo-ComparableString $in
         $out | Should Be 'prepnuto na svetly rezim'
     }
 
     It 'returns empty string for null/empty' {
-        $out = Normalize-StringForComparison $null
+        $out = ConvertTo-ComparableString $null
         $out | Should Be ''
     }
 }

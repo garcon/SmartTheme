@@ -1,4 +1,4 @@
-function Resolve-TimeZone([string]$tz) {
+﻿function Resolve-TimeZone([string]$tz) {
     if (-not $tz) { throw 'Timezone string is empty' }
 
     # Try direct Windows ID first

@@ -1,10 +1,15 @@
 function Clear-SmartThemeLogFile {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess=$true)]
+    <#
+    .SYNOPSIS
+        Trim the log file to the last N lines (default 500).
+    #>
     param(
         [string]$Path,
         [int]$Lines = 500
     )
     try {
+        if ($PSCmdlet -and -not $PSCmdlet.ShouldProcess($Path, 'Trim log file')) { return }
         $tail = Get-Content -Path $Path -Tail $Lines -ErrorAction SilentlyContinue
         if ($tail) { $tail | Set-Content -Path $Path -Encoding UTF8 }
     } catch {
@@ -13,7 +18,11 @@ function Clear-SmartThemeLogFile {
 }
 
 function Write-SmartThemeLog {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess=$true)]
+    <#
+    .SYNOPSIS
+        Write a timestamped message to console and append to the log file.
+    #>
     param(
         [string]$msg,
         [ValidateSet('INFO','WARN','ERROR','SUCCESS','DEBUG')][string]$Level = 'INFO',
@@ -21,6 +30,9 @@ function Write-SmartThemeLog {
         [string]$LogFile
     )
     $line = "$(Get-Date -Format o) [$Level] - $msg"
+
+    # Default trimming size
+    $Lines = 500
 
     if (-not $PSBoundParameters.ContainsKey('DebugMode')) {
         $v = Get-Variable -Name ShowDebug -Scope Script -ErrorAction SilentlyContinue
@@ -33,28 +45,26 @@ function Write-SmartThemeLog {
     }
 
     if ($Level -eq 'DEBUG' -and -not $DebugMode) {
-        try { $line | Out-File -FilePath $LogFile -Append -Encoding UTF8 } catch { Write-Error "Write-Log (debug): $($_)" }
+        try {
+            if (-not ($PSCmdlet -and -not $PSCmdlet.ShouldProcess($LogFile, 'Write debug log'))) {
+                $line | Out-File -FilePath $LogFile -Append -Encoding UTF8
+            }
+        } catch { Write-Error "Write-Log (debug): $($_)" }
         Clear-SmartThemeLogFile -Path $LogFile -Lines $Lines
         return
     }
 
     try { Write-Output $line } catch { Write-Output $line }
     try {
-        if (-not (Test-Path -Path $LogFile)) {
-            $preamble = [System.Text.Encoding]::UTF8.GetPreamble()
-            if ($preamble -and $preamble.Length -gt 0) { [System.IO.File]::WriteAllBytes($LogFile, $preamble) }
+        if (-not ($PSCmdlet -and -not $PSCmdlet.ShouldProcess($LogFile, 'Append log line'))) {
+            if (-not (Test-Path -Path $LogFile)) {
+                $preamble = [System.Text.Encoding]::UTF8.GetPreamble()
+                if ($preamble -and $preamble.Length -gt 0) { [System.IO.File]::WriteAllBytes($LogFile, $preamble) }
+            }
+            [System.IO.File]::AppendAllText($LogFile, $line + [Environment]::NewLine, [System.Text.Encoding]::UTF8)
         }
-        [System.IO.File]::AppendAllText($LogFile, $line + [Environment]::NewLine, [System.Text.Encoding]::UTF8)
     } catch { Write-Error "Write-SmartThemeLog (file): $($_)" }
     Clear-SmartThemeLogFile -Path $LogFile -Lines 500
 }
 
-function Write-Log {
-    param(
-        [string]$msg,
-        [string]$level = 'INFO'
-    )
-    Write-SmartThemeLog $msg $level
-}
-
-Export-ModuleMember -Function Clear-SmartThemeLogFile,Write-SmartThemeLog,Write-Log
+Export-ModuleMember -Function Clear-SmartThemeLogFile,Write-SmartThemeLog
