@@ -8,6 +8,8 @@ Obsah složky
 - `SmartThemeSwitch-Ensure.xml` — doporučené Task Scheduler XML (auto-generováno).
 - `location.json` — cache polohy a časů v UTC.
 - `smarttheme.log` — log skriptu (ořezán na posledních N řádek).
+  
+Poznámka: `location.json` a `smarttheme.log` nejsou soubory v repozitáři — vznikají automaticky při prvním spuštění skriptu a jsou uloženy do `%LOCALAPPDATA%\SmartTheme`.
 - `lib/` — moduly (localization, logging, scheduler, utils).
 
 Rychlé použití
@@ -16,6 +18,8 @@ Rychlé použití
 ```powershell
 pwsh -NoProfile -File .\SmartTheme.ps1 -Dark
 ```
+
+Alternativně lze po instalaci doplňku spouštět skript z příkazové řádky pomocí příkazu `theme` (pokud máte přidaný shim do PATH nebo jste spustili `tools/add-path.ps1`).
 
 - Okamžité přepnutí na světlé téma:
 
