@@ -1,0 +1,27 @@
+#!/bin/sh
+# Pre-commit hook: update SmartTheme.ps1.sha256 automatically before commit
+# Requires PowerShell Core `pwsh` on PATH. This hook will update the checksum
+# and stage the checksum file so the commit includes it.
+
+if command -v pwsh >/dev/null 2>&1; then
+  pwsh -NoProfile -ExecutionPolicy Bypass -Command "
+    try {
+      $hash = (Get-FileHash -Path 'SmartTheme.ps1' -Algorithm SHA256 -ErrorAction Stop).Hash
+      $hash | Set-Content -Path 'SmartTheme.ps1.sha256' -Encoding ASCII
+      git add -- 'SmartTheme.ps1.sha256' >/dev/null 2>&1
+    } catch {
+      Write-Error "Failed to update SmartTheme.ps1.sha256: $_"
+      exit 1
+    }
+  "
+  exit_code=$?
+  if [ $exit_code -ne 0 ]; then
+    echo "Pre-commit: failed to update checksum (pwsh exited $exit_code)" >&2
+    exit 1
+  fi
+  exit 0
+else
+  echo "Pre-commit: pwsh (PowerShell) not found on PATH; cannot update checksum." >&2
+  echo "Either install PowerShell or update SmartTheme.ps1.sha256 manually before commit." >&2
+  exit 1
+fi

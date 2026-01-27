@@ -66,6 +66,16 @@ pwsh -NoProfile -File .\tools\run-local-checks.ps1
 
 Více informací najdete v `CHANGES.md` a `lib/locales`.
 
+Developer tip: enable repository hooks
+- This repo includes a pre-commit hook in `.githooks/pre-commit` which updates `SmartTheme.ps1.sha256` automatically before every commit.
+- To enable hooks for your local clone run:
+
+```powershell
+git config core.hooksPath .githooks
+```
+
+After this the `pre-commit` hook will compute and stage the checksum file automatically.
+
 Jak to funguje (kratce)
 - Naplánované "ONCE" úlohy spouštějí skript s explicitním módem (`-Light` nebo `-Dark`) v čase východu/západu, takže po rozbřesku bude systém nastaven na světlé a po soumraku na tmavé.
 - Startup / Logon úlohy a shim `-Ensure` spouští skript v režimu `-Ensure` (udržuje očekávaný stav při startu/hlášení uživatele), proto jsou ponechány jako samostatné úlohy.
