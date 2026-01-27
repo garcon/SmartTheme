@@ -55,14 +55,33 @@ $libDir = Join-Path $scriptDir 'lib'
 . (Join-Path $libDir 'Localization.ps1')
 # Initialize localization (sets $script:PreferredLocale and $script:LocaleData)
 Set-Localization
-. $loggingModule = Join-Path $libDir 'LoggingModule.psm1'
-. if (Test-Path $loggingModule) { Import-Module $loggingModule -Force -ErrorAction Stop }
+ $loggingModule = Join-Path $libDir 'LoggingModule.psm1'
+ if (Test-Path $loggingModule) { Import-Module $loggingModule -Force -ErrorAction Stop }
 . (Join-Path $libDir 'TimeZoneHelpers.ps1')
 # Central config object for dependency injection / testing
 $configModule = Join-Path $libDir 'Config.psm1'
 if (Test-Path $configModule) { Import-Module $configModule -Force -ErrorAction Stop }
 $Config = Get-DefaultConfig @{ CacheDir = $cacheDir; CacheFile = $cacheFile; User = $env:USERNAME; TempDir = $env:TEMP }
 try { Test-Config -Config $Config } catch { Write-Error "Invalid configuration: $_"; exit 1 }
+try { $Config = Test-ConfigExecutable -Config $Config } catch { Write-SmartThemeLog (Translate 'CONFIG_VALIDATION_FAILED' $_) 'WARN' }
+
+# Integrity check: if a checksum file exists next to the script, verify the script hash before proceeding.
+$checksumFile = "$ScriptPath.sha256"
+if (Test-Path $checksumFile) {
+    try {
+        $expected = (Get-Content -Path $checksumFile -ErrorAction Stop).Trim()
+        $actual = (Get-FileHash -Path $ScriptPath -Algorithm SHA256 -ErrorAction Stop).Hash
+        if ($expected -ne $actual) {
+            Write-SmartThemeLog (Translate 'SCRIPT_INTEGRITY_FAIL' $ScriptPath) 'ERROR'
+            Write-SmartThemeLog (Translate 'SCRIPT_INTEGRITY_INSTRUCT') 'ERROR'
+            exit 1
+        } else {
+            Write-SmartThemeLog (Translate 'SCRIPT_INTEGRITY_OK') 'DEBUG'
+        }
+    } catch {
+        Write-SmartThemeLog (Translate 'SCRIPT_INTEGRITY_ERROR' $_) 'WARN'
+    }
+}
 try {
     $modulePath = (Join-Path $libDir 'SmartThemeModule.psm1')
     if (Test-Path $modulePath) { Import-Module $modulePath -Force -ErrorAction Stop }
@@ -90,43 +109,65 @@ if ($PSBoundParameters.ContainsKey('Lat') -and $PSBoundParameters.ContainsKey('L
     Write-SmartThemeLog (Translate 'USED_MANUAL_COORDS' $lat $lon) 'INFO'
 }
 else {
-    try {
-        $loc = Invoke-RestWithRetry { Invoke-RestMethod 'https://ipapi.co/json/' }
-        $lat = $loc.latitude
-        $lon = $loc.longitude
-        $tz  = $loc.timezone
-        $city = $loc.city
-    Write-SmartThemeLog (Translate 'LOCATION_INFO' $city $lat $lon $tz)
-    try { Set-LocationCache $lat $lon $tz $city -Config $Config } catch { Write-SmartThemeLog (Translate 'SAVE_CACHE_FAIL' $_) }
-    }
-    catch {
-    Write-SmartThemeLog (Translate 'IPAPI_FAIL')
+    # Prefer recent cache: if location.json timestamp is newer than 1 hour, use it instead of calling the IP API.
     $cached = Get-LocationCache -Config $Config
-        if ($cached) {
-            $lat = $cached.latitude
-            $lon = $cached.longitude
-            $tz  = $cached.timezone
-            $city = $cached.city
-            Write-SmartThemeLog (Translate 'USED_CACHE' $city $lat $lon $tz)
+    $useCached = $false
+    if ($cached -and $cached.timestamp) {
+        try {
+            $cachedTs = [datetimeoffset]::Parse($cached.timestamp, [System.Globalization.CultureInfo]::InvariantCulture)
+        } catch { $cachedTs = $null }
+        if ($cachedTs) {
+            $age = (Get-Date) - $cachedTs
+            if ($age -lt [timespan]::FromHours(1)) { $useCached = $true }
         }
-        else {
-            # Poslední záloha: použij default z lokalizace (pokud dostupná), jinak London
-            $loc = $script:LocaleData
-            if ($loc -and $loc.DEFAULT_LAT -and $loc.DEFAULT_LON) {
-                $lat = [double]$loc.DEFAULT_LAT
-                $lon = [double]$loc.DEFAULT_LON
-                $city = "$($loc.DEFAULT_CITY) (fallback)"
-                # tz is kept as system local id for safety; Resolve-TimeZone will handle mapping
-                $tz = $loc.DEFAULT_TZ
-                Write-SmartThemeLog (Translate 'NO_LOCATION_FALLBACK_USING_LOC' $city) 'WARN'
+    }
+
+    if ($useCached) {
+        $lat = $cached.latitude
+        $lon = $cached.longitude
+        $tz  = $cached.timezone
+        $city = $cached.city
+        Write-SmartThemeLog (Translate 'USED_CACHE' $city $lat $lon $tz) 'INFO'
+    }
+    else {
+        try {
+            $loc = Invoke-RestWithRetry { Invoke-RestMethod 'https://ipapi.co/json/' }
+            $lat = $loc.latitude
+            $lon = $loc.longitude
+            $tz  = $loc.timezone
+            $city = $loc.city
+            Write-SmartThemeLog (Translate 'LOCATION_INFO' $city $lat $lon $tz)
+            try { Set-LocationCache $lat $lon $tz $city -Config $Config } catch { Write-SmartThemeLog (Translate 'SAVE_CACHE_FAIL' $_) }
+        }
+        catch {
+            Write-SmartThemeLog (Translate 'IPAPI_FAIL')
+            $cached = Get-LocationCache -Config $Config
+            if ($cached) {
+                $lat = $cached.latitude
+                $lon = $cached.longitude
+                $tz  = $cached.timezone
+                $city = $cached.city
+                Write-SmartThemeLog (Translate 'USED_CACHE' $city $lat $lon $tz)
             }
             else {
-                # fallback hard-coded
-                $lat = 51.5074
-                $lon = -0.1278
-                $tz  = [System.TimeZoneInfo]::Local.Id
-                $city = 'London (fallback)'
-                Write-SmartThemeLog (Translate 'NO_LOCATION_FALLBACK_HARD') 'WARN'
+                # Poslední záloha: použij default z lokalizace (pokud dostupná), jinak London
+                $loc = $script:LocaleData
+                if ($loc -and $loc.DEFAULT_LAT -and $loc.DEFAULT_LON) {
+                    $lat = [double]$loc.DEFAULT_LAT
+                    $lon = [double]$loc.DEFAULT_LON
+                    $city = "$($loc.DEFAULT_CITY) (fallback)"
+                    # tz is kept as system local id for safety; Resolve-TimeZone will handle mapping
+                    $tz = $loc.DEFAULT_TZ
+                    Write-SmartThemeLog (Translate 'NO_LOCATION_FALLBACK_USING_LOC' $city) 'WARN'
+                }
+                else {
+                    # fallback hard-coded
+                    $lat = 51.5074
+                    $lon = -0.1278
+                    $tz  = [System.TimeZoneInfo]::Local.Id
+                    $city = 'London (fallback)'
+                    Write-SmartThemeLog (Translate 'NO_LOCATION_FALLBACK_HARD') 'WARN'
+                }
             }
         }
     }

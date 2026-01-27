@@ -68,3 +68,6 @@ function Write-SmartThemeLog {
 }
 
 Export-ModuleMember -Function Clear-SmartThemeLogFile,Write-SmartThemeLog
+
+## Note: older code/tests historically used `Write-Log`. Tests provide a lightweight
+## `Write-Log` shim when needed; prefer `Write-SmartThemeLog` in module code.
