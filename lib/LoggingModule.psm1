@@ -69,13 +69,5 @@ function Write-SmartThemeLog {
 
 Export-ModuleMember -Function Clear-SmartThemeLogFile,Write-SmartThemeLog
 
-# Backwards-compatible alias used by older code/tests
-function Write-Log {
-    param(
-        [Parameter(Mandatory=$true)][string]$Message,
-        [string]$Level = 'INFO'
-    )
-    Write-SmartThemeLog -msg $Message -Level $Level
-}
-
-Export-ModuleMember -Function Write-Log
+## Note: older code/tests historically used `Write-Log`. Tests provide a lightweight
+## `Write-Log` shim when needed; prefer `Write-SmartThemeLog` in module code.
