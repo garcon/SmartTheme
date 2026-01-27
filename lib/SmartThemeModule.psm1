@@ -129,12 +129,20 @@ function Register-ThemeSwitch {
             $sd = $Time.ToString('MM\/dd\/yyyy')
             $fullCmd = "$RunnerExe $cmdEnsure"
                 if ($PSCmdlet.ShouldProcess($taskName + '-Startup', 'Create startup schtask for current user')) {
-                    $out1 = Invoke-Schtask -sArgs @('/Create','/SC','ONSTART','/TN',"$taskName-Startup",'/TR',$fullCmd,'/F') -SchtasksExe $SchtasksExe
-                    $out1 | ForEach-Object { Write-SmartThemeLog (Translate 'SCHTASKS_USER_STARTUP' $_) }
+                    if (Get-Command -Name Register-Schtasks -ErrorAction SilentlyContinue) {
+                        Register-Schtasks -TaskName "$taskName-Startup" -Cmd $cmdEnsure -ScheduleType 'ONSTART' -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe -Config $Config | Out-Null
+                    } else {
+                        $out1 = Invoke-Schtask -sArgs @('/Create','/SC','ONSTART','/TN',"$taskName-Startup",'/TR',$fullCmd,'/F') -SchtasksExe $SchtasksExe
+                        $out1 | ForEach-Object { Write-SmartThemeLog (Translate 'SCHTASKS_USER_STARTUP' $_) }
+                    }
                 }
                 if ($PSCmdlet.ShouldProcess($taskName + '-Logon', 'Create logon schtask for current user')) {
-                    $out2 = Invoke-Schtask -sArgs @('/Create','/SC','ONLOGON','/TN',"$taskName-Logon",'/TR',$fullCmd,'/F') -SchtasksExe $SchtasksExe
-                    $out2 | ForEach-Object { Write-SmartThemeLog (Translate 'SCHTASKS_USER_LOGON' $_) }
+                    if (Get-Command -Name Register-Schtasks -ErrorAction SilentlyContinue) {
+                        Register-Schtasks -TaskName "$taskName-Logon" -Cmd $cmdEnsure -ScheduleType 'ONLOGON' -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe -Config $Config | Out-Null
+                    } else {
+                        $out2 = Invoke-Schtask -sArgs @('/Create','/SC','ONLOGON','/TN',"$taskName-Logon",'/TR',$fullCmd,'/F') -SchtasksExe $SchtasksExe
+                        $out2 | ForEach-Object { Write-SmartThemeLog (Translate 'SCHTASKS_USER_LOGON' $_) }
+                    }
                 }
             return $true
         }
@@ -223,8 +231,11 @@ function Export-SmartThemeTaskXml {
         if ($Config.SchtasksExe) { $SchtasksExe = $Config.SchtasksExe }
     }
     try {
-        $cmd = "$SchtasksExe /Query /TN `"$taskName`" /XML"
         Write-Log (Translate 'EXPORT_TASK' $taskName $outPath) 'DEBUG'
+        if (Get-Command -Name Export-TaskXml -ErrorAction SilentlyContinue) {
+            return Export-TaskXml -TaskName $taskName -OutPath $outPath -CmdExe $CmdExe -SchtasksExe $SchtasksExe -Config $Config
+        }
+        $cmd = "$SchtasksExe /Query /TN `"$taskName`" /XML"
         if ($PSCmdlet.ShouldProcess($outPath, 'Export scheduled task XML')) {
             & $CmdExe /c "$cmd > `"$outPath`"" 2>$null
             if (Test-Path $outPath) { Write-Log (Translate 'EXPORT_TASK_DONE' $outPath) 'DEBUG'; return $true }
@@ -308,9 +319,16 @@ function Import-SmartThemeTaskXml {
     try {
         Write-Log (Translate 'IMPORTING_XML' $xmlPath $taskName) 'DEBUG'
         if ($PSCmdlet.ShouldProcess($taskName, 'Import task XML (schtasks /Create /XML)')) {
-        $out = Invoke-Schtask -sArgs @('/Create','/TN',$taskName,'/XML',$xmlPath,'/F') -SchtasksExe $SchtasksExe
-            $out | ForEach-Object { Write-Log (Translate 'SCHTASKS_IMPORT' $_) }
-            if ($LASTEXITCODE -eq 0) { Write-Log (Translate 'IMPORT_XML_DONE' $taskName) 'INFO'; return $true }
+            if (Get-Command -Name Import-TaskXml -ErrorAction SilentlyContinue) {
+                if (Import-TaskXml -XmlPath $xmlPath -TaskName $taskName -SchtasksExe $SchtasksExe -Config $Config) {
+                    Write-Log (Translate 'IMPORT_XML_DONE' $taskName) 'INFO'
+                    return $true
+                }
+            } else {
+                $out = Invoke-Schtask -sArgs @('/Create','/TN',$taskName,'/XML',$xmlPath,'/F') -SchtasksExe $SchtasksExe
+                $out | ForEach-Object { Write-Log (Translate 'SCHTASKS_IMPORT' $_) }
+                if ($LASTEXITCODE -eq 0) { Write-Log (Translate 'IMPORT_XML_DONE' $taskName) 'INFO'; return $true }
+            }
         }
     }
     catch {
