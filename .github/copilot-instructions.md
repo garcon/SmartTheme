@@ -34,6 +34,43 @@ Invoke-Pester -Script .\tests
 Import-Module PSScriptAnalyzer -ErrorAction Stop
 Invoke-ScriptAnalyzer -Path .\lib\*.ps1, .\SmartTheme.ps1 -Recurse -Severity Warning | Format-Table -AutoSize
 
+````markdown
+# Copilot / AI Agent guidance for SmartTheme
+
+This file contains focused, actionable instructions to help an AI coding agent become productive in this repository quickly. Keep suggestions small and verifiable: make a change, run the tests, run static analysis, iterate.
+
+1) Big picture (what this repo does)
+- SmartTheme is a small PowerShell tool that toggles Windows light/dark theme based on local sunrise/sunset and schedules future toggles.
+- Entrypoint: `SmartTheme.ps1`. Helpers and exported functions live in `lib/` (notably `lib/SmartThemeModule.psm1`, `lib/Logging.ps1`, `lib/Localization.ps1`, `lib/TimeZoneHelpers.ps1`).
+- Tests are in `tests/` (Pester). CI workflow: `.github/workflows/pester.yml`.
+
+2) Architecture & boundaries (how code is organized)
+- `SmartTheme.ps1` is the CLI script: parses args, builds a small `$Config` object and calls into library functions.
+- `lib/SmartThemeModule.psm1` contains most logic that should be unit-tested and refactored: theme get/set, scheduling, task XML export/import, wrappers for external processes, cache helpers, and retry helper.
+- `lib/Logging.ps1` and `lib/Localization.ps1` are cross-cutting: use `Translate('<KEY>', ...)` to fetch localized messages from `lib/locales/*.json` and `Write-SmartThemeLog` (or `Write-Log` historically) for logging.
+
+3) Important project-specific patterns (follow these exactly)
+- Dependency injection via a `-Config` object: many functions accept `[psobject]$Config` and fallback to defaults (e.g., RunnerExe, SchtasksExe, CmdExe, CacheDir, CacheFile, RegPath). Prefer using the `-Config` param in tests and when refactoring.
+- External system calls are wrapped and testable: use `Invoke-Schtask` (wrapper for `schtasks.exe`) and `Invoke-Cmd` (wrapper for `cmd.exe`). Do not call `schtasks.exe`/`cmd.exe` directly in tests or new code—use the wrappers so they can be mocked.
+- Scheduling helpers: scheduling logic lives in `Register-ThemeSwitch` / `Register-SmartThemeUserTask` (older code used `Schedule-ThemeSwitch`/`Schtasks-CreateForCurrentUser`). Search both names when changing scheduling.
+- State-changing operations must use ShouldProcess: functions that write registry, modify scheduled tasks, or write caches use `[CmdletBinding(SupportsShouldProcess=$true)]` and call `$PSCmdlet.ShouldProcess(...)`. Preserve that pattern when adding or renaming functions.
+- Localization: message keys are under `lib/locales/*.json`. Use `Translate('<KEY>', $args...)` to build strings used in logs and tests. Tests assert on translation keys/outputs, so avoid changing keys without updating tests.
+
+4) Developer workflows & commands (how to run things locally)
+- Run unit tests (PowerShell / Pester):
+
+```powershell
+Import-Module Pester -MinimumVersion 3.4 -Force
+Invoke-Pester -Script .\tests
+```
+
+- Run static analysis (PSScriptAnalyzer) — prefer the helper if present:
+
+```powershell
+# Simple direct run
+Import-Module PSScriptAnalyzer -ErrorAction Stop
+Invoke-ScriptAnalyzer -Path .\lib\*.ps1, .\SmartTheme.ps1 -Recurse -Severity Warning | Format-Table -AutoSize
+
 # Or use helper script if available
 .\tools\run_analyzer.ps1
 ```
@@ -42,10 +79,8 @@ Invoke-ScriptAnalyzer -Path .\lib\*.ps1, .\SmartTheme.ps1 -Recurse -Severity War
 
 ```powershell
 # Toggle theme (no elevation) and schedule
-pwsh -NoProfile -File .\SmartTheme.ps1
 
 # Update only schedule (no theme change)
-pwsh -NoProfile -File .\SmartTheme.ps1 -Schedule
 ```
 
 5) Tests & mocking tips (how AI should change code safely)
@@ -92,5 +127,20 @@ If anything here is unclear or you want me to include short code snippets (examp
   - Performed small refactors across `lib/` to add `ShouldProcess`, improve DI (use `-Config`), and make functions easier to test.
   - Truncated `smarttheme.log` to reduce repo noise; live logs are preserved in runtime and Git history.
 
+Last session (2026-01-28):
+- `SmartTheme.ps1` now prefers recent `location.json` data (if `timestamp` < 1 hour) to avoid unnecessary IP-based geolocation.
+- Removed `README.txt`; keep and maintain `README.md` only.
+- Added `SmartTheme.ps1.sha256` containing the SHA256 of the main script; the script verifies integrity if the file is present.
+- Fixed PSScriptAnalyzer findings and test regressions; all local Pester tests pass and analyzer reports no findings.
+- Merged branch `fix/tests-analyzer` into `main` and pushed the merge to `origin/main`.
+
+Next steps (suggested when you resume):
+- Run the local checks to validate the environment: `.\tools\run-local-checks.ps1`.
+- If creating a release, add a signed tag and upload `SmartTheme.ps1` and `SmartTheme.ps1.sha256` as release assets.
+- Optional: add CI step to fail the build when `PSScriptAnalyzer` reports findings (use `tools/run-local-checks.ps1`).
+- Optional: add Pester tests for `Write-SmartThemeLogFallback` and scheduler fallback flows to increase coverage for edge cases.
+
 11) Guidance when changing localization
 - If you revert the ASCII change and restore diacritics in `lib/locales/cs.json`, update any tests that assert exact strings (e.g., `tests/Smoke.Tests.ps1`). Alternatively, update tests to compare using a normalization helper that strips diacritics before asserting.
+
+````
