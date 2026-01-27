@@ -80,3 +80,12 @@ pwsh -NoProfile -File .\SmartTheme.ps1 -Schedule
 - After any change: run Pester and Invoke-ScriptAnalyzer. Fix failing tests or analyzer warnings before proposing a PR.
 
 If anything here is unclear or you want me to include short code snippets (example mocks, a typical unit test for `Register-ThemeSwitch`, or a sample translation key), tell me what you'd like and I will update this file.
+
+10) Recent changes (keep in mind)
+- The `cs` locale was converted to ASCII-only strings (diacritics removed) to avoid console/encoding issues on some Windows setups. Tests were updated accordingly.
+- Logging now prefers UTF-8 with BOM for the log file and attempts to set the PowerShell console to UTF-8 at startup. The log writer trims files to keep the last 500 lines.
+- `Translate` is exposed so modules can call localization at runtime and a `Write-Log` wrapper exists for compatibility with older code.
+- Tests include non-interactive runner scripts under `tests/` and the suite is safe to run locally; avoid running test helpers that try to elevate UAC automatically.
+
+11) Guidance when changing localization
+- If you revert the ASCII change and restore diacritics in `lib/locales/cs.json`, update any tests that assert exact strings (e.g., `tests/Smoke.Tests.ps1`). Alternatively, update tests to compare using a normalization helper that strips diacritics before asserting.

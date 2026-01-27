@@ -4,8 +4,8 @@ $libDir = Join-Path $PSScriptRoot '..\lib'
 function global:Translate { param($key, [Parameter(ValueFromRemainingArguments=$true)][object[]]$args) return $key }
 # Minimal Write-Log for module functions during unit tests
 function global:Write-Log { param($_message,$_level='INFO') return $null }
-$locPath = Join-Path $libDir 'Localization.ps1'
-if (Test-Path $locPath) { . $locPath; Initialize-Localization }
+$modulePath = Join-Path $libDir 'LocalizationModule.psm1'
+if (Test-Path $modulePath) { Import-Module $modulePath -Force -ErrorAction Stop; Initialize-Localization }
 $modulePath = Join-Path $libDir 'SmartThemeModule.psm1'
 if (Test-Path $modulePath) { Import-Module $modulePath -Force -ErrorAction Stop }
 

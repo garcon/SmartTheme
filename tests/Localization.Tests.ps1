@@ -2,7 +2,8 @@ Describe 'Localization module' {
     BeforeAll {
         # $PSScriptRoot points to the directory containing this test file when run via Invoke-Pester
         $root = (Resolve-Path "$PSScriptRoot\..\").ProviderPath
-        . "$root\lib\Localization.ps1"
+        $modulePath = Join-Path $root 'lib\LocalizationModule.psm1'
+        if (Test-Path $modulePath) { Import-Module $modulePath -Force -ErrorAction Stop }
     }
 
     It 'loads English locale and has DEFAULT_CITY London' {

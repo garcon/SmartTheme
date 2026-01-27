@@ -1,7 +1,8 @@
 Describe 'Smoke: Set-Theme localized logging' {
     BeforeAll {
         $root = (Resolve-Path "$PSScriptRoot\..\").ProviderPath
-        . "$root\lib\Localization.ps1"
+        $modulePath = Join-Path $root 'lib\LocalizationModule.psm1'
+        if (Test-Path $modulePath) { Import-Module $modulePath -Force -ErrorAction Stop }
         . "$root\lib\Logging.ps1"
 
         # Initialize to Czech for deterministic test
