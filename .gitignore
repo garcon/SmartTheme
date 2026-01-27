@@ -1,0 +1,26 @@
+tools/*.log
+# Local cache and logs
+location.json
+smarttheme.log
+
+# Tools / temp
+tools/*.log
+tools/*.tmp
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Temp and backups
+*.tmp
+*.bak
+*.swp
+*.user
+*.suo
+
+# Test results
+TestResults/
