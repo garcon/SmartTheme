@@ -43,16 +43,10 @@ if (-not (Test-Path $logDir)) { New-Item -Path $logDir -ItemType Directory | Out
 $logFile = Join-Path $logDir 'smarttheme.log'
 
 # Central config object for dependency injection / testing
-$Config = [pscustomobject]@{
-    RunnerExe = 'powershell.exe'
-    SchtasksExe = 'schtasks.exe'
-    CmdExe = 'cmd.exe'
-    User = $env:USERNAME
-    TempDir = $env:TEMP
-    RegPath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize'
-    CacheDir = $cacheDir
-    CacheFile = $cacheFile
-}
+$configModule = Join-Path $libDir 'Config.psm1'
+if (Test-Path $configModule) { Import-Module $configModule -Force -ErrorAction Stop }
+$Config = Get-DefaultConfig @{ CacheDir = $cacheDir; CacheFile = $cacheFile; User = $env:USERNAME; TempDir = $env:TEMP }
+try { Validate-Config -Config $Config } catch { Write-Error "Invalid configuration: $_"; exit 1 }
 
 # Dot-source library helpers (logging, timezone) from ./lib
 $scriptDir = Split-Path $ScriptPath -Parent
