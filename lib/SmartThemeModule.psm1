@@ -6,6 +6,33 @@ function Test-IsElevated {
     } catch { return $false }
 }
 
+# Validate configured executables and normalize to absolute paths when possible.
+function Validate-ConfigExecutables {
+    param(
+        [psobject]$Config
+    )
+    if (-not $Config) { return $null }
+    $c = $Config
+    foreach ($key in @('RunnerExe','SchtasksExe','CmdExe')) {
+        $val = $null
+        try { $val = $c.$key } catch { $val = $null }
+        if (-not $val) { continue }
+        # If value is a bare executable name, try resolving via Get-Command
+        try {
+            $cmd = Get-Command -Name $val -ErrorAction SilentlyContinue
+            if ($cmd -and $cmd.Path) { $c | Add-Member -NotePropertyName $key -NotePropertyValue $cmd.Path -Force }
+            else {
+                # If not found, but it's an absolute path and exists, keep it
+                if (Test-Path $val) { $c | Add-Member -NotePropertyName $key -NotePropertyValue (Resolve-Path $val).Path -Force }
+                else { Write-SmartThemeLog (Translate 'EXEC_NOT_FOUND' $key $val) 'WARN' }
+            }
+        } catch {
+            Write-SmartThemeLog (Translate 'EXEC_CHECK_ERROR' $key $_) 'DEBUG'
+        }
+    }
+    return $c
+}
+
 # Wrapper to execute schtasks.exe with splatted args. Allows mocking in tests.
 function Invoke-Schtask([string[]]$sArgs, [string]$SchtasksExe = 'schtasks.exe') {
     try {

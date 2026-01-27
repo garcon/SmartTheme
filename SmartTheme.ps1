@@ -63,6 +63,25 @@ $configModule = Join-Path $libDir 'Config.psm1'
 if (Test-Path $configModule) { Import-Module $configModule -Force -ErrorAction Stop }
 $Config = Get-DefaultConfig @{ CacheDir = $cacheDir; CacheFile = $cacheFile; User = $env:USERNAME; TempDir = $env:TEMP }
 try { Test-Config -Config $Config } catch { Write-Error "Invalid configuration: $_"; exit 1 }
+try { $Config = Validate-ConfigExecutables -Config $Config } catch { Write-SmartThemeLog (Translate 'CONFIG_VALIDATION_FAILED' $_) 'WARN' }
+
+# Integrity check: if a checksum file exists next to the script, verify the script hash before proceeding.
+$checksumFile = "$ScriptPath.sha256"
+if (Test-Path $checksumFile) {
+    try {
+        $expected = (Get-Content -Path $checksumFile -ErrorAction Stop).Trim()
+        $actual = (Get-FileHash -Path $ScriptPath -Algorithm SHA256 -ErrorAction Stop).Hash
+        if ($expected -ne $actual) {
+            Write-SmartThemeLog (Translate 'SCRIPT_INTEGRITY_FAIL' $ScriptPath) 'ERROR'
+            Write-SmartThemeLog (Translate 'SCRIPT_INTEGRITY_INSTRUCT') 'ERROR'
+            exit 1
+        } else {
+            Write-SmartThemeLog (Translate 'SCRIPT_INTEGRITY_OK') 'DEBUG'
+        }
+    } catch {
+        Write-SmartThemeLog (Translate 'SCRIPT_INTEGRITY_ERROR' $_) 'WARN'
+    }
+}
 try {
     $modulePath = (Join-Path $libDir 'SmartThemeModule.psm1')
     if (Test-Path $modulePath) { Import-Module $modulePath -Force -ErrorAction Stop }
