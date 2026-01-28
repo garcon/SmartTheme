@@ -15,6 +15,17 @@ function Test-IsElevated {
     } catch { return $false }
 }
 
+function Get-EnsureTarget {
+    param(
+        [datetime]$Now,
+        [datetime]$Sunrise,
+        [datetime]$Sunset
+    )
+    try {
+        if (($Now -ge $Sunrise) -and ($Now -lt $Sunset)) { return 'Light' } else { return 'Dark' }
+    } catch { return 'Dark' }
+}
+
 function Test-ConfigExecutable {
     param([psobject]$Config)
     if (-not $Config) { return $null }
