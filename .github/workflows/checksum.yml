@@ -1,0 +1,32 @@
+name: Verify checksum
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify-checksum:
+    name: Verify SmartTheme checksum
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PowerShell
+        uses: actions/setup-powershell@v2
+
+      - name: Verify SHA256 checksum
+        run: |
+          pwsh -NoProfile -Command "
+            if (-not (Test-Path 'SmartTheme.ps1')) { Write-Error 'SmartTheme.ps1 missing'; exit 1 }
+            if (-not (Test-Path 'SmartTheme.ps1.sha256')) { Write-Error 'SmartTheme.ps1.sha256 missing'; exit 1 }
+            try {
+              $expected = (Get-Content 'SmartTheme.ps1.sha256' -ErrorAction Stop).Trim()
+            } catch { Write-Error 'Cannot read SmartTheme.ps1.sha256'; exit 1 }
+            try {
+              $actual = (Get-FileHash -Path 'SmartTheme.ps1' -Algorithm SHA256 -ErrorAction Stop).Hash
+            } catch { Write-Error 'Cannot compute hash of SmartTheme.ps1'; exit 1 }
+            if ($expected -ne $actual) { Write-Error "Checksum mismatch: expected=$expected actual=$actual"; exit 1 } else { Write-Host 'Checksum OK' }
+          "
