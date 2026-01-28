@@ -106,7 +106,6 @@ git config core.hooksPath .githooks
 After this the `pre-commit` hook will compute and stage the checksum file automatically.
 
 Jak to funguje (kratce)
-- Naplánované "ONCE" úlohy spouštějí skript s explicitním módem (`-Light` nebo `-Dark`) v čase východu/západu, takže po rozbřesku bude systém nastaven na světlé a po soumraku na tmavé.
-- Startup / Logon úlohy a shim `-Ensure` spouští skript v režimu `-Ensure` (udržuje očekávaný stav při startu/hlášení uživatele), proto jsou ponechány jako samostatné úlohy.
+- Naplánované "ONCE" úlohy nyní spouštějí skript s `-Ensure` (nikoli s explicitním `-Light`/`-Dark`) — to zabraňuje nežádoucím přepnutím, pokud se úloha spustí opožděně; startup/logon úlohy a shim také používají `-Ensure`.
 - Při zjišťování polohy skript preferuje `location.json` pokud jeho `timestamp` je mladší než 1 hodina — zamezí tak zbytečným síťovým voláním.
 - Pokud vedle `SmartTheme.ps1` existuje soubor `SmartTheme.ps1.sha256`, skript ověří integritu pomocí SHA256 před pokračováním.

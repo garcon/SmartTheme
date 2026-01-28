@@ -129,13 +129,13 @@ function Register-ThemeSwitch {
     $shimPath = Join-Path $env:LOCALAPPDATA 'SmartTheme\\theme.cmd'
     $useShim = $false
     if (Test-Path $shimPath) { $useShim = $true }
-    # Command to run at the scheduled time: explicit mode (-Light / -Dark)
+    # Commands: use Ensure for scheduled invocation to avoid incorrect late-run behavior
     if ($useShim) {
-        $cmdAtTime = "`"$shimPath`" -$Mode"
         $cmdEnsure = "`"$shimPath`" -Ensure"
+        $cmdAtTime = $cmdEnsure
     } else {
-        $cmdAtTime = "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptPath`" -$Mode"
         $cmdEnsure = "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptPath`" -Ensure"
+        $cmdAtTime = $cmdEnsure
     }
 
     $now = Get-Date
@@ -155,7 +155,7 @@ function Register-ThemeSwitch {
                 Write-SmartThemeLogFallback ("SCHEDULED_USER_API $taskName $User") 'INFO'
                 $scheduled = $true
             } else {
-                if (Register-SmartThemeUserTask -taskName $taskName -cmd $cmdAtTime -Time $Time -User $User -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe) {
+                if (Register-SmartThemeUserTask -taskName $taskName -cmd $cmdEnsure -Time $Time -User $User -RunnerExe $RunnerExe -SchtasksExe $SchtasksExe) {
                     Write-SmartThemeLogFallback ("SCHEDULED_USER_ATTIME $taskName $User") 'INFO'
                     $scheduled = $true
                 } else { Write-SmartThemeLogFallback ("SCHEDULE_USER_ONCE_FAILED $taskName") 'WARN' }
@@ -184,8 +184,8 @@ function Register-ThemeSwitch {
 
         $xmlPath = Join-Path $TempDir "$taskName.xml"
         $exe = if ($useShim) { $shimPath } else { $RunnerExe }
-        # For the ONCE schedule we want to run the explicit mode; keep Ensure for startup/logon
-        $argumentsForXml = if ($useShim) { "-$Mode" } else { $cmdAtTime }
+        # For the ONCE schedule run `-Ensure` (so late runs use current conditions); startup/logon also run Ensure
+        $argumentsForXml = if ($useShim) { "-Ensure" } else { $cmdEnsure }
 
         if (New-SmartThemeTaskXml -taskName $taskName -exe $exe -arguments $argumentsForXml -startTime $Time -outPath $xmlPath) {
             if ($PSCmdlet.ShouldProcess($taskName, 'Import task XML into scheduled tasks')) {
@@ -212,8 +212,8 @@ function Register-ThemeSwitch {
     try {
         $st = $Time.ToString('HH:mm'); $sd = $Time.ToString('MM\/dd\/yyyy')
         Invoke-Schtask -sArgs @('/Delete','/TN',$taskName,'/F') -SchtasksExe $SchtasksExe | Out-Null
-        # Schedule the ONCE task to run the explicit mode command
-        if ($useShim) { $trMain = '"' + $cmdAtTime + '"' } else { $trMain = '"' + "$RunnerExe $cmdAtTime" + '"' }
+        # Schedule the ONCE task to run the ensure command (not explicit Light/Dark)
+        if ($useShim) { $trMain = '"' + $cmdEnsure + '"' } else { $trMain = '"' + "$RunnerExe $cmdEnsure" + '"' }
         $out = Invoke-Schtask -sArgs @('/Create','/SC','ONCE','/TN',$taskName,'/TR',$trMain,'/ST',$st,'/SD',$sd,'/F') -SchtasksExe $SchtasksExe
         $out | ForEach-Object { Write-SmartThemeLogFallback ("SCHTASKS_OUT: $_") }
         if ($LASTEXITCODE -eq 0) { Write-SmartThemeLogFallback ("SCHTASKS_SCHEDULED $taskName $sd $st") 'INFO'; Write-SmartThemeLogFallback ("SCHTASKS_FALLBACK_NOTE") 'INFO'; $scheduled = $true } else { Write-SmartThemeLogFallback ("SCHTASKS_EXITCODE $LASTEXITCODE") }

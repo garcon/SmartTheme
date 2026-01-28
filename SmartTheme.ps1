@@ -6,6 +6,7 @@
     - -Dark → nastaví tmavý režim a naplánuje přepnutí na světlý.
     - -Light → nastaví světlý režim a naplánuje přepnutí na tmavý.
     - -Schedule → pouze aktualizuje plán přepnutí podle aktuální polohy (bez změny režimu).
+    - Naplánované ONCE úlohy používají `-Ensure` (a startup/logon také `-Ensure`), takže pokud dojde k opožděnému spuštění, skript rozhodne podle aktuálních podmínek.
 #>
 
 param(
