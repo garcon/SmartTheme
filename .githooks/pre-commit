@@ -4,20 +4,15 @@
 # it will warn but still allow the commit to proceed.
 
 if command -v pwsh >/dev/null 2>&1; then
-  if ! pwsh -NoProfile -ExecutionPolicy Bypass -Command "
-    try {
-      $hash = (Get-FileHash -Path 'SmartTheme.ps1' -Algorithm SHA256 -ErrorAction Stop).Hash
-      $hash | Set-Content -Path 'SmartTheme.ps1.sha256' -Encoding ASCII
-      git add -- 'SmartTheme.ps1.sha256' >/dev/null 2>&1
-    } catch {
-      Write-Warning "Failed to update SmartTheme.ps1.sha256: $_"
-      exit 1
-    }
-  "; then
-    echo "Pre-commit: failed to update checksum, but allowing commit. Please update SmartTheme.ps1.sha256 manually." >&2
+  # Use a dedicated PowerShell script to avoid quoting issues in shell
+  pwsh -NoProfile -ExecutionPolicy Bypass -File ".githooks/update-checksum.ps1"
+  rc=$?
+  if [ $rc -eq 0 ]; then
+    exit 0
+  else
+    echo "Pre-commit: checksum update failed (exit code: $rc); allowing commit (please update SmartTheme.ps1.sha256 manually)." >&2
     exit 0
   fi
-  exit 0
 else
   echo "Pre-commit: pwsh (PowerShell) not found on PATH; cannot update checksum. Continuing commit." >&2
   exit 0
