@@ -4,6 +4,10 @@ param(
     [switch]$SkipGit
 )
 
+# Ensure `$SkipGit` exists under StrictMode (avoid uninitialized-variable errors)
+if (-not (Get-Variable -Name SkipGit -Scope Script -ErrorAction SilentlyContinue)) {
+    Set-Variable -Name SkipGit -Value $false -Scope Script
+}
 $repo = (Get-Location).Path
 $scriptPath = Join-Path $repo 'SmartTheme.ps1'
 $checksumFile = Join-Path $repo 'SmartTheme.ps1.sha256'
@@ -24,7 +28,14 @@ Copy-Item -Path $scriptPath -Destination $dest -Force
 Copy-Item -Path $checksumFile -Destination $dest -Force
 if (Test-Path (Join-Path $repo 'theme.cmd')) { Copy-Item -Path (Join-Path $repo 'theme.cmd') -Destination $dest -Force }
 
-Write-Output "Files copied to $dest"
+# Also copy supporting library so the installed script can import modules like SmartThemeModule.psm1
+$repoLib = Join-Path $repo 'lib'
+if (Test-Path $repoLib) {
+    $destLib = Join-Path $dest 'lib'
+    Copy-Item -Path $repoLib -Destination $destLib -Recurse -Force
+}
+
+Write-Output "Files (and lib/) copied to $dest"
 
 # Run theme if available, otherwise run the installed script directly
 $ran = $false

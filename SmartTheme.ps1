@@ -63,6 +63,15 @@ $configModule = Join-Path $libDir 'Config.psm1'
 if (Test-Path $configModule) { Import-Module $configModule -Force -ErrorAction Stop }
 $Config = Get-DefaultConfig @{ CacheDir = $cacheDir; CacheFile = $cacheFile; User = $env:USERNAME; TempDir = $env:TEMP }
 try { Test-Config -Config $Config } catch { Write-Error "Invalid configuration: $_"; exit 1 }
+
+# Import SmartTheme helper module early so Test-ConfigExecutable is available
+try {
+    $modulePath = (Join-Path $libDir 'SmartThemeModule.psm1')
+    if (Test-Path $modulePath) { Import-Module $modulePath -Force -ErrorAction Stop }
+} catch {
+    Write-SmartThemeLog (Translate 'IMPORT_MODULE_FAILED' $_) 'WARN'
+}
+
 if (Get-Command -Name Test-ConfigExecutable -ErrorAction SilentlyContinue) {
     try {
         $Config = Test-ConfigExecutable -Config $Config

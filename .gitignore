@@ -24,3 +24,7 @@ Thumbs.db
 
 # Test results
 TestResults/
+
+# Analyzer output files
+analyzer*.txt
+analyzer-*.txt
