@@ -29,6 +29,9 @@ All notable changes to this project are documented in this file.
 - Scheduler: ensure ONCE scheduled tasks apply explicit mode flags so the UI is set to Light after sunrise and Dark after sunset.
 - Various small refactors and logging improvements; tests and PSScriptAnalyzer remain clean.
 
+### Cleanups
+- Removed generated analyzer output files (`analyzer*.txt`) from the repository and added `.gitignore` entries to prevent accidental commits of analyzer artifacts.
+
 ## Previous entries
 
 ### 2025-11-02 — SmartTheme localization sweep

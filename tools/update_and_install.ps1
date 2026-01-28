@@ -1,13 +1,14 @@
-Set-StrictMode -Version Latest
-
 param(
     [switch]$SkipGit
 )
 
-# Ensure `$SkipGit` exists under StrictMode (avoid uninitialized-variable errors)
+# Ensure `$SkipGit` exists (avoid uninitialized-variable errors when StrictMode is enabled)
 if (-not (Get-Variable -Name SkipGit -Scope Script -ErrorAction SilentlyContinue)) {
     Set-Variable -Name SkipGit -Value $false -Scope Script
 }
+
+# Enable strict mode after parameters are initialized
+Set-StrictMode -Version Latest
 $repo = (Get-Location).Path
 $scriptPath = Join-Path $repo 'SmartTheme.ps1'
 $checksumFile = Join-Path $repo 'SmartTheme.ps1.sha256'

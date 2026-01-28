@@ -84,6 +84,17 @@ pwsh -NoProfile -File .\tools\run-local-checks.ps1
 
 Více informací najdete v `CHANGES.md` a `lib/locales`.
 
+Poznámka o analyzátoru kódu
+- Výstupy PSScriptAnalyzeru (soubory `analyzer*.txt` nebo `analyzer-*.txt`) nejsou součástí repozitáře — jsou to generované artefakty a jsou ignorovány pomocí `.gitignore`.
+
+Pokud chcete spustit analyzátor lokálně a uložit výstup ručně, můžete to udělat takto:
+
+```powershell
+pwsh -NoProfile -File .\tools\run-local-checks.ps1 | Tee-Object tools\analyzer-output.txt
+```
+
+V produkci doporučujeme spouštět analýzu v CI a ukládat výsledky jako artefakty workflow.
+
 Developer tip: enable repository hooks
 - This repo includes a pre-commit hook in `.githooks/pre-commit` which updates `SmartTheme.ps1.sha256` automatically before every commit.
 - To enable hooks for your local clone run:
