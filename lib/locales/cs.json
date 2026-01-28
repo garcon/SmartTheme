@@ -81,6 +81,8 @@
   "ELEVATED_CMD": "  {0}",
   "SCHTASKS_EXAMPLE_CMD": "Priklad prikazu pro rucni vytvoreni (spust jako administrator):",
   "SCHTASKS_EXAMPLE_CMD_LINE": "  {0}",
-  "RUN_ELEVATED_SUGGEST": "Pokud chces, spust vyse uvedeny Start-Process prikaz nebo otevri PowerShell jako spravce a spust skript znovu s -Schedule."
-  ,"IMPORT_MODULE_FAILED": "Import modulu SmartTheme selhal: {0}"
+  "RUN_ELEVATED_SUGGEST": "Pokud chces, spust vyse uvedeny Start-Process prikaz nebo otevri PowerShell jako spravce a spust skript znovu s -Schedule.",
+  "IMPORT_MODULE_FAILED": "Import modulu SmartTheme selhal: {0}",
+  "CONFIG_VALIDATION_FAILED": "Kontrola konfigurace selhala: {0}",
+  "CONFIG_VALIDATION_SKIPPED": "Funkce pro kontrolu konfigurace není dostupná; přeskočeno ověřování spustitelných souborů."
 }

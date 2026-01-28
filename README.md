@@ -19,11 +19,29 @@ Rychlé použití
 pwsh -NoProfile -File .\SmartTheme.ps1 -Dark
 ```
 
-Alternativně lze po instalaci doplňku spouštět skript z příkazové řádky pomocí příkazu `theme` (pokud máte přidaný shim do PATH nebo jste spustili `tools/add-path.ps1`).
-Krátký příkaz `theme`
-- Po instalaci můžete spouštět skript také z příkazové řádky pomocí příkazu `theme`.
-- Shim `theme.cmd` lze umístit do `%LOCALAPPDATA%\SmartTheme` a tuto složku přidat do proměnné `PATH` (např. pomocí `tools/add-path.ps1`).
-- Příklad použití:
+Alternativně lze po instalaci doplňku spouštět skript z příkazové řádky pomocí příkazu `theme` (pokud máte přidaný shim do PATH).
+
+Krátký příkaz `theme` (shim)
+
+- Instalace (one-time): spusťte instalační skript, který zkopíruje `theme.cmd` do `%USERPROFILE%\bin` a přidá tento adresář do uživatelské proměnné `PATH`:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File .\tools\install-shim.ps1
+```
+
+- Poznámka: `setx` aktualizuje uživatelský `PATH` pro nové relace — otevřete novou PowerShell/CMD relaci (nebo se odhlaste/přihlaste), aby se změna projevila. Pro okamžité použití v aktuálním shellu můžete přímo přidat `bin` do `PATH`:
+
+```powershell
+$env:PATH = "$env:USERPROFILE\bin;" + $env:PATH
+```
+
+- Alternativní přímé spuštění bez instalace:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File $env:LOCALAPPDATA\SmartTheme\SmartTheme.ps1 -Schedule
+```
+
+- Příklad použití po instalaci:
 
 ```powershell
 theme -Schedule

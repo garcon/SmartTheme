@@ -83,4 +83,6 @@
   "SCHTASKS_EXAMPLE_CMD_LINE": "  {0}",
   "RUN_ELEVATED_SUGGEST": "Wenn du willst, führe den oben stehenden Start-Process-Befehl aus oder öffne PowerShell als Administrator und starte das Skript erneut mit -Schedule."
   ,"IMPORT_MODULE_FAILED": "Fehler beim Importieren des SmartTheme-Moduls: {0}"
+    ,"CONFIG_VALIDATION_FAILED": "Konfigurationsvalidierung fehlgeschlagen: {0}"
+    ,"CONFIG_VALIDATION_SKIPPED": "Validierungsfunktion nicht verfügbar; Überprüfung der ausführbaren Dateien wird übersprungen."
 }

@@ -63,7 +63,16 @@ $configModule = Join-Path $libDir 'Config.psm1'
 if (Test-Path $configModule) { Import-Module $configModule -Force -ErrorAction Stop }
 $Config = Get-DefaultConfig @{ CacheDir = $cacheDir; CacheFile = $cacheFile; User = $env:USERNAME; TempDir = $env:TEMP }
 try { Test-Config -Config $Config } catch { Write-Error "Invalid configuration: $_"; exit 1 }
-try { $Config = Test-ConfigExecutable -Config $Config } catch { Write-SmartThemeLog (Translate 'CONFIG_VALIDATION_FAILED' $_) 'WARN' }
+if (Get-Command -Name Test-ConfigExecutable -ErrorAction SilentlyContinue) {
+    try {
+        $Config = Test-ConfigExecutable -Config $Config
+    } catch {
+        Write-SmartThemeLog (Translate 'CONFIG_VALIDATION_FAILED' $_) 'WARN'
+        Write-SmartThemeLog (($_ | Out-String)) 'DEBUG'
+    }
+} else {
+    Write-SmartThemeLog (Translate 'CONFIG_VALIDATION_SKIPPED') 'WARN'
+}
 
 # Integrity check: if a checksum file exists next to the script, verify the script hash before proceeding.
 $checksumFile = "$ScriptPath.sha256"
@@ -114,10 +123,13 @@ else {
     $useCached = $false
     if ($cached -and $cached.timestamp) {
         try {
-            $cachedTs = [datetimeoffset]::Parse($cached.timestamp, [System.Globalization.CultureInfo]::InvariantCulture)
-        } catch { $cachedTs = $null }
-        if ($cachedTs) {
-            $age = (Get-Date) - $cachedTs
+            $cachedTsDto = [datetimeoffset]::Parse($cached.timestamp, [System.Globalization.CultureInfo]::InvariantCulture)
+        } catch { $cachedTsDto = $null }
+        if ($cachedTsDto) {
+            try {
+                $cachedDtUtc = $cachedTsDto.UtcDateTime
+            } catch { $cachedDtUtc = $cachedTsDto.DateTime }
+            $age = (Get-Date).ToUniversalTime() - $cachedDtUtc
             if ($age -lt [timespan]::FromHours(1)) { $useCached = $true }
         }
     }
