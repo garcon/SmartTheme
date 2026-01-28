@@ -338,6 +338,22 @@ if ($Schedule) {
     Write-SmartThemeLog (Translate 'SCHEDULE_ONLY') 'INFO'
     $target = $current
 }
+elseif ($Ensure) {
+    # Ensure mode: choose theme based on current sunrise/sunset times
+    try {
+        if (($now -ge $sunrise) -and ($now -lt $sunset)) {
+            $target = 'Light'
+            Write-SmartThemeLog (Translate 'ENSURE_DECISION' 'Light') 'DEBUG'
+        } else {
+            $target = 'Dark'
+            Write-SmartThemeLog (Translate 'ENSURE_DECISION' 'Dark') 'DEBUG'
+        }
+    } catch {
+        # If sunrise/sunset are not available for some reason, fall back to toggling behavior
+        Write-SmartThemeLog (Translate 'ENSURE_FAIL' $_) 'WARN'
+        if ($current -eq 'Light') { $target = 'Dark' } elseif ($current -eq 'Dark') { $target = 'Light' }
+    }
+}
 elseif ($Dark) {
     $target = 'Dark'
 }

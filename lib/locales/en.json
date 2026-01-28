@@ -73,6 +73,8 @@
   "CANNOT_DETERMINE_CURRENT_THEME": "Error: Cannot determine current theme.",
   "CURRENT_TO_TARGET": "Current theme: {0} → New theme: {1}",
   "SCHEDULE_MODE_NO_CHANGE": "Mode not changed (Schedule mode).",
+  "ENSURE_DECISION": "Ensure decided to set: {0}",
+  "ENSURE_FAIL": "Ensure decision failed: {0}",
   "SUNSET_STILL_PAST": "Sunset is still in the past ({0}) — adding 1 day as last resort.",
   "SUNRISE_STILL_PAST": "Sunrise is still in the past ({0}) — adding 1 day as last resort.",
   "SCHEDULED_DONE": "Done. Next switch has been scheduled.",

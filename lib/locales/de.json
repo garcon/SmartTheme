@@ -73,6 +73,8 @@
   "CANNOT_DETERMINE_CURRENT_THEME": "Fehler: Aktuelles Thema kann nicht ermittelt werden.",
   "CURRENT_TO_TARGET": "Aktuelles Thema: {0} → Neues Thema: {1}",
   "SCHEDULE_MODE_NO_CHANGE": "Modus wird nicht geändert (Schedule-Modus).",
+  "ENSURE_DECISION": "Ensure hat entschieden: {0}",
+  "ENSURE_FAIL": "Ensure-Entscheidung fehlgeschlagen: {0}",
   "SUNSET_STILL_PAST": "Sonnenuntergang ist noch in der Vergangenheit ({0}) — füge als letzten Ausweg 1 Tag hinzu.",
   "SUNRISE_STILL_PAST": "Sonnenaufgang ist noch in der Vergangenheit ({0}) — füge als letzten Ausweg 1 Tag hinzu.",
   "SCHEDULED_DONE": "Fertig. Der nächste Wechsel wurde geplant.",
