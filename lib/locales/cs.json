@@ -76,6 +76,7 @@
   "SUNSET_STILL_PAST": "Zapad slunce je stale v minulosti ({0}) - pridavam 1 den jako posledni opatreni.",
   "SUNRISE_STILL_PAST": "Vychod slunce je stale v minulosti ({0}) - pridavam 1 den jako posledni opatreni.",
   "SCHEDULED_DONE": "Hotovo. Dalsi prepnuti bylo naplanovano.",
+  "SCHEDULED_DONE_AT": "Hotovo. Dalsi prepnuti bylo naplanovano na {0}",
   "SCHEDULE_FAILED_GENERIC": "Hotovo. ALE: Nepodarilo se vytvorit planovanou ulohu (pravdepodobne nedostatecna opravneni).",
   "ELEVATED_INSTRUCTIONS": "Instrukce pro spusteni elevated (spusti nove okno PowerShell s UAC prompt):",
   "ELEVATED_CMD": "  {0}",

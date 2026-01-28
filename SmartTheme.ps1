@@ -378,10 +378,12 @@ else {
     $scheduleOk = Register-ThemeSwitch -Mode 'Light' -Time $sunrise -ScriptPath $ScriptPath -Config $Config
 }
     if ($scheduleOk) {
-    Write-SmartThemeLog (Translate 'SCHEDULED_DONE')
-} else {
-    $msg = "Hotovo. ALE: Nepodařilo se vytvořit plánovanou úlohu (pravděpodobně nedostatečná oprávnění)."
-    Write-SmartThemeLog $msg
+        # Report the scheduled time to the user (localized)
+        $nextSwitchTime = if ($target -eq 'Light') { $sunset } else { $sunrise }
+        Write-SmartThemeLog (Translate 'SCHEDULED_DONE_AT' $nextSwitchTime) 'INFO'
+    } else {
+        $msg = "Hotovo. ALE: Nepodařilo se vytvořit plánovanou úlohu (pravděpodobně nedostatečná oprávnění)."
+        Write-SmartThemeLog $msg
 
     # Instrukce pro spuštění jako správce
     $elevCmd = "Start-Process -FilePath 'powershell.exe' -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File `"$ScriptPath`" -Schedule' -Verb RunAs"

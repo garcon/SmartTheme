@@ -76,6 +76,7 @@
   "SUNSET_STILL_PAST": "Sunset is still in the past ({0}) — adding 1 day as last resort.",
   "SUNRISE_STILL_PAST": "Sunrise is still in the past ({0}) — adding 1 day as last resort.",
   "SCHEDULED_DONE": "Done. Next switch has been scheduled.",
+  "SCHEDULED_DONE_AT": "Done. Next switch scheduled at {0}",
   "SCHEDULE_FAILED_GENERIC": "Done. BUT: Failed to create scheduled task (probably insufficient privileges).",
   "ELEVATED_INSTRUCTIONS": "Instruction to run elevated (will open new PowerShell with UAC prompt):",
   "ELEVATED_CMD": "  {0}",

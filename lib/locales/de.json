@@ -76,6 +76,7 @@
   "SUNSET_STILL_PAST": "Sonnenuntergang ist noch in der Vergangenheit ({0}) — füge als letzten Ausweg 1 Tag hinzu.",
   "SUNRISE_STILL_PAST": "Sonnenaufgang ist noch in der Vergangenheit ({0}) — füge als letzten Ausweg 1 Tag hinzu.",
   "SCHEDULED_DONE": "Fertig. Der nächste Wechsel wurde geplant.",
+  "SCHEDULED_DONE_AT": "Fertig. Der nächste Wechsel wurde geplant für {0}",
   "SCHEDULE_FAILED_GENERIC": "Fertig. ABER: Erstellung der geplanten Aufgabe fehlgeschlagen (wahrscheinlich unzureichende Berechtigungen).",
   "ELEVATED_INSTRUCTIONS": "Anleitung zum Ausführen mit erhöhten Rechten (öffnet neuen PowerShell mit UAC-Eingabeaufforderung):",
   "ELEVATED_CMD": "  {0}",
